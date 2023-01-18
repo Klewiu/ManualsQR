@@ -14,3 +14,7 @@
 - change SETTINGS to use dotenv
 - run >python manage.py migrate to test it
 
+# 18/01.23 Install Pipreqs #
+--------------------------------------------------------
+- >pip install pipreqs - generates requirements.txt automaticly
+- >pipreqs /path/to/project/home/location - to create requirements.txt
