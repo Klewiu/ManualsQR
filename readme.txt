@@ -30,3 +30,11 @@
 - use include in urls.py in manualsqr to include qr urls.py.
 - update views.py in qr with test function
 - create test.html template and store in templates/qr in qr app
+
+# 19/01/23 Client Page - first step #
+---------------------------------------------------------
+- set static root in SETTINGS
+- create 'client.html' in qr/templates
+- create 'style.css' in src/static folder
+- add some styling 
+- update ATS_logo to static folder

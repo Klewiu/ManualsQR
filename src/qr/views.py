@@ -5,4 +5,4 @@ def test(request):
     context = {
         'title':' O Influencio',
       }
-    return render (request,'qr/test.html', context )
+    return render (request,'qr/client.html', context )
