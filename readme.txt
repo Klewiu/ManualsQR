@@ -30,3 +30,10 @@
 - use include in urls.py in manualsqr to include qr urls.py.
 - update views.py in qr with test function
 - create test.html template and store in templates/qr in qr app
+
+# 19/01/23 Setup OR Model and Initialize HomePage
+- setup Order Model
+- register Order Model in AdminPage
+- setup view and urls to display orders at homepage
+- create static folder and style.css file
+- update static policy in settings.py

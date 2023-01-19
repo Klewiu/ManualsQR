@@ -1,8 +1,12 @@
 from django.shortcuts import render
+from .models import Order
 
 # Create your views here.
-def test(request):
+def home(request):
+    orders = Order.objects.all()
     context = {
-        'title':' O Influencio',
+      'orders': orders,
+      'title': 'Strona Główna'
       }
-    return render (request,'qr/test.html', context )
+      
+    return render(request, 'qr/home.html', context)
