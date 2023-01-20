@@ -9,4 +9,4 @@ def home(request):
       'title': 'Strona Główna'
       }
       
-    return render(request, 'qr/home.html', context)
+    return render (request,'qr/client.html', context )

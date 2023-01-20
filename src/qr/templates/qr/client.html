@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    {% load bootstrap5 %}
+
+    {% bootstrap_css %}
+
+    {% bootstrap_javascript %}
+
+    {% bootstrap_messages %}
+
+    <title>AssembleQR</title>
+</head>
+<body>
+    <nav class="navbar clientNavbar">
+        <div class="flex ms-3">
+            <img src="{% static 'ATS_logo.webp' %}" class="logo align-text-center pb-1">
+            <span class="navbar-brand logoTextColor mb-0 h1 fw-bold">ASSEMBLE <span class="text-black">QR</span></span>
+        </div>
+      </nav>
+</body>
+</html>

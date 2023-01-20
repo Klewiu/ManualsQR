@@ -31,9 +31,20 @@
 - update views.py in qr with test function
 - create test.html template and store in templates/qr in qr app
 
-# 19/01/23 Setup OR Model and Initialize HomePage
+
+# 19/01/23 Setup OR Model and Initialize HomePage #
+---------------------------------------------------------
 - setup Order Model
 - register Order Model in AdminPage
 - setup view and urls to display orders at homepage
 - create static folder and style.css file
 - update static policy in settings.py
+
+# 19/01/23 Client Page - first step #
+---------------------------------------------------------
+- set static root in SETTINGS
+- create 'client.html' in qr/templates
+- create 'style.css' in src/static folder
+- add some styling 
+- update ATS_logo to static folder
+
