@@ -48,5 +48,7 @@
 - add some styling 
 - update ATS_logo to static folder
 
-# 20/01/23 Resolve conflicts #
+# 20/01/23 Resolve conflicts + client front step 2 #
 ---------------------------------------------------------
+- resolve conflicts
+- styling client.html front and css
