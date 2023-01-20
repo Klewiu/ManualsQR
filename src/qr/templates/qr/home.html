@@ -1,0 +1,20 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+<h1 class = "title"> {{title}}</h1>
+<h3> Zamówienie </h3>
+{% for order in orders %}
+    <div>
+        <p>{{ order.orderTag }}</p>
+        <p>{{ order.orderCompany }}</p>
+        <p>{{ order.orderName }}</p>
+        <p>{{ order.orderQuantity }}</p>
+        <p>{{ order.orderDate }}</p>
+        <p>{{ order.orderManager }}</p>
+        <p>{{ order.orderManual }}</p>
+        <p>{{ order.orderVideo }}</p>
+        <p>{{ order.orderStatus }}</p>
+    </div>
+{% endfor %}
+
+{% endblock %}
