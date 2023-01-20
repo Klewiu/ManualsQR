@@ -9,4 +9,11 @@ def home(request):
       'title': 'Strona Główna'
       }
       
+    return render (request,'qr/home.html', context )
+
+def client(request):
+    context = {
+      'title': 'Client panel'
+      }
+      
     return render (request,'qr/client.html', context )
