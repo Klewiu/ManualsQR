@@ -52,3 +52,7 @@
 ---------------------------------------------------------
 - resolve conflicts
 - styling client.html front and css
+
+#21/01/23 Setting the iframe in client html #
+---------------------------------------------------------
+- setting ifram css for embed + rounded corners

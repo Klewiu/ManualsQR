@@ -7,6 +7,18 @@
 .logoTextColor {
     color: #f26021;
 }
-.manualLogo{
+.manualLogo {
     width:120px;
+}
+
+@media screen and (max-width: 400px){
+    iframe {
+        /* max-width: 100% !important; */
+        width: 100% !important;
+        /* min-width: auto !important; */
+    }
+}
+
+iframe {
+    border-radius:4%;  
 }
