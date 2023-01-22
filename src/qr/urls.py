@@ -1,4 +1,3 @@
-from django.contrib import admin
 from django.urls import path
 from .views import home, generate_qr, add_order, order_detail, client, qr_code_view
 from django.conf import settings

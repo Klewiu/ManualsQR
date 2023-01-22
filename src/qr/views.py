@@ -5,16 +5,10 @@ import qrcode
 from django.http import HttpResponse
 from .forms import OrderForm
 
-
-# Create your views here.
 def home(request):
     orders = Order.objects.all()
-    context = {
-      'orders': orders,
-      }
-      
-    return render (request,'qr/home.html', context )
-
+    context = { 'orders': orders }
+    return render(request, 'qr/home.html', context)
 
 def generate_qr(request, order_id):
     order = Order.objects.get(id=order_id)
@@ -31,8 +25,6 @@ def add_order(request):
             order = form.save(commit=False)
             order.orderManager = request.user
             order.save()
-            # Call generate_qr function and pass in the order's id
-            generate_qr(request, order.id)
             return redirect('order_detail', order_uuid=order.url)
     else:
         form = OrderForm()
@@ -42,15 +34,10 @@ def order_detail(request, order_uuid):
     order = Order.objects.get(url=order_uuid)
     return render(request, 'qr/order_detail.html', {'order': order, 'qr_url': generate_qr(request, order.id)})
 
-# new client side function  
 def qr_code_view(request, order_uuid):
     order = Order.objects.get(url=order_uuid)
     return render(request, 'qr/qr_code.html', {'order': order})
 
-
 def client(request):
-    context = {
-      'title': 'Client panel'
-      }
-      
-    return render (request,'qr/client.html', context )
+    context = {'title': 'Client panel'}
+    return render(request, 'qr/client.html', context)
