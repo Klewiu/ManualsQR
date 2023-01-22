@@ -81,3 +81,9 @@
 - update home.html - display data in table using bootstrap icons
 - update style.css
 - prevent some errors adding if check in qr_code.html
+
+#22/01/23 New icons in Nabar / Home style for mobile
+- add new icons in Navbar - user for user managment, Ad for chanel marketing,
+- change button styling from primary to secondaray
+- add return button in add_order.html
+- mobile optimalization for table in home
