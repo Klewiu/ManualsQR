@@ -37,3 +37,14 @@ thead {
 iframe {
     border-radius:4%;  
 }
+
+/* cancels styling for link at the ASSEMBLE QR logo */
+.no-style {
+    color: inherit;
+    text-decoration: none;
+}
+
+.no-style:hover {
+    color: inherit;
+    text-decoration: none;
+}

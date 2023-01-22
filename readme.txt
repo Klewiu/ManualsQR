@@ -58,7 +58,7 @@
 ----------------------------------------------------------
 - update home page with orders displayed in cards
 - ceate detail page
-- create add_order page with form and QR code generation on form save
+- create add_order page with form and setup QR code generation in detail page
 - create manual upload and download
 - create test qr code view page for client side
 
@@ -81,3 +81,8 @@
 - update home.html - display data in table using bootstrap icons
 - update style.css
 - prevent some errors adding if check in qr_code.html
+
+#22/01/23 Create Delete order functionality & add logo redirect to home
+---------------------------------------------------------
+- create OrderDeleteView with template & url for delete confirmation
+- update ASSEMBLE QR logo (span element) to route to home page

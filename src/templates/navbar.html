@@ -3,7 +3,10 @@
 <nav class="navbar clientNavbar">
     <div class="flex ms-3">
         <img src="{% static 'ATS_logo.webp' %}" class="logo align-text-center pb-1">
-        <span class="navbar-brand logoTextColor mb-0 h1 fw-bold">ASSEMBLE <span class="text-black">QR</span></span>
+        <span class="navbar-brand logoTextColor mb-0 h1 fw-bold">
+            <a class="no-style" href="{% url 'home' %}">ASSEMBLE <span class="text-black">QR</span></a>
+        </span>
+        
         <a href="{% url 'add_order' %}" class="btn btn-primary "><i class="bi bi-plus-circle"></i> ZLECENIE</a>
     </div>
     

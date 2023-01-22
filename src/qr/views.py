@@ -4,7 +4,9 @@ from .models import Order
 import qrcode
 from django.http import HttpResponse
 from .forms import OrderForm
-from django.views.generic import ListView
+from django.views.generic import ListView, DeleteView
+from django.urls import reverse_lazy
+
 
 class Home(ListView):
     model=Order
@@ -38,6 +40,11 @@ def order_detail(request, order_uuid):
 def qr_code_view(request, order_uuid):
     order = Order.objects.get(url=order_uuid)
     return render(request, 'qr/qr_code.html', {'order': order})
+
+class OrderDeleteView(DeleteView):
+    model = Order
+    template_name = 'qr/order_confirm_delete.html'
+    success_url = reverse_lazy('home')
 
 def client(request):
     context = {'title': 'Client panel'}
