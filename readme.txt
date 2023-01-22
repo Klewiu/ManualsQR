@@ -65,3 +65,10 @@
 #21/01/23 Setting the iframe in client html #
 ---------------------------------------------------------
 - setting iframe css for embed + rounded corners
+
+#22/01/23 Styling home and addOrder form
+- >pip install crispy-bootstrap5 - to install crispy forms
+- update settings with above
+- change styling in add+order.html by adding chrispy tag
+- create navbar.html and include it in base.html
+- move new order button to navbar + add bootstrap icon
