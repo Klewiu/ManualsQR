@@ -1,11 +1,11 @@
 from django.urls import path
-from .views import home, generate_qr, add_order, order_detail, client, qr_code_view
+from .views import Home, generate_qr, add_order, order_detail, client, qr_code_view
 from django.conf import settings
 from django.conf.urls.static import static
 
 
 urlpatterns = [
-    path('', home, name='home'),
+    path('', Home.as_view(), name='home'),
     path('client/', client, name='client'),
     path('add/', add_order, name='add_order'),
     path('detail/<uuid:order_uuid>/', order_detail, name='order_detail'),

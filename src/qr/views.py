@@ -4,11 +4,12 @@ from .models import Order
 import qrcode
 from django.http import HttpResponse
 from .forms import OrderForm
+from django.views.generic import ListView
 
-def home(request):
-    orders = Order.objects.all()
-    context = { 'orders': orders }
-    return render(request, 'qr/home.html', context)
+class Home(ListView):
+    model=Order
+    template_name = "qr/home.html"
+    ordering = ["-orderDate"]
 
 def generate_qr(request, order_id):
     order = Order.objects.get(id=order_id)

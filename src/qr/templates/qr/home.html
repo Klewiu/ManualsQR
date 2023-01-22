@@ -4,22 +4,52 @@
 {% block content %}
   <header>
   </header>
+  
+
   <div class="container my-5">
-    
-    <div class="row">
-    {% for order in orders %}
-      <div class="col-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">{{ order.orderTag }}</h5>
-            <p class="card-text">{{ order.orderCompany }}</p>
-            <p class="card-text">{{ order.orderName }}</p>
-            <a href="{% url 'order_detail' order_uuid=order.url %}" class="btn btn-secondary">Details</a>
-            {% comment %} The above reverses the URL for the view order_detail and passes in the order_uuid variable to it. {% endcomment %}
-          </div>
-        </div>
-      </div>
-    {% endfor %}
+    <h3> Tabela zleceń </h3>
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead class="bg-secondary bg-gradient text-white ">
+          <tr>
+            <th scope="col" class="text-center">WZP</th>
+            <th scope="col" class="text-center">Produkt</th>
+            <th scope="col" class="text-center">Firma</th>
+            <th scope="col" class="text-center">Ilość</th>
+            <th scope="col" class="text-center">Manager</th>
+            <th scope="col" class="text-center">Instrukcja</th>
+            <th scope="col" class="text-center">Video</th>
+            <th scope="col">Funkcje</th>
+          </tr>
+        </thead>
+        
+        <tbody class="bg-light bg-gradient">
+          {% for order in object_list %}
+                <tr>
+                    <td class="text-center">{{ order.orderTag }}</td>
+                    <td class="text-center">{{ order.orderName }}</td>
+                    <td class="text-center">{{ order.orderCompany }}</td>
+                    <td class="text-center">{{ order.orderQuantity }}</td>
+                    <td class="text-center">{{ order.orderManager }}</td> 
+                    <td class="text-center">
+                      {% if order.orderManual %}<i class="bi bi-check-circle" style="color:#00b300;"></i>{% else %}<i class="bi bi-x-circle" style="color:#b30000;"></i>{% endif %}
+                    </td>
+                    <td class="text-center">
+                      {% if order.orderVideo %}<i class="bi bi-check-circle" style="color:#00b300;"></i>{% else %}<i class="bi bi-x-circle" style="color:#b30000;"></i>{% endif %}
+                    </td>
+                    
+                    <td>
+                      <a href="{% url 'order_detail' order_uuid=order.url %}" class="btn btn-secondary"><i class="bi bi-database"></i></a>
+                      <a href="{% url 'qr_code_view' order_uuid=order.url %}" class="btn btn-warning"><i class="bi bi-qr-code"></i></i></a>
+                      <a href="" class="btn btn-danger"><i class="bi bi-trash3"></i></a>
+          
+                    </td>
+                </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
   </div>
+    
+
 {% endblock %}

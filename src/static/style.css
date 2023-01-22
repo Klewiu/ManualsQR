@@ -1,4 +1,10 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+html *
+{
+   font-family: Lato !important;
+}
 
 .clientNavbar {
     background-color: #e7eae7;
@@ -12,6 +18,13 @@
 .manualLogo {
     width:120px;
 }
+
+thead {
+    border-bottom-width: 2px;
+}
+
+
+
 
 @media screen and (max-width: 400px){
     iframe {

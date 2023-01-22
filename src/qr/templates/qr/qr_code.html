@@ -51,7 +51,9 @@
           <h5 class="card-title">{{ order.orderTag }}</h5>
           <p class="card-text">{{ order.orderCompany }}</p>
           <p class="card-text">{{ order.orderName }}</p>
-          <a href="{{ order.file.url }}" download="{{ order.file.name }}" class="btn btn-secondary">Download File</a>
+          {% if order.file%}
+            <a href="{{ order.file.url }}" download="{{ order.file.name }}" class="btn btn-secondary">Download File</a>
+          {% endif %}
         </div>
       </div>
 
