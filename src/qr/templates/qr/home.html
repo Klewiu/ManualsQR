@@ -13,12 +13,12 @@
         <thead class="bg-secondary bg-gradient text-white ">
           <tr>
             <th scope="col" class="text-center">WZP</th>
-            <th scope="col" class="text-center">Produkt</th>
-            <th scope="col" class="text-center">Firma</th>
-            <th scope="col" class="text-center">Ilość</th>
+            <th scope="col" class="text-center hide_in_mobile">Produkt</th>
+            <th scope="col" class="text-center hide_in_mobile">Firma</th>
+            <th scope="col" class="text-center hide_in_mobile">Ilość</th>
             <th scope="col" class="text-center">Manager</th>
-            <th scope="col" class="text-center">Instrukcja</th>
-            <th scope="col" class="text-center">Video</th>
+            <th scope="col" class="text-center hide_in_mobile">Instrukcja</th>
+            <th scope="col" class="text-center hide_in_mobile">Video</th>
             <th scope="col">Funkcje</th>
           </tr>
         </thead>
@@ -27,14 +27,14 @@
           {% for order in object_list %}
                 <tr>
                     <td class="text-center">{{ order.orderTag }}</td>
-                    <td class="text-center">{{ order.orderName }}</td>
-                    <td class="text-center">{{ order.orderCompany }}</td>
-                    <td class="text-center">{{ order.orderQuantity }}</td>
+                    <td class="text-center hide_in_mobile">{{ order.orderName }}</td>
+                    <td class="text-center hide_in_mobile">{{ order.orderCompany }}</td>
+                    <td class="text-center hide_in_mobile">{{ order.orderQuantity }}</td>
                     <td class="text-center">{{ order.orderManager }}</td> 
-                    <td class="text-center">
+                    <td class="text-center hide_in_mobile">
                       {% if order.orderManual %}<i class="bi bi-check-circle" style="color:#00b300;"></i>{% else %}<i class="bi bi-x-circle" style="color:#b30000;"></i>{% endif %}
                     </td>
-                    <td class="text-center">
+                    <td class="text-center hide_in_mobile">
                       {% if order.orderVideo %}<i class="bi bi-check-circle" style="color:#00b300;"></i>{% else %}<i class="bi bi-x-circle" style="color:#b30000;"></i>{% endif %}
                     </td>
                     

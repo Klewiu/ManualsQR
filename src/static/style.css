@@ -10,7 +10,7 @@ html *
     background-color: #e7eae7;
 }
 .logo {
-    width: 60px;
+    width: 70px;
 }
 .logoTextColor {
     color: #f26021;
@@ -25,12 +25,14 @@ thead {
 
 
 
-
+@media screen and (max-width: 580px) {
+    .hide_in_mobile {
+      display: none;
+    }
+}
 @media screen and (max-width: 400px){
     iframe {
-        /* max-width: 100% !important; */
         width: 100% !important;
-        /* min-width: auto !important; */
     }
 }
 
