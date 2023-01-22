@@ -1,11 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
+import uuid
 
 # Create your models here.
 class Order (models.Model):
 
     STATUS_CHOICES = (('pending', 'Zlecone'),('in_progress', 'Podjęte'),('Zakończone', 'Zakończone'),)
 
+    
     orderTag= models.CharField(max_length=15, verbose_name='WZP')
     orderCompany = models.CharField(max_length=15, verbose_name='Firma')
     orderName = models.CharField(max_length=15, verbose_name='Produkt')
@@ -15,6 +17,8 @@ class Order (models.Model):
     orderManual = models.BooleanField(default=False)
     orderVideo = models.BooleanField(default=False)
     orderStatus = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
+    file = models.FileField(upload_to='media/', null=True, blank=True, verbose_name="Plik")
+    url = models.UUIDField(default=uuid.uuid4, editable=False)
     
     class Meta:
         verbose_name = ("Zlecenie")
