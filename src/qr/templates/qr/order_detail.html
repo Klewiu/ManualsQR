@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="container my-5">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ order.orderTag }}</h5>
+            <p class="card-text">{{ order.orderCompany }}</p>
+            <p class="card-text">{{ order.orderName }}</p>
+            <p class="card-text">{{ order.orderQuantity }}</p>
+            <p class="card-text">{{ order.orderDate }}</p>
+            <p class="card-text">{{ order.orderManager }}</p>
+            <p class="card-text">{{ order.orderManual }}</p>
+            <p class="card-text">{{ order.orderVideo }}</p>
+            <p class="card-text">{{ order.orderStatus }}</p>
+            <img src="{% url 'generate_qr' order.id %}" class="img-fluid" alt="QR code">
+            <a href="{{ order.file.url }}" download="{{ order.file.name }}" class="btn btn-secondary">Download File</a>
+            <a href="{% url 'home' %}" class="btn btn-secondary">Back to orders</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

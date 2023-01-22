@@ -1,20 +1,30 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-<h1 class = "title"> {{title}}</h1>
-<h3> Zamówienie </h3>
-{% for order in orders %}
-    <div>
-        <p>{{ order.orderTag }}</p>
-        <p>{{ order.orderCompany }}</p>
-        <p>{{ order.orderName }}</p>
-        <p>{{ order.orderQuantity }}</p>
-        <p>{{ order.orderDate }}</p>
-        <p>{{ order.orderManager }}</p>
-        <p>{{ order.orderManual }}</p>
-        <p>{{ order.orderVideo }}</p>
-        <p>{{ order.orderStatus }}</p>
+  <header>
+    <img src="{% static 'ATS_logo.webp' %}" class="img-fluid" alt="Company Logo">
+  </header>
+  <div class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <a href="{% url 'add_order' %}" class="btn btn-primary mb-3">Add Order</a>
+      </div>
     </div>
-{% endfor %}
-
+    <div class="row">
+    {% for order in orders %}
+      <div class="col-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ order.orderTag }}</h5>
+            <p class="card-text">{{ order.orderCompany }}</p>
+            <p class="card-text">{{ order.orderName }}</p>
+            <a href="{% url 'order_detail' order_uuid=order.url %}" class="btn btn-secondary">Details</a>
+            {% comment %} The above reverses the URL for the view order_detail and passes in the order_uuid variable to it. {% endcomment %}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+  </div>
 {% endblock %}

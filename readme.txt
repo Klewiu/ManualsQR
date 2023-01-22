@@ -52,3 +52,10 @@
 ---------------------------------------------------------
 - resolve conflicts
 - styling client.html front and css
+
+# 22/01/23 Create QR code and basic logic for application (requirements.txt updated!)
+- update home page with orders displayed in cards
+- ceate detail page
+- create add_order page with form and QR code generation on form save
+- create manual upload and download
+- create test qr code view page for client side
