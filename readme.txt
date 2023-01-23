@@ -85,9 +85,13 @@
 - create OrderDeleteView with template & url for delete confirmation
 - update ASSEMBLE QR logo (span element) to route to home page
 
-#22/01/23 New icons in Nabar / Home style for mobile
+#22/01/23 New icons in Nabar / Home style for mobile #
 ---------------------------------------------------------
 - add new icons in Navbar - user for user managment, Ad for chanel marketing,
 - change button styling from primary to secondaray
 - add return button in add_order.html
 - mobile optimalization for table in home
+
+#23/01/23 Updates icons in order table #
+---------------------------------------------------------
+- update icon for more friendly-use
