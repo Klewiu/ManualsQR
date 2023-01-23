@@ -13,20 +13,19 @@
             <p class="card-text">{{ order.orderQuantity }}</p>
             <p class="card-text">{{ order.orderDate }}</p>
             <p class="card-text">{{ order.orderManager }}</p>
-            <p class="card-text">{{ order.orderManual }}</p>
-            <p class="card-text">{{ order.orderVideo }}</p>
+            <p class="card-text">{% if order.orderManual %}Instrukcja{% else %}Brak instrukcji{% endif %}</p>
+            <p class="card-text">{% if order.orderVideo %}Film{% else %}Brak filmu {% endif %}</p>
             <p class="card-text">{{ order.orderStatus }}</p>
             <img src="{% url 'generate_qr' order.id %}" class="img-fluid" alt="QR code">
             {% if order.file %}
-              <a href="{{ order.file.url }}" download="{{ order.file.name }}" class="btn btn-secondary">Pobierz instrukcję</a>
-            {% endif %}
-            <p class="card-text">Ilość stron PDfa : {{ pages}}. Dzięki aplikacji oszczędziłeś {{water}} Litrów wody</p>
-
-
-            <a href="{% url 'home' %}" class="btn btn-secondary">Wróć do zamówień</a>
+              <a href="{{ order.file.url }}" download="{{ order.file.name }}" class="btn btn-secondary">Pobierz instrukcję #1</a>{% endif %}
+            {% if order.file2 %}
+                <a href="{{ order.file2.url }}" download="{{ order.file2.name }}" class="btn btn-secondary">Pobierz instrukcję #2</a>{% endif %}
+            <p class="card-text">Ilość stron PDfa : {{ pages|default:0 }}. Dzięki aplikacji oszczędziłeś {{water|default:0}} Litrów wody</p>
           </div>
         </div>
       </div>
     </div>
+    <a href="{% url 'home' %}" class="btn btn-secondary">Wróć do zamówień</a>
   </div>
 {% endblock %}

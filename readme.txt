@@ -103,3 +103,11 @@
 - in models.py add method to calculate PDF number of pages using PyPDF2
 - use that function in views.py in order_detail to calculet water waste on manuals for production orderQuantity
 - pass above to template and display it in order_detail.html
+
+#23/01/23 Order Model update and changes in forms, views, template, navbar
+--------------------------------------------------------
+- update navbar logo to redirect to homepage
+- update model with file2 field for ENG manual
+- update models to set orderManual to True if file or file2 is used 
+- update add_order view to set file fields to None if no file used
+- update model, view, and detail template to count total water_waste from both file and file 2

@@ -26,6 +26,10 @@ def add_order(request):
         form = OrderForm(request.POST, request.FILES)
         if form.is_valid():
             order = form.save(commit=False)
+            if not form.cleaned_data['file']:
+                order.file = None
+            if not form.cleaned_data['file2']:
+                order.file2 = None
             order.orderManager = request.user
             order.save()
             return redirect('order_detail', order_uuid=order.url)
@@ -35,9 +39,13 @@ def add_order(request):
 
 def order_detail(request, order_uuid):
     order = Order.objects.get(url=order_uuid)
-    num_pages = order.count_pages()
-    water_variable = 5
-    water_waste = int(num_pages)*int(order.orderQuantity)*(water_variable)
+    if order.file or order.file2:
+        num_pages = order.count_pages_total()
+        water_variable = 5
+        water_waste = int(num_pages)*int(order.orderQuantity)*(water_variable)
+    else:
+        num_pages = None
+        water_waste = None
     return render(request, 'qr/order_detail.html', {'order': order, 'pages':num_pages, 'water':water_waste, 'qr_url': generate_qr(request, order.id)})
 
 def qr_code_view(request, order_uuid):
