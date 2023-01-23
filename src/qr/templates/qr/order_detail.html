@@ -20,6 +20,9 @@
             {% if order.file %}
               <a href="{{ order.file.url }}" download="{{ order.file.name }}" class="btn btn-secondary">Pobierz instrukcję</a>
             {% endif %}
+            <p class="card-text">Ilość stron PDfa : {{ pages}}. Dzięki aplikacji oszczędziłeś {{water}} Litrów wody</p>
+
+
             <a href="{% url 'home' %}" class="btn btn-secondary">Wróć do zamówień</a>
           </div>
         </div>

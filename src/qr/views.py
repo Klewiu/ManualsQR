@@ -35,7 +35,10 @@ def add_order(request):
 
 def order_detail(request, order_uuid):
     order = Order.objects.get(url=order_uuid)
-    return render(request, 'qr/order_detail.html', {'order': order, 'qr_url': generate_qr(request, order.id)})
+    num_pages = order.count_pages()
+    water_variable = 5
+    water_waste = int(num_pages)*int(order.orderQuantity)*(water_variable)
+    return render(request, 'qr/order_detail.html', {'order': order, 'pages':num_pages, 'water':water_waste, 'qr_url': generate_qr(request, order.id)})
 
 def qr_code_view(request, order_uuid):
     order = Order.objects.get(url=order_uuid)

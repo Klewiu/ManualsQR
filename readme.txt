@@ -95,3 +95,11 @@
 #23/01/23 Updates icons in order table #
 ---------------------------------------------------------
 - update icon for more friendly-use
+
+#23/01/23 Water waste count for PDF pages #
+--------------------------------------------------------
+- > pip install PyPDF2==3.0.1 to install PyPDF2
+- in models.py in file add validator to accept only PDF Files 
+- in models.py add method to calculate PDF number of pages using PyPDF2
+- use that function in views.py in order_detail to calculet water waste on manuals for production orderQuantity
+- pass above to template and display it in order_detail.html
