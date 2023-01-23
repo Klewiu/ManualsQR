@@ -31,7 +31,6 @@
 - update views.py in qr with test function
 - create test.html template and store in templates/qr in qr app
 
-
 # 19/01/23 Setup OR Model and Initialize HomePage #
 ---------------------------------------------------------
 - setup Order Model
@@ -53,18 +52,17 @@
 - resolve conflicts
 - styling client.html front and css
 
+#21/01/23 Setting the iframe in client html #
+---------------------------------------------------------
+- setting iframe css for embed + rounded corners
 
 # 22/01/23 Create QR code and basic logic for application (requirements.txt updated!)#
 ----------------------------------------------------------
 - update home page with orders displayed in cards
 - ceate detail page
-- create add_order page with form and QR code generation on form save
+- create add_order page with form and setup QR code generation in detail page
 - create manual upload and download
 - create test qr code view page for client side
-
-#21/01/23 Setting the iframe in client html #
----------------------------------------------------------
-- setting iframe css for embed + rounded corners
 
 #22/01/23 Styling home and addOrder form #
 ---------------------------------------------------------
@@ -82,7 +80,13 @@
 - update style.css
 - prevent some errors adding if check in qr_code.html
 
+#22/01/23 Create Delete order functionality & add logo redirect to home #
+---------------------------------------------------------
+- create OrderDeleteView with template & url for delete confirmation
+- update ASSEMBLE QR logo (span element) to route to home page
+
 #22/01/23 New icons in Nabar / Home style for mobile
+---------------------------------------------------------
 - add new icons in Navbar - user for user managment, Ad for chanel marketing,
 - change button styling from primary to secondaray
 - add return button in add_order.html

@@ -18,9 +18,9 @@
             <p class="card-text">{{ order.orderStatus }}</p>
             <img src="{% url 'generate_qr' order.id %}" class="img-fluid" alt="QR code">
             {% if order.file %}
-              <a href="{{ order.file.url }}" download="{{ order.file.name }}" class="btn btn-secondary">Download File</a>
+              <a href="{{ order.file.url }}" download="{{ order.file.name }}" class="btn btn-secondary">Pobierz instrukcję</a>
             {% endif %}
-            <a href="{% url 'home' %}" class="btn btn-secondary">Back to orders</a>
+            <a href="{% url 'home' %}" class="btn btn-secondary">Wróć do zamówień</a>
           </div>
         </div>
       </div>
