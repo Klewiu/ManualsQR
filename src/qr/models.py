@@ -7,7 +7,7 @@ from PyPDF2 import PdfReader
 # Create your models here.
 class Order (models.Model):
 
-    STATUS_CHOICES = (('pending', 'Zlecone'),('in_progress', 'Podjęte'),('Zakończone', 'Zakończone'),)
+    STATUS_CHOICES = (('Zlecone', 'Zlecone'),('Podjęte', 'Podjęte'),('Zakończone', 'Zakończone'),)
 
     
     orderTag= models.CharField(max_length=15, verbose_name='WZP')
@@ -18,15 +18,30 @@ class Order (models.Model):
     orderManager = models.ForeignKey(User, on_delete= models.SET_DEFAULT, verbose_name='Autor Zlecenia', default=1)
     orderManual = models.BooleanField(default=False)
     orderVideo = models.BooleanField(default=False)
-    orderStatus = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
-    file = models.FileField(upload_to='media/', null=True, blank=True, verbose_name="Plik", validators=[FileExtensionValidator(['pdf'])])
+    orderStatus = models.CharField(max_length=20, choices=STATUS_CHOICES)
+    file = models.FileField(upload_to='media/', null=True, blank=True, verbose_name="Instrukcja PL", validators=[FileExtensionValidator(['pdf'])])
+    file2 = models.FileField(upload_to='media/', null=True, blank=True, verbose_name="Instrukcja ENG", validators=[FileExtensionValidator(['pdf'])])
     url = models.UUIDField(default=uuid.uuid4, editable=False)
     
     class Meta:
         verbose_name = ("Zlecenie")
         verbose_name_plural = ("Zlecenia")
 
-    def count_pages(self):
-       with self.file.open() as pdf_file:
-            pdf = PdfReader(pdf_file)
-            return len(pdf.pages)
+    def count_pages_total(self):
+        pages_total = 0
+        if self.file:
+            with self.file.open() as pdf_file:
+                pdf = PdfReader(pdf_file)
+                pages_total += len(pdf.pages)
+        if self.file2:
+            with self.file2.open() as pdf_file:
+                pdf = PdfReader(pdf_file)
+                pages_total += len(pdf.pages)
+        return pages_total
+# overrides save method of Order model to automatically set the orderManual field to True if file or file2 have a value, keeps False otherwise.
+    def save(self, *args, **kwargs):
+        if self.file or self.file2:
+            self.orderManual = True
+        else:
+            self.orderManual = False
+        super().save(*args, **kwargs)
