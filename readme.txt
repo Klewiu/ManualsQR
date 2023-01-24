@@ -111,3 +111,7 @@
 - update models to set orderManual to True if file or file2 is used 
 - update add_order view to set file fields to None if no file used
 - update model, view, and detail template to count total water_waste from both file and file 2
+
+#24/01/23 Styling order_detail.html - uncompleted#
+--------------------------------------------------------
+- styling order_detail
