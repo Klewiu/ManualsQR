@@ -6,12 +6,28 @@ from django.http import HttpResponse
 from .forms import OrderForm
 from django.views.generic import ListView, DeleteView
 from django.urls import reverse_lazy
+from django.db.models import Sum, F
 
 
 class Home(ListView):
     model=Order
     template_name = "qr/home.html"
     ordering = ["-orderDate"]
+    
+    # get context data to add new context
+    def get_context_data(self, **kwargs):
+        total_water_waste=0
+        # get all Order frome Home and store it in queryset
+        queryset = super().get_queryset()
+        # call model method count_water_waste() on each queryset object -> obj and += result, to total_water_waste variable
+        for obj in queryset:
+            total_water_waste+=obj.count_water_waste()
+        # get context frome Home and then create new context field.
+        # finnaly return context
+        context = super(Home, self).get_context_data(**kwargs)
+        context["total_water_waste"] = total_water_waste
+        return context
+    
 
 def generate_qr(request, order_id):
     order = Order.objects.get(id=order_id)

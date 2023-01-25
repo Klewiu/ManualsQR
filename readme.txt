@@ -115,3 +115,10 @@
 #24/01/23 Styling order_detail.html - uncompleted#
 --------------------------------------------------------
 - styling order_detail
+
+#25/01/23 Update Home to display total water waste#
+-------------------------------------------------------
+- create count_water_waste function in models.py
+- update context in Home view with result of model method ( count_water_waste ) that is called on each Order object
+- displaying water waste info in template in home.
+- change global font according to UI project

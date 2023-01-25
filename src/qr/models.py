@@ -27,6 +27,7 @@ class Order (models.Model):
         verbose_name = ("Zlecenie")
         verbose_name_plural = ("Zlecenia")
 
+    # Function counts the pages of added PDF file #
     def count_pages_total(self):
         pages_total = 0
         if self.file:
@@ -38,6 +39,25 @@ class Order (models.Model):
                 pdf = PdfReader(pdf_file)
                 pages_total += len(pdf.pages)
         return pages_total
+    
+    # Function counts the water waste. To produce 1xA4 paper we need ~5L of water = water_variable.
+    # We multiply pages_total, water_variable and orderQuantity to get the result
+    def count_water_waste(self):
+        pages_total = 0
+        water_variable=5
+        water_waste=0
+        if self.file:
+            with self.file.open() as pdf_file:
+                pdf = PdfReader(pdf_file)
+                pages_total += len(pdf.pages)
+                water_waste=(pages_total)*(self.orderQuantity)*(water_variable)
+        if self.file2:
+            with self.file2.open() as pdf_file:
+                pdf = PdfReader(pdf_file)
+                pages_total += len(pdf.pages)
+                water_waste=(pages_total)*(self.orderQuantity)*(water_variable)
+        return water_waste
+
 # overrides save method of Order model to automatically set the orderManual field to True if file or file2 have a value, keeps False otherwise.
     def save(self, *args, **kwargs):
         if self.file or self.file2:

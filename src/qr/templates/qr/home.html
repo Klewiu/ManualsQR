@@ -43,11 +43,16 @@
                       <a href="{% url 'qr_code_view' order_uuid=order.url %}" class="btn btn-warning"><i class="bi bi-phone"></i></a>
                       <a href="{% url 'order_delete' pk=order.pk %}" class="btn btn-danger"><i class="bi bi-trash3"></i></a>
                     </td>
-                    
                 </tr>
           {% endfor %}
+
         </tbody>
       </table>
+      {% if total_water_waste %}
+      <p><i class="fa-fw bi bi-lightbulb" style="color:orange;"></i> 
+        Czy wiesz, że do produkcji każdej strony A4 zużywa się około 5L wody ? 
+        Dzięki cyfrowym instrukcjom udało się zaoszczędzić już: <b>{{total_water_waste }} L <b><i class="bi bi-droplet-half" style="color:blue;"></i> </p>
+      {% endif %} 
     </div>
   </div>
     

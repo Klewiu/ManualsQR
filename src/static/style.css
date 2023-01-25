@@ -1,9 +1,9 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
-@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost&display=swap');
 
 html *
 {
-   font-family: Lato !important;
+   font-family: 'Jost', sans-serif !important;
 }
 
 .clientNavbar {
