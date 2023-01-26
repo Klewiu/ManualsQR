@@ -122,3 +122,9 @@
 - update context in Home view with result of model method ( count_water_waste ) that is called on each Order object
 - displaying water waste info in template in home.
 - change global font according to UI project
+
+#26/01/23 Add textPrinter.js to print text when no Order#
+-------------------------------------------------------
+- create textPrinter.js
+- add it to home.html
+- print text with typying animation when no Order data.
