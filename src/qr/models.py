@@ -27,6 +27,22 @@ class Order (models.Model):
         verbose_name = ("Zlecenie")
         verbose_name_plural = ("Zlecenia")
 
+    def count_pages_file1(self):
+        pages1 = 0
+        if self.file:
+            with self.file.open() as pdf_file:
+                pdf = PdfReader(pdf_file)
+                pages1 += len(pdf.pages)
+        return pages1
+    
+    def count_pages_file2(self):
+        pages2 = 0
+        if self.file2:
+            with self.file2.open() as pdf_file:
+                pdf = PdfReader(pdf_file)
+                pages2 += len(pdf.pages)
+        return pages2
+
     # Function counts the pages of added PDF file #
     def count_pages_total(self):
         pages_total = 0
