@@ -55,14 +55,31 @@ def add_order(request):
 
 def order_detail(request, order_uuid):
     order = Order.objects.get(url=order_uuid)
-    if order.file or order.file2:
-        num_pages = order.count_pages_total()
+    if order.file:
+        num_pages1 = order.count_pages_file1()
         water_variable = 5
-        water_waste = int(num_pages)*int(order.orderQuantity)*(water_variable)
+        water_waste1 = int(num_pages1)*int(order.orderQuantity)*(water_variable)
     else:
-        num_pages = None
-        water_waste = None
-    return render(request, 'qr/order_detail.html', {'order': order, 'pages':num_pages, 'water':water_waste, 'qr_url': generate_qr(request, order.id)})
+        num_pages1 = None
+        water_waste1 = None
+    if order.file2:
+        num_pages2 = order.count_pages_file2()
+        water_variable = 5
+        water_waste2 = int(num_pages2)*int(order.orderQuantity)*(water_variable)
+    else:
+        num_pages2 = None
+        water_waste2 = None
+
+    context={
+        'order': order,
+        'pages1':num_pages1,
+        'pages2':num_pages2,
+        'water1':water_waste1,
+        'water2':water_waste2,
+        'qr_url':generate_qr(request, order.id)
+    }
+
+    return render(request, 'qr/order_detail.html',  context)
 
 def qr_code_view(request, order_uuid):
     order = Order.objects.get(url=order_uuid)

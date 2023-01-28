@@ -128,3 +128,9 @@
 - create textPrinter.js
 - add it to home.html
 - print text with typying animation when no Order data.
+
+#28/01/23 Styling order_detail.html - part 2#
+-------------------------------------------------------
+- create new method in models.py to get single page_count of file and file2
+- update views.py
+- styling order_detail
