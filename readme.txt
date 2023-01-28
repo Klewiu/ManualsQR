@@ -128,3 +128,7 @@
 - create textPrinter.js
 - add it to home.html
 - print text with typying animation when no Order data.
+
+#28/01/23 Update views to delete files when object is deleted
+-------------------------------------------------------
+- pre_delete signal automatically deletes files when order object is deleted

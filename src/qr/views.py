@@ -7,6 +7,8 @@ from .forms import OrderForm
 from django.views.generic import ListView, DeleteView
 from django.urls import reverse_lazy
 from django.db.models import Sum, F
+from django.db.models.signals import pre_delete
+from django.dispatch import receiver
 
 
 class Home(ListView):
@@ -68,10 +70,18 @@ def qr_code_view(request, order_uuid):
     order = Order.objects.get(url=order_uuid)
     return render(request, 'qr/qr_code.html', {'order': order})
 
+
+# as OrderDeleteView class does not exacute custom logic, so a pre_delete signal completes file deletion
+@receiver(pre_delete, sender=Order)
+def my_callback(sender, instance, **kwargs):
+    instance.file.delete()
+    instance.file2.delete()
+
 class OrderDeleteView(DeleteView):
     model = Order
     template_name = 'qr/order_confirm_delete.html'
     success_url = reverse_lazy('home')
+    
 
 def client(request):
     context = {'title': 'Client panel'}
