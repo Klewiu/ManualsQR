@@ -3,52 +3,102 @@
 
 {% block content %}
 
-<div class="container">
-  <div class="row">
-    <div class="col text-center py-3">
-      <h5 class="p-2"><u>Szczegóły zamówienia:</u></h5>
-      <h4 class="pb-3"><b>{{ order.orderTag }} {{order.orderName }}</b></h4>
-      <img src="{% url 'generate_qr' order.id %}" class="qr img-fluid" alt="QR code">
+{% comment %} MAIN TITLE {% endcomment %}
+<div class="container text-center py-4">
+  <h5 class="py-2">Szczegóły zamówienia - <b>{{ order.orderTag }} {{order.orderName }}</b></h5>
+  <div class="row text-center justify-content-center">
+    <h4><b>Kod QR:</b></h4>  
+    <img src="{% url 'generate_qr' order.id %}" class="qr img-fluid" alt="QR code">
   </div>
+</div>
 
-  <div class="container my-2">
-    <div class="row text-center">
-        <h6>Numer WZP :  <span class="text-secondary fs-4">{{ order.orderTag }}<span></h6>
-        <h6>Klient :  <span class="text-secondary fs-4">{{ order.orderCompany }}<span></h6>
-        <h6>Produkt :  <span class="text-secondary fs-4">{{ order.orderName }}<span></h6>
-        <h6>Ilość  :  <span class="text-secondary fs-4">{{ order.orderQuantity }}  szt<span></h6>
-        <h6>Manager  :  <span class="text-secondary fs-4">{{ order.orderManager }}<span></h6>
-        <p>Utworzono  :  <span class="text-secondary fs-8">{{ order.orderDate }}<span></p>
-        <div class="d-flex flex-row justify-content-center">
-          {% if order.file %}
-          <a href="{{ order.file.url }}" download="{{ order.file.name }}" class="no-style">
-            <img src="{% static 'Manual_logo.png' %}" class="manualLogo align-text-center px-3">
-            <p><b>Instrukcja #1</b></p>
-            
-          </a>{% endif %}
-          {% if order.file2 %}
-          <a href="{{ order.file2.url }}" download="{{ order.file2.name }}" class="no-style">
-            <img src="{% static 'Manual_logo.png' %}" class="manualLogo align-text-center px-3">
-            <p><b>Instrukcja #2</b></p>
-          </a>{% endif %}
+{% comment %} MAIN CONTAINER {% endcomment %}
+<div class="container pt-4">
+  <div class="row">
+    <div class="col-6 col-md-4">
+      <div class="row">
+        <div class="detailTable">
+          <h4><b><u>Tabela produktu:</u></b></h4>  
+          <table class="table table-bordered">
+            <tbody> 
+              <tr>
+                <th scope="row" class="col-1">WZP</th>
+                <td><span class="text-info fs-5">{{ order.orderTag }}<span></td>
+              </tr>
+              <tr>
+                <th scope="row">Klient</th>
+                <td><span class="text-secondary fs-5">{{ order.orderCompany }}<span></td>
+              </tr>
+              <tr>
+                <th scope="row">Produkt</th>
+                <td><span class="text-secondary fs-5">{{ order.orderName }}<span></td>
+              </tr>
+              <tr>
+                <th scope="row">Ilość</th>
+                <td><span class="text-secondary fs-5">{{ order.orderQuantity }}  szt<span></td>
+              </tr>
+              <tr>
+                <th scope="row">Manager</th>
+                <td><span class="text-secondary fs-5">{{ order.orderManager }}<span></td>
+              </tr>
+              <tr>
+                <th scope="row">Utworzono</th>
+                <td> <span class="text-secondary fs-6">{{ order.orderDate }}<span></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-    
-        {% if order.file %}
-          <p class="card-text">Instrukcja #1 |
-            <small>{{order.file.name|cut:'media/'}}</small> |  Ilość stron : {{ pages1|default:0 }} =
-             <i class="bi bi-droplet-half" style="color:blue;"></i> {{water1|default:0}} L wody</p>
-        {% endif %}
-        {% if order.file2 %}
-          <p class="card-text">Instrukcja #2 | 
-            <small>{{order.file2.name|cut:'media/'}}</small> |  Ilość stron : {{ pages2|default:0 }} = 
-              <i class="bi bi-droplet-half" style="color:blue;"></i> {{water2|default:0}} L wody</p>
-        {% endif %}
-        
-        {% if not order.file and not order.file2 %} 
-          <p class="card-text" style="color:red; font-weight:bold;">UWAGA! Do tego zlecenia nie dodano jeszcze instrukcji!</p>
-        {% endif %}
+      </div>
     </div>
-  </div>
+
+    <div class="col-8 col-md-4">
+      <h4><b><u>Instrukcję:</u></b></h4>  
+        <div class="d-flex p-2">
+          <div>
+            {% if order.file %}
+                <a href="{{ order.file.url }}" download="{{ order.file.name }}" class="no-style">
+                  <img src="{% static 'Manual_logo.png' %}" class="manualLogo align-text-center px-3">
+                </a>
+            {% endif %}
+          </div>
+          <div>
+            {% if order.file %}
+              <p class="card-text"><b>Instrukcja #1 |</b>
+                <small>{{order.file.name|cut:'media/'}}</small> |  Ilość stron : {{ pages1|default:0 }} =
+                <i class="bi bi-droplet-half" style="color:blue;"></i> {{water1|default:0}} L wody</p>
+            {% endif %}
+          </div>
+        </div>
+        <div class="d-flex p-2">
+          <div>
+              {% if order.file2 %}
+                <a href="{{ order.file2.url }}" download="{{ order.file2.name }}" class="no-style">
+                  <img src="{% static 'Manual_logo.png' %}" class="manualLogo align-text-center px-3">
+                </a>
+              {% endif %}
+          </div>
+          <div>
+            {% if order.file2 %}
+              <p class="card-text"><b>Instrukcja #2 | </b>
+                <small>{{order.file2.name|cut:'media/'}}</small> |  Ilość stron : {{ pages2|default:0 }} = 
+                  <i class="bi bi-droplet-half" style="color:blue;"></i> {{water2|default:0}} L wody</p>
+            {% endif %}
+          </div>
+            
+            {% if not order.file and not order.file2 %} 
+              <p class="card-text" style="color:red; font-weight:bold;">UWAGA! Do tego zlecenia nie dodano jeszcze instrukcji!</p>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="col-8 col-md-4">
+      <div class="row">
+        <h4><b><u>Wideo:</u></b></h4>
+      </div>
+    </div>
+  </div>  
+</div>
+
   
   <div class="d-flex flex-row justify-content-center py-3">
     <a href="{% url 'home' %}" class="btn btn-secondary">Wróć do zamówień</a>

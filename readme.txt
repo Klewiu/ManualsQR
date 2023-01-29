@@ -145,4 +145,6 @@
 - create search filter with HTMX
 - reorganize code to partials
 
+#29/01/23 Styling order_detail.html - part 3#
+- change layout to grid - cols and rows
 

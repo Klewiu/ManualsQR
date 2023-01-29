@@ -59,3 +59,7 @@ iframe {
     color: inherit;
     text-decoration: none;
 }
+
+.detailTable{
+    max-width: 400px;
+}
