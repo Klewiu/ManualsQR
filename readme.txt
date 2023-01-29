@@ -146,14 +146,21 @@
 - reorganize code to partials
 
 #29/01/23 Styling order_detail.html - part 3#
+-------------------------------------------------------
 - change layout to grid - cols and rows
 - hide searchbar if no data
 
 #29/01/23 Finished styling order_detail.html - part 4#
+---------------------------------------------------------
 - style changes
 - hide searchbar if no data in home.html
 
-#29/01/23 Update search and prepare input for video
+#29/01/23 Update search and prepare input for video#
+----------------------------------------------------------
 - update search filtering
 - create model field for video embed (make migrations to db)
 - update orderVideo logic to automatically show video status
+
+#30/01/23 Styling movie view in order_detail #
+----------------------------------------------------------
+- style movie view in order_detail
