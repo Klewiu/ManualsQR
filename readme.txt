@@ -152,3 +152,8 @@
 #29/01/23 Finished styling order_detail.html - part 4#
 - style changes
 - hide searchbar if no data in home.html
+
+#29/01/23 Update search and prepare input for video
+- update search filtering
+- create model field for video embed (make migrations to db)
+- update orderVideo logic to automatically show video status
