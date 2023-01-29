@@ -9,7 +9,9 @@
   <div class="container my-5">
 
     <div class="d-flex justify-content-center my-3">
-    {% include "qr/search_form.html" %}
+    {% if object_list %}
+      {% include "qr/search_form.html" %}
+    {% endif %}
     </div>
 
     {% if object_list %}

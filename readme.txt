@@ -147,4 +147,8 @@
 
 #29/01/23 Styling order_detail.html - part 3#
 - change layout to grid - cols and rows
+- hide searchbar if no data
 
+#29/01/23 Finished styling order_detail.html - part 4#
+- style changes
+- hide searchbar if no data in home.html

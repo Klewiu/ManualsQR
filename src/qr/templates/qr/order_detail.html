@@ -17,13 +17,13 @@
   <div class="row">
     <div class="col-6 col-md-4">
       <div class="row">
-        <div class="detailTable">
+        <div class="detailTable py-2">
           <h4><b><u>Tabela produktu:</u></b></h4>  
           <table class="table table-bordered">
             <tbody> 
               <tr>
                 <th scope="row" class="col-1">WZP</th>
-                <td><span class="text-info fs-5">{{ order.orderTag }}<span></td>
+                <td><span class="text-secondary fs-5">{{ order.orderTag }}<span></td>
               </tr>
               <tr>
                 <th scope="row">Klient</th>
@@ -52,9 +52,9 @@
     </div>
 
     <div class="col-8 col-md-4">
-      <h4><b><u>Instrukcję:</u></b></h4>  
-        <div class="d-flex p-2">
-          <div>
+      <h4 class="py-2"><b><u>Instrukcję:</u></b></h4>  
+        <div class="d-flex">
+          <div class="pb-2">
             {% if order.file %}
                 <a href="{{ order.file.url }}" download="{{ order.file.name }}" class="no-style">
                   <img src="{% static 'Manual_logo.png' %}" class="manualLogo align-text-center px-3">
@@ -63,14 +63,15 @@
           </div>
           <div>
             {% if order.file %}
-              <p class="card-text"><b>Instrukcja #1 |</b>
-                <small>{{order.file.name|cut:'media/'}}</small> |  Ilość stron : {{ pages1|default:0 }} =
+            <p style="margin:0;" class="card-text"><b>Instrukcja #1</b></p>
+            <p style="margin:0;"><i><small>{{order.file.name|cut:'media/' |slice:25 }}</small></i></p>
+            <p style="margin:0;">{{ pages1|default:0 }} str =
                 <i class="bi bi-droplet-half" style="color:blue;"></i> {{water1|default:0}} L wody</p>
             {% endif %}
           </div>
         </div>
-        <div class="d-flex p-2">
-          <div>
+        <div class="d-flex">
+          <div class="pb-2">
               {% if order.file2 %}
                 <a href="{{ order.file2.url }}" download="{{ order.file2.name }}" class="no-style">
                   <img src="{% static 'Manual_logo.png' %}" class="manualLogo align-text-center px-3">
@@ -79,21 +80,29 @@
           </div>
           <div>
             {% if order.file2 %}
-              <p class="card-text"><b>Instrukcja #2 | </b>
-                <small>{{order.file2.name|cut:'media/'}}</small> |  Ilość stron : {{ pages2|default:0 }} = 
+              <p style="margin:0;" class="card-text"><b>Instrukcja #2 | </b></p>
+              <p style="margin:0;"><i><small>{{order.file2.name|cut:'media/' |slice:25 }}</small></i></p>
+              <p style="margin:0;">{{ pages2|default:0 }} str = 
                   <i class="bi bi-droplet-half" style="color:blue;"></i> {{water2|default:0}} L wody</p>
             {% endif %}
           </div>
-            
+          
+          <div>
             {% if not order.file and not order.file2 %} 
-              <p class="card-text" style="color:red; font-weight:bold;">UWAGA! Do tego zlecenia nie dodano jeszcze instrukcji!</p>
+              <p class="card-text text-danger" style="font-weight:bold;">
+                BRAK INSTRUKCJI</p>
             {% endif %}
+          </div>
         </div>
     </div>
     
     <div class="col-8 col-md-4">
       <div class="row">
-        <h4><b><u>Wideo:</u></b></h4>
+        <h4 class="py-2"><b><u>Wideo:</u></b></h4>
+        {% if not order.video %} 
+              <p class="card-text text-success" style="font-weight:bold;">
+                BRAK LINKU WIDEO</p>
+            {% endif %}
       </div>
     </div>
   </div>  
