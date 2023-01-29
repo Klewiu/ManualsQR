@@ -140,3 +140,9 @@
 - update views.py
 - styling order_detail
 
+#29/01/23 Create live filter with HTMX at home.html
+-------------------------------------------------------
+- create search filter with HTMX
+- reorganize code to partials
+
+

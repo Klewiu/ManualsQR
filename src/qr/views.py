@@ -9,6 +9,7 @@ from django.urls import reverse_lazy
 from django.db.models import Sum, F
 from django.db.models.signals import pre_delete
 from django.dispatch import receiver
+from django.db.models import Q
 
 
 class Home(ListView):
@@ -98,6 +99,13 @@ class OrderDeleteView(DeleteView):
     model = Order
     template_name = 'qr/order_confirm_delete.html'
     success_url = reverse_lazy('home')
+
+def search(request):
+    search_query = request.POST.get("search_query")
+    object_list = Order.objects.filter(Q(orderName__icontains=search_query) | 
+                                       Q(orderTag__icontains=search_query) | 
+                                       Q(orderCompany__icontains=search_query))
+    return render(request, "qr/object_list.html", {"object_list": object_list})
     
 
 def client(request):
