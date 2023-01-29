@@ -49,6 +49,8 @@ def add_order(request):
                 order.file = None
             if not form.cleaned_data['file2']:
                 order.file2 = None
+            if not form.cleaned_data['video']:
+                order.video = None
             order.orderManager = request.user
             order.save()
             return redirect('order_detail', order_uuid=order.url)
@@ -102,9 +104,13 @@ class OrderDeleteView(DeleteView):
 
 def search(request):
     search_query = request.POST.get("search_query")
-    object_list = Order.objects.filter(Q(orderName__icontains=search_query) | 
-                                       Q(orderTag__icontains=search_query) | 
-                                       Q(orderCompany__icontains=search_query))
+    if search_query:
+        object_list = Order.objects.filter(Q(orderName__icontains=search_query) | 
+                                        Q(orderTag__icontains=search_query) | 
+                                        Q(orderCompany__icontains=search_query) |
+                                        Q(orderManager__username__icontains=search_query))
+    else:
+        object_list = Order.objects.all().order_by('-orderDate')
     return render(request, "qr/object_list.html", {"object_list": object_list})
     
 

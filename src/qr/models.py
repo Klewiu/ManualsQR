@@ -21,6 +21,7 @@ class Order (models.Model):
     orderStatus = models.CharField(max_length=20, choices=STATUS_CHOICES)
     file = models.FileField(upload_to='media/', null=True, blank=True, verbose_name="Instrukcja PL", validators=[FileExtensionValidator(['pdf'])])
     file2 = models.FileField(upload_to='media/', null=True, blank=True, verbose_name="Instrukcja ENG", validators=[FileExtensionValidator(['pdf'])])
+    video = models.TextField(max_length=10000, verbose_name='Multimedia/Video Embed')
     url = models.UUIDField(default=uuid.uuid4, editable=False)
     
     class Meta:
@@ -78,6 +79,9 @@ class Order (models.Model):
     def save(self, *args, **kwargs):
         if self.file or self.file2:
             self.orderManual = True
+        if self.video:
+            self.orderVideo = True
         else:
             self.orderManual = False
+            self.orderVideo = False
         super().save(*args, **kwargs)
