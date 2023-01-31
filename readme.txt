@@ -164,3 +164,10 @@
 #30/01/23 Styling movie view in order_detail #
 ----------------------------------------------------------
 - style movie view in order_detail
+
+#31/01/23 Styling qr_code - cllient view#
+---------------------------------------------------------
+- styling page qr_code.html
+- add TypeItjs text when no manual (soruce: https://www.typeitjs.com/)
+- update models.py - add language field to files
+- update TypeItjs text in home page.

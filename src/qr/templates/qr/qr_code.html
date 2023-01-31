@@ -14,6 +14,8 @@
     {% bootstrap_javascript %}
 
     {% bootstrap_messages %}
+    {% comment %} Typeitjs {% endcomment %}
+    <script src="https://unpkg.com/typeit@8.7.1/dist/index.umd.js"></script>
 
     <title>AssembleQR</title>
 </head>
@@ -26,36 +28,44 @@
       </nav>
     
     <div class="container">
-        <div class="row">
-          <div class="col d-flex justify-content-center py-3">
-            ASSEMBLY INSTRUCTION
+        <div class="row text-center py-3">
+          <div class="col">
+            <h2>ASSEMBLY INSTRUCTION</h2>
+            <h3 class="pb-3"><b>Permanent Display</b></h3>
+            {% if order.file %}
+              <div class="p-2">
+                <a href="{{ order.file.url }}" download="{{ order.file.name }}" class="no-style">
+                  <img src="{% static 'Manual_logo.png' %}" class="manualLogo align-text-center px-3">
+                </a>
+                {% if order.fileLanguage %}
+                  <p class="p-1"><button type="button" class="btn btn-dark" disabled>{{order.fileLanguage}}</button></p>
+                {% endif %}
+              </div>
+            {% endif %}
+            
+            {% if order.file2 %}
+              <div class="p-2">
+                <a href="{{ order.file2.url }}" download="{{ order.file2.name }}" class="no-style">
+                  <img src="{% static 'Manual_logo.png' %}" class="manualLogo align-text-center px-3">
+                </a>
+                {% if order.file2Language %}
+                  <p class="p-1"><button type="button" class="btn btn-dark" disabled>{{order.file2Language}}</button></p>
+                {% endif %}
+              </div>
+            {% endif %}
+            
+            {% if not order.file and not order.file2 %}
+            <p class="multipleStrings"></p>
+            <script type="text/javascript" src="{% static 'textPrinterClient.js' %}"></script>
+            {% endif %}
+              
+
+            
           </div>
         </div>
-        <div class="row">
-            <div class="col d-flex justify-content-center fw-bold">
-              <h2>Permanent Display</h2>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col d-flex justify-content-center p-3">
-                <img src="{% static 'Manual_logo.png' %}" class="manualLogo align-text-center">
-            </div>
-            <div class="d-flex justify-content-center" >
-                <button type="button" class="btn btn-dark" disabled>ENG</button>
-   
-            <div>
-        </div>
     </div>
-    <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">{{ order.orderTag }}</h5>
-          <p class="card-text">{{ order.orderCompany }}</p>
-          <p class="card-text">{{ order.orderName }}</p>
-          {% if order.file%}
-            <a href="{{ order.file.url }}" download="{{ order.file.name }}" class="btn btn-secondary">Download File</a>
-          {% endif %}
-        </div>
-      </div>
-
 </body>
 </html>
+
+
+

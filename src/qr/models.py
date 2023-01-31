@@ -19,8 +19,10 @@ class Order (models.Model):
     orderManual = models.BooleanField(default=False)
     orderVideo = models.BooleanField(default=False)
     orderStatus = models.CharField(max_length=20, choices=STATUS_CHOICES)
-    file = models.FileField(upload_to='media/', null=True, blank=True, verbose_name="Instrukcja PL", validators=[FileExtensionValidator(['pdf'])])
-    file2 = models.FileField(upload_to='media/', null=True, blank=True, verbose_name="Instrukcja ENG", validators=[FileExtensionValidator(['pdf'])])
+    file = models.FileField(upload_to='media/', null=True, blank=True, verbose_name="Instrukcja I", validators=[FileExtensionValidator(['pdf'])])
+    fileLanguage = models.CharField(max_length=20, verbose_name ='Język instrukcji I', null=True, blank=True)
+    file2 = models.FileField(upload_to='media/', null=True, blank=True, verbose_name="Instrukcja II", validators=[FileExtensionValidator(['pdf'])])
+    file2Language = models.CharField(max_length=20, verbose_name ='Język instrukcji II', null=True, blank=True)
     video = models.TextField(max_length=10000, verbose_name='Multimedia/Video Embed', blank=True, null=True)
     url = models.UUIDField(default=uuid.uuid4, editable=False)
     
