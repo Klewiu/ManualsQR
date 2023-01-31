@@ -52,7 +52,7 @@
     </div>
 
     <div class="col-12 col-md-4">
-      <h4 class="py-2"><b><u>Instrukcję:</u></b></h4>  
+      <h4 class="py-2"><b><u>Instrukcje:</u></b></h4>  
         <div class="d-flex">
           <div class="pb-2">
             {% if order.file %}
@@ -63,7 +63,7 @@
           </div>
           <div>
             {% if order.file %}
-            <p style="margin:0;" class="card-text"><b>Instrukcja #1  
+            <p style="margin:0;" class="card-text"><b>Instrukcja 
               {% if order.fileLanguage %} - {{order.fileLanguage }} {% endif %}</b></p>
             <p style="margin:0;"><i><small>{{order.file.name|cut:'media/' |slice:25 }}</small></i></p>
             <p style="margin:0;">{{ pages1|default:0 }} str =
@@ -81,7 +81,7 @@
           </div>
           <div>
             {% if order.file2 %}
-              <p style="margin:0;" class="card-text"><b>Instrukcja #2 
+              <p style="margin:0;" class="card-text"><b>Instrukcja
                 {% if order.file2Language %} - {{order.file2Language }} {% endif %} </b></p>
               <p style="margin:0;"><i><small>{{order.file2.name|cut:'media/' |slice:25 }}</small></i></p>
               <p style="margin:0;">{{ pages2|default:0 }} str = 
