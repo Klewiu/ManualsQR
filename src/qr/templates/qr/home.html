@@ -31,8 +31,6 @@
             <th scope="col">Funkcje</th>
           </tr>
         </thead>
-        
-        <tbody class="bg-light bg-gradient">
 
           {% comment %} object_list html partial {% endcomment %}
           <tbody id="table-body" class="bg-light bg-gradient">
@@ -47,6 +45,9 @@
 
         </tbody>
       </table>
+    {% if is_paginated %}
+    {% include "qr/pagination.html" %}
+{% endif %}
       {% if total_water_waste %}
       <p><i class="fa-fw bi bi-lightbulb" style="color:orange;"></i> 
         Czy wiesz, że do produkcji każdej strony A4 zużywa się około 5L wody ? 

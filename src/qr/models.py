@@ -79,11 +79,6 @@ class Order (models.Model):
 
 # overrides save method of Order model to automatically set the orderManual field to True if file or file2 have a value, keeps False otherwise.
     def save(self, *args, **kwargs):
-        if self.file or self.file2:
-            self.orderManual = True
-        if self.video:
-            self.orderVideo = True
-        else:
-            self.orderManual = False
-            self.orderVideo = False
+        self.orderManual = bool(self.file or self.file2)
+        self.orderVideo = bool(self.video)
         super().save(*args, **kwargs)

@@ -1,0 +1,26 @@
+<nav aria-label="Page navigation">
+  <ul class="pagination">
+    <div class="pagination">
+      <span class="step-links">
+        {% if page_obj.has_previous %}
+        <a href="?page=1">Pierwsza</a>
+        <a href="?page={{ page_obj.previous_page_number }}"
+          ><i class="bi bi-arrow-left-square"></i
+        ></a>
+        {% endif %}
+
+        <span class="current">
+          Strona {{ page_obj.number }} z {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}"
+          ><i class="bi bi-arrow-right-square"></i
+        ></a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">Ostatnia</a>
+
+        {% endif %}
+      </span>
+    </div>
+  </ul>
+</nav>
