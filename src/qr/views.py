@@ -10,25 +10,37 @@ from django.db.models import Sum, F
 from django.db.models.signals import pre_delete
 from django.dispatch import receiver
 from django.db.models import Q
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 class Home(ListView):
     model=Order
     template_name = "qr/home.html"
     ordering = ["-orderDate"]
+    paginate_by = 8 # Number of items to display per page
     
-    # get context data to add new context
     def get_context_data(self, **kwargs):
         total_water_waste=0
-        # get all Order frome Home and store it in queryset
         queryset = super().get_queryset()
-        # call model method count_water_waste() on each queryset object -> obj and += result, to total_water_waste variable
         for obj in queryset:
             total_water_waste+=obj.count_water_waste()
-        # get context frome Home and then create new context field.
-        # finnaly return context
+        
         context = super(Home, self).get_context_data(**kwargs)
         context["total_water_waste"] = total_water_waste
+        
+        # Paginate the queryset
+        paginator = Paginator(queryset, self.paginate_by)
+        page = self.request.GET.get('page')
+        try:
+            queryset = paginator.page(page)
+        except PageNotAnInteger:
+            queryset = paginator.page(1)
+        except EmptyPage:
+            queryset = paginator.page(paginator.num_pages)
+        
+        # Add the paginated queryset to the context
+        context['object_list'] = queryset
+        
         return context
     
 

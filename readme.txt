@@ -171,3 +171,7 @@
 - add TypeItjs text when no manual (soruce: https://www.typeitjs.com/)
 - update models.py - add language field to files
 - update TypeItjs text in home page.
+
+#31/01/23 Pagination of object_list at home.html
+---------------------------------------------------------
+- add pagination to object_list.html at home.html
