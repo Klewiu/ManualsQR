@@ -1,6 +1,21 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
 @import url('https://fonts.googleapis.com/css2?family=Jost&display=swap');
 
+/* SETTINGS FOR FOOTER  */
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #A9A9A9;
+}
+
+
 html *
 {
    font-family: 'Jost', sans-serif !important;
@@ -52,7 +67,10 @@ a:hover {
 }
 
 iframe {
-    border-radius:4%;  
+    -moz-border-radius: 18px; 
+    -webkit-border-radius: 18px; 
+    border-radius: 18px;
+    width: 100% !important;  
 }
 
 /* cancels styling for link at the ASSEMBLE QR logo */
@@ -75,6 +93,7 @@ iframe {
     text-decoration: none;
 }
 
-.detailTable{
+.detailTable { 
     max-width: 400px;
 }
+

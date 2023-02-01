@@ -175,3 +175,9 @@
 #31/01/23 Pagination of object_list at home.html
 ---------------------------------------------------------
 - add pagination to object_list.html at home.html
+
+#01/02/2023 Styling qr_code - client view part 2
+-------------------------------------------------------
+- styling page qr_code.html 
+- fixed rounded corners in iframe with -webkit-border-radius in css
+- fixed video styling in order_detail.html
