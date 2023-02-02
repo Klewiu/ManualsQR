@@ -16,6 +16,10 @@ footer {
     box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.5);
 }
 
+.footerLeft {
+    border-right: solid 1.5px whitesmoke;
+}
+
 
 html *
 {
