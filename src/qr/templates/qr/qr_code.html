@@ -33,12 +33,14 @@
             <h6><small>ASSEMBLY INSTRUCTION</small></h6>
             <h3 class="pb-3"><b>{{ order.orderName }}</b></h3>
             {% if order.file %}
-              <div class="p-2">
-                <a href="{{ order.file.url }}" download="{{ order.file.name }}" class="no-style">
-                  <img src="{% static 'Manual_logo.png' %}" class="manualLogo align-text-center px-3">
-                </a>
+              <div class="p-1">
+                  <a href="{{ order.file.url }}" download="{{ order.file.name }}" class="no-style text-center">
+                    <button class="logoButton">
+                      <img src="{% static 'Manual_logo_2.png' %}" class="manualLogoClient align-text-center px-1">
+                    </button>
+                  </a>
                 {% if order.fileLanguage %}
-                  <p class="p-1"><button type="button" class="btn btn-dark" disabled>{{order.fileLanguage}}</button></p>
+                  <p class="p-1"><button type="button" class="btn btn-sm btn-dark rounded-pill m-1 border border-dark" disabled>{{order.fileLanguage}}</button></p>
                 {% endif %}
               </div>
             {% endif %}
@@ -46,10 +48,12 @@
             {% if order.file2 %}
               <div class="p-2">
                 <a href="{{ order.file2.url }}" download="{{ order.file2.name }}" class="no-style">
-                  <img src="{% static 'Manual_logo.png' %}" class="manualLogo align-text-center px-3">
+                  <button class="logoButton">
+                    <img src="{% static 'Manual_logo_2.png' %}" class="manualLogoClient align-text-center px-1">
+                </button>
                 </a>
                 {% if order.file2Language %}
-                  <p class="p-1"><button type="button" class="btn btn-dark" disabled>{{order.file2Language}}</button></p>
+                  <p class="p-1"><button type="button" class="btn btn-sm  btn-dark rounded-pill m-1 border border-dark" disabled>{{order.file2Language}}</button></p>
                 {% endif %}
               </div>
             {% endif %}
@@ -60,7 +64,7 @@
             {% endif %}
           </div>
         </div>
-      <div class="row justify-content-center">
+      <div class="row justify-content-center pb-5">
         {% if order.video %}
           <div class="col-md-5 align-self-center">  
             <div class="circle">
@@ -71,7 +75,12 @@
       </div>  
     </div> 
 <footer>
- Test
+  <i class="bi bi-house-door" style="font-size:2rem; color:white;">
+  </i><i class="bi bi-telephone" style="font-size:2rem; color:white;"></i>
+  <i class="bi bi-facebook" style="color:white;"></i>
+  <i class="bi bi-linkedin" style="color:white;"></i>
+  <i class="bi bi-instagram" style="color:white;"></i>
+  <i class="bi bi-youtube" style="color:white;"></i>
 </footer>
 
 </body>

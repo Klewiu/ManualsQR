@@ -12,7 +12,8 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
-    background-color: #A9A9A9;
+    background-color: #000000;
+    box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.5);
 }
 
 
@@ -30,12 +31,23 @@ html *
 .logoTextColor {
     color: #f26021;
 }
+.manualLogoClient {
+    width:100px; 
+    filter: invert(1);
+}
+
 .manualLogo {
-    width:120px;
+    width:120px; 
+}
+.logoButton {
+    border-radius: 15px;
+    background-color: #f26021;
+    border:0;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
 }
 .qr{
     width:180px;
-    border: solid 2px #A9A9A9;
+    border: 0;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 10px;
 }
@@ -70,7 +82,7 @@ iframe {
     -moz-border-radius: 18px; 
     -webkit-border-radius: 18px; 
     border-radius: 18px;
-    width: 100% !important;  
+    width: 100% !important; 
 }
 
 /* cancels styling for link at the ASSEMBLE QR logo */
@@ -78,6 +90,7 @@ iframe {
     color: inherit;
     text-decoration: none;
     font-size:x-large;
+
 }
 
 @media (max-width:800px) {
@@ -86,7 +99,7 @@ iframe {
         text-decoration: none;
         font-size: smaller;
     }
-
+}
 
 .no-style:hover {
     color: inherit;

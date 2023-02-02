@@ -104,7 +104,7 @@
 - use that function in views.py in order_detail to calculet water waste on manuals for production orderQuantity
 - pass above to template and display it in order_detail.html
 
-#23/01/23 Order Model update and changes in forms, views, template, navbar
+#23/01/23 Order Model update and changes in forms, views, template, navbar #
 --------------------------------------------------------
 - update navbar logo to redirect to homepage
 - update model with file2 field for ENG manual
@@ -112,50 +112,50 @@
 - update add_order view to set file fields to None if no file used
 - update model, view, and detail template to count total water_waste from both file and file 2
 
-#24/01/23 Styling order_detail.html - uncompleted#
+#24/01/23 Styling order_detail.html - uncompleted #
 --------------------------------------------------------
 - styling order_detail
 
-#25/01/23 Update Home to display total water waste#
+#25/01/23 Update Home to display total water waste #
 -------------------------------------------------------
 - create count_water_waste function in models.py
 - update context in Home view with result of model method ( count_water_waste ) that is called on each Order object
 - displaying water waste info in template in home.
 - change global font according to UI project
 
-#26/01/23 Add textPrinter.js to print text when no Order#
+#26/01/23 Add textPrinter.js to print text when no Order #
 -------------------------------------------------------
 - create textPrinter.js
 - add it to home.html
 - print text with typying animation when no Order data.
 
 
-#28/01/23 Update views to delete files when object is deleted
+#28/01/23 Update views to delete files when object is deleted #
 -------------------------------------------------------
 - pre_delete signal automatically deletes files when order object is deleted
 
-#28/01/23 Styling order_detail.html - part 2#
+#28/01/23 Styling order_detail.html - part 2 #
 -------------------------------------------------------
 - create new method in models.py to get single page_count of file and file2
 - update views.py
 - styling order_detail
 
-#29/01/23 Create live filter with HTMX at home.html
+#29/01/23 Create live filter with HTMX at home.html #
 -------------------------------------------------------
 - create search filter with HTMX
 - reorganize code to partials
 
-#29/01/23 Styling order_detail.html - part 3#
+#29/01/23 Styling order_detail.html - part 3 #
 -------------------------------------------------------
 - change layout to grid - cols and rows
 - hide searchbar if no data
 
-#29/01/23 Finished styling order_detail.html - part 4#
+#29/01/23 Finished styling order_detail.html - part 4 #
 ---------------------------------------------------------
 - style changes
 - hide searchbar if no data in home.html
 
-#29/01/23 Update search and prepare input for video#
+#29/01/23 Update search and prepare input for video #
 ----------------------------------------------------------
 - update search filtering
 - create model field for video embed (make migrations to db)
@@ -165,19 +165,25 @@
 ----------------------------------------------------------
 - style movie view in order_detail
 
-#31/01/23 Styling qr_code - cllient view#
+#31/01/23 Styling qr_code - cllient view #
 ---------------------------------------------------------
 - styling page qr_code.html
 - add TypeItjs text when no manual (soruce: https://www.typeitjs.com/)
 - update models.py - add language field to files
 - update TypeItjs text in home page.
 
-#31/01/23 Pagination of object_list at home.html
+#31/01/23 Pagination of object_list at home.html #
 ---------------------------------------------------------
 - add pagination to object_list.html at home.html
 
-#01/02/2023 Styling qr_code - client view part 2
+#01/02/2023 Styling qr_code - client view part 2 #
 -------------------------------------------------------
 - styling page qr_code.html 
 - fixed rounded corners in iframe with -webkit-border-radius in css
 - fixed video styling in order_detail.html
+
+#02/02/2023 Styling qr_code - client view part 3 #
+-------------------------------------------------------
+- qr_code.html - put img inside button to add shadow
+- add footer bootstrap icon (need styling...)
+- update syles.css 
