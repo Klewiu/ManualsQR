@@ -187,3 +187,8 @@
 - qr_code.html - put img inside button to add shadow
 - add footer bootstrap icon (need styling...)
 - update syles.css 
+
+#03/02/2023 Add update form and style home table buttons
+-------------------------------------------------------
+- add update form
+- show small text on mouseover on table buttons

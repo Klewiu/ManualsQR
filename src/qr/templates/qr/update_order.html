@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% load static %}
+
+{% block content %}
+
+  <div class="container my-5">
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form | crispy }}
+      <input type="submit" class="btn btn-success" value="Save">
+      <a href="{% url 'home' %}" class="btn btn-secondary text-white"> Wróć</a>
+    </form> 
+  </div>
+  
+  {% endblock %}

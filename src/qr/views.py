@@ -124,6 +124,18 @@ def search(request):
     else:
         object_list = Order.objects.all().order_by('-orderDate')
     return render(request, "qr/object_list.html", {"object_list": object_list})
+
+
+def update_order(request, order_uuid):
+    order = Order.objects.get(url=order_uuid)
+    if request.method == 'POST':
+        form = OrderForm(request.POST, request.FILES, instance=order)
+        if form.is_valid():
+            order = form.save()
+            return redirect('order_detail', order_uuid=order.url)
+    else:
+        form = OrderForm(instance=order)
+    return render(request, 'qr/update_order.html', {'form': form})
     
 
 def client(request):

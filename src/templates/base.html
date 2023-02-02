@@ -17,14 +17,17 @@
     
     <link rel="stylesheet" href="{% static 'style.css' %}">
 
+    {% comment %} HTMX {% endcomment %}
     <script src="https://unpkg.com/htmx.org@1.8.5"></script>
     
     {% comment %} Typeitjs {% endcomment %}
     <script src="https://unpkg.com/typeit@8.7.1/dist/index.umd.js"></script>
+
+
     
     <title>AssembleQR</title>
 </head>
-<body>
+<body id="theme">
     {% include  'navbar.html' %}
     {% block content %}
     <h1>test</h1>
