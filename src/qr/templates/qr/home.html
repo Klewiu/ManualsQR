@@ -6,11 +6,15 @@
   </header>
   
   <div class="container">
+    <button class= "btn btn-outline-secondary btn-sm my-2" _="on click toggle .invisible on #search ">Wyszukiwanie</button>
     <div class="row justify-content-center py-4">
       <div class="col-12 col-md-4">
+        
+        <div id="search" class="invisible">
       {% if object_list %}
         {% include "qr/search_form.html" %}
       {% endif %}
+        </div>
     </div>
 
     {% if object_list %}
