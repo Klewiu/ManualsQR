@@ -193,7 +193,13 @@
 - add update form
 - show small text on mouseover on table buttons
 
+
 #05/02/2023 Initial QR code print setup
 -------------------------------------------------------
 - add qr_print url
 - initial qr code print setup
+
+#05/02/2023 Styling footer in qr_code - client view part 4#
+-------------------------------------------------------
+- styling footer in qr_code
+- disable hypersctipt search bar toggle
