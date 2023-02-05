@@ -216,3 +216,8 @@
 #05/02/2023 Fix navbar view in mobile #
 ------------------------------------------------------
 - fixed navbar styling in mobile
+
+#05/02/2023 Update the QR print with orderCompany and orderName
+------------------------------------------------------
+- update the QR print with orderCompany and orderName
+- styling of the related pages

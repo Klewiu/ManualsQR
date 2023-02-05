@@ -100,11 +100,11 @@ def order_detail(request, order_uuid):
 
 def qr_print(request, order_uuid):
     order = Order.objects.get(url=order_uuid)
-    qr_code_image = generate_qr(request, order.id)
 
     context = {
         'order': order,
-        'qr_code_image': qr_code_image,
+        'orderCompany': order.orderCompany,
+        'orderName': order.orderName,
     }
     return render(request, 'qr/qr_print.html', context)
 
