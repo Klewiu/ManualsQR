@@ -153,3 +153,6 @@ API
 Training
 Blog
 About
+
+Ignore PDF files
+*.pdf
