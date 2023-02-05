@@ -21,6 +21,14 @@ footer {
     text-align: end;
 }
 
+.carousel-item{
+    height: 150px;
+}
+
+.spaceBottom {
+    padding-bottom: 250px;
+}
+
 html *
 {
    font-family: 'Jost', sans-serif !important;
