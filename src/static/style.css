@@ -18,8 +18,8 @@ footer {
 
 .footerLeft {
     border-right: solid 1.5px whitesmoke;
+    text-align: end;
 }
-
 
 html *
 {
