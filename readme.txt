@@ -192,3 +192,8 @@
 -------------------------------------------------------
 - add update form
 - show small text on mouseover on table buttons
+
+#05/02/2023 Initial QR code print setup
+-------------------------------------------------------
+- add qr_print url
+- initial qr code print setup
