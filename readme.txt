@@ -203,3 +203,12 @@
 -------------------------------------------------------
 - styling footer in qr_code
 - disable hypersctipt search bar toggle
+
+#05/02/2023 Add marketing app to provide marketing communication on carousel#
+-------------------------------------------------------
+-> python manage.py startapp marketing to start new app
+-update settings with new app
+- create urls.py and path to main marketing.html view
+- crete forms.py in marketing
+- create marketing model
+- update admin.py

@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from .models import Order, Marketing
+from .models import Order
 import qrcode
 from django.http import HttpResponse
-from .forms import OrderForm, MarketingForm
+from .forms import OrderForm
 from django.views.generic import ListView, DeleteView
 from django.urls import reverse_lazy
 from django.db.models import Sum, F
@@ -147,32 +147,3 @@ def update_order(request, order_uuid):
     else:
         form = OrderForm(instance=order)
     return render(request, 'qr/update_order.html', {'form': form})
-
-
-    
-
-def client(request):
-    context = {'title': 'Client panel'}
-    return render(request, 'qr/client.html', context)
-
-def marketing(request):
-    context = {'title': 'Marketing panel'}
-    return render(request, 'qr/marketing.html', context)
-
-def add_marketing(request):
-    if request.method == 'POST':
-        form = MarketingForm(request.POST, request.FILES)
-        if form.is_valid():
-            order = form.save(commit=False)
-            if not form.cleaned_data['file']:
-                order.file = None
-            if not form.cleaned_data['file2']:
-                order.file2 = None
-            if not form.cleaned_data['video']:
-                order.video = None
-            order.orderManager = request.user
-            order.save()
-            return redirect('order_detail', order_uuid=order.url)
-    else:
-        form = OrderForm()
-    return render(request, 'qr/add_order.html', {'form': form})

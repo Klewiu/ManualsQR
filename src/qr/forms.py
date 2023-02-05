@@ -1,5 +1,5 @@
 from django import forms
-from .models import Order, Marketing
+from .models import Order
 
 class OrderForm(forms.ModelForm):
     class Meta:
@@ -7,7 +7,3 @@ class OrderForm(forms.ModelForm):
         fields = ['orderTag','orderCompany','orderName','orderQuantity','file','fileLanguage','file2','file2Language','video']
 
 
-class MarketingForm(forms.ModelForm):
-    class Meta:
-        model = Marketing
-        fields = '__all__'
