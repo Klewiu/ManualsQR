@@ -98,6 +98,17 @@ def order_detail(request, order_uuid):
 
     return render(request, 'qr/order_detail.html',  context)
 
+def qr_print(request, order_uuid):
+    order = Order.objects.get(url=order_uuid)
+    qr_code_image = generate_qr(request, order.id)
+
+    context = {
+        'order': order,
+        'qr_code_image': qr_code_image,
+    }
+    return render(request, 'qr/qr_print.html', context)
+
+
 def qr_code_view(request, order_uuid):
     order = Order.objects.get(url=order_uuid)
     return render(request, 'qr/qr_code.html', {'order': order})
@@ -136,6 +147,8 @@ def update_order(request, order_uuid):
     else:
         form = OrderForm(instance=order)
     return render(request, 'qr/update_order.html', {'form': form})
+
+
     
 
 def client(request):

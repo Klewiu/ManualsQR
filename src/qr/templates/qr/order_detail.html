@@ -9,7 +9,9 @@
   <div class="row text-center justify-content-center">
     <h4><b>Kod QR:</b></h4>  
     <img src="{% url 'generate_qr' order.id %}" class="qr img-fluid" alt="QR code">
+   
   </div>
+  <button class="btn btn-outline-danger btn-sm my-2"> <a href="{% url 'qr_print' order_uuid=order.url %}">Drukuj QR</a> </button>
 </div>
 
 {% comment %} MAIN CONTAINER {% endcomment %}

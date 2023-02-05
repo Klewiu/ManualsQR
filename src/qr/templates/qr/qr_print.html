@@ -1,0 +1,26 @@
+{% block content %}
+
+<img src="{% url 'generate_qr' order.id %}" class="qr img-fluid" id="qr_code" alt="QR code">
+<button id="download_pdf">Save as PDF</button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+<script>
+    document.getElementById("download_pdf").addEventListener("click", function () {
+        var doc = new jsPDF('p', 'pt', 'letter');
+        var qrImages = document.querySelectorAll(".qr");
+        var qrImageCount = qrImages.length;
+        var x = 10, y = 10;
+        for (var i = 0; i < qrImageCount * 36; i++) {
+            if (i % 4 == 0 && i != 0) {
+                y += 80;
+                x = 10;
+            }
+            var imgData = qrImages[i % qrImageCount];
+            doc.addImage(imgData, 'PNG', x, y, 80, 80);
+            x += 80;
+        }
+        doc.save('qr_codes.pdf');
+    });
+</script>
+
+{% endblock %}
