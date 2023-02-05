@@ -15,5 +15,4 @@ urlpatterns = [
     path('qr/<int:pk>/delete/', OrderDeleteView.as_view(), name='order_delete'),
     path('search/', search, name='search'),
     path('order/<str:order_uuid>/update/', update_order, name='update_order'),
-    path('marketing/', marketing, name='marketing'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
