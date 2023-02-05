@@ -212,3 +212,7 @@
 - crete forms.py in marketing
 - create marketing model
 - update admin.py
+
+#05/02/2023 Fix navbar view in mobile #
+------------------------------------------------------
+- fixed navbar styling in mobile
