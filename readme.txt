@@ -216,3 +216,11 @@
 #05/02/2023 Fix navbar view in mobile #
 ------------------------------------------------------
 - fixed navbar styling in mobile
+
+#06/02/2023 Marketing app - Create and List views#
+------------------------------------------------------
+- update modes.py with label, caption, slide
+- update URLs with new views
+- create marketing ListView and CreateView
+- create templates for above views
+- some styling
