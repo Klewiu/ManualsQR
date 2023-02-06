@@ -231,3 +231,9 @@
 - create templates for above views
 - some styling
 
+#06/02/2023 Marketing app - DeleteView#
+------------------------------------------------------
+- delete view for marketing
+- style marketing - add table for data
+- text changes in create_Ad
+
