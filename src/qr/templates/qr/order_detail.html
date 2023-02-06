@@ -11,7 +11,7 @@
     <img src="{% url 'generate_qr' order.id %}" class="qr img-fluid" alt="QR code">
    
   </div>
-  <button class="btn btn-outline-danger btn-sm my-2"> <a href="{% url 'qr_print' order_uuid=order.url %}">Drukuj QR</a> </button>
+  <a  class="btn btn-secondary mt-2" href="{% url 'qr_print' order_uuid=order.url %}">Drukuj QR</a> 
 </div>
 
 {% comment %} MAIN CONTAINER {% endcomment %}

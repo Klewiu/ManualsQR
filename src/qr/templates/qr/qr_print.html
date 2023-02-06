@@ -1,23 +1,38 @@
+{% extends 'base.html' %}
 {% block content %}
+<div class="container text-center py-4">
 
 <img src="{% url 'generate_qr' order.id %}" class="qr img-fluid" id="qr_code" alt="QR code">
-<button id="download_pdf">Save as PDF</button>
+<div class="mt-2">{{ orderCompany }} : {{ orderName }}</div>
 
+<button class= "btn btn-primary mt-3" id="download_pdf">Zapisz PDF do wydruku</button>
+</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
 <script>
+    //decodes txt html issues
+    function htmlDecode(input) {
+        var doc = new DOMParser().parseFromString(input, "text/html");
+        return doc.documentElement.textContent;
+      }
+
     document.getElementById("download_pdf").addEventListener("click", function () {
+        var orderName = "{{ orderName }}";
+        var orderCompany = "{{ orderCompany }}";
         var doc = new jsPDF('p', 'pt', 'letter');
+        doc.setFontSize(4);
         var qrImages = document.querySelectorAll(".qr");
         var qrImageCount = qrImages.length;
         var x = 10, y = 10;
         for (var i = 0; i < qrImageCount * 36; i++) {
             if (i % 4 == 0 && i != 0) {
-                y += 80;
+                y += 120;
                 x = 10;
             }
             var imgData = qrImages[i % qrImageCount];
             doc.addImage(imgData, 'PNG', x, y, 80, 80);
             x += 80;
+            
+            doc.text(x - 72, y + 80,  htmlDecode(orderCompany) + " : " +  htmlDecode(orderName));
         }
         doc.save('qr_codes.pdf');
     });

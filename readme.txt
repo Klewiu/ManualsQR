@@ -217,6 +217,12 @@
 ------------------------------------------------------
 - fixed navbar styling in mobile
 
+
+#05/02/2023 Update the QR print with orderCompany and orderName
+------------------------------------------------------
+- update the QR print with orderCompany and orderName
+- styling of the related pages
+
 #06/02/2023 Marketing app - Create and List views#
 ------------------------------------------------------
 - update modes.py with label, caption, slide
@@ -224,3 +230,4 @@
 - create marketing ListView and CreateView
 - create templates for above views
 - some styling
+
