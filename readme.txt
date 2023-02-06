@@ -237,3 +237,7 @@
 - style marketing - add table for data
 - text changes in create_Ad
 
+#06/02/2023 Marketing app - Update qr_code with marketing ad part1#
+------------------------------------------------------
+- pass marketing qs to qr_code view
+- update carousel with marketing template tags and for loop

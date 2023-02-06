@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from .models import Order
+from marketing.models import Marketing
 import qrcode
 from django.http import HttpResponse
 from .forms import OrderForm
@@ -111,7 +112,14 @@ def qr_print(request, order_uuid):
 
 def qr_code_view(request, order_uuid):
     order = Order.objects.get(url=order_uuid)
-    return render(request, 'qr/qr_code.html', {'order': order})
+    marketing = Marketing.objects.all()
+    context={
+        'order': order,
+        'marketing':marketing
+    }
+    return render(request, 'qr/qr_code.html', context)
+
+
 
 
 # as OrderDeleteView class does not exacute custom logic, so a pre_delete signal completes file deletion
