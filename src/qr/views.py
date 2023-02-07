@@ -111,6 +111,7 @@ def qr_print(request, order_uuid):
 
 
 def qr_code_view(request, order_uuid):
+    
     order = Order.objects.get(url=order_uuid)
     marketing = Marketing.objects.all()
     context={

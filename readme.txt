@@ -241,3 +241,10 @@
 ------------------------------------------------------
 - pass marketing qs to qr_code view
 - update carousel with marketing template tags and for loop
+
+#07/02/2023 Carousel & Marketigng view updates#
+------------------------------------------------------
+- update Marketing model - only label and file
+- update Carousel - only grapics + one default slide with ecology statistics
+- fixed form to catch file and store in media
+- add position:inherit in body in css to prevent clicking over layers

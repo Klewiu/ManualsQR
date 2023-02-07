@@ -8,10 +8,11 @@
 <div class="container-fluid">
     <div class="d-flex row p-3">
         <div class="col-12 p-1"> 
-            <form class="text-sm" method='POST'>
+            <form  method='POST' enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form | crispy }}
-                <button class="btn btn-secondary">Dodaj</button>
+                <input type="submit" class="btn btn-success" value="Save">
+                <a href="{% url 'marketing:marketing-list' %}" class="btn btn-secondary text-white"> Wróć</a>
             </form>
         </div>
     </div>

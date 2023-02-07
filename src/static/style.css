@@ -6,6 +6,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    position: inherit;
 }
 
 footer {
@@ -26,12 +27,8 @@ footer {
     text-align: end;
 }
 
-.carousel-item{
-    height: 150px;
-}
-
 .spaceBottom {
-    padding-bottom: 250px;
+    padding-bottom: 200px;
 }
 
 html *
@@ -69,6 +66,7 @@ html *
     border-radius: 10px;
 }
 
+
 thead {
     border-bottom-width: 2px;
 }
@@ -92,6 +90,7 @@ a:hover {
 @media screen and (max-width: 400px){
     iframe {
         width: 100% !important;
+        z-index:-1;
     }
 }
 
@@ -100,6 +99,7 @@ iframe {
     -webkit-border-radius: 18px; 
     border-radius: 18px;
     width: 100% !important; 
+    z-index:-1;
 }
 
 /* cancels styling for link at the ASSEMBLE QR logo */
