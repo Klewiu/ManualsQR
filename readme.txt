@@ -258,3 +258,7 @@
 #08/02/2023 Delete slide when deleting marketing ad
 ------------------------------------------------------
 - update views.py in marketign - add signals to delete slide(file)
+
+#08/02/2023 Water_waste in home value changes on amount
+------------------------------------------------------
+- update home.html change L to m3 when value changes

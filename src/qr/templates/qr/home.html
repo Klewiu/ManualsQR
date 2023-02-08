@@ -55,7 +55,15 @@
       {% if total_water_waste %}
       <p><i class="fa-fw bi bi-lightbulb" style="color:orange;"></i> 
         Czy wiesz, że do produkcji każdej strony A4 zużywa się około 5L wody ? 
-        Dzięki cyfrowym instrukcjom udało się zaoszczędzić już: <b>{{total_water_waste }} L <b><i class="bi bi-droplet-half" style="color:blue;"></i> </p>
+        Dzięki cyfrowym instrukcjom udało się zaoszczędzić już: 
+        <b>
+          {% if total_water_waste < 1000000 %}
+            {{total_water_waste }} L
+          {% else %}
+            {{ total_water_waste|slugify|slice:":-3"}} m3
+          {% endif %}
+        </b><i class="bi bi-droplet-half" style="color:blue;"></i>   
+      </p>
       {% endif %} 
     </div>
   </div>
