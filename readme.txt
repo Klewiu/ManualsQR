@@ -248,3 +248,9 @@
 - update Carousel - only grapics + one default slide with ecology statistics
 - fixed form to catch file and store in media
 - add position:inherit in body in css to prevent clicking over layers
+
+#08/02/2023 Carousel default + captions + water_waste
+------------------------------------------------------
+- add water_waste data to carousel in qr
+- update style.css for captions in Carousel
+- change water_watste displaing info when value changes for bigger

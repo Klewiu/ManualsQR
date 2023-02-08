@@ -31,6 +31,10 @@ footer {
     padding-bottom: 200px;
 }
 
+.carousel-caption  {
+    transform: translateY(10%);
+}
+
 html *
 {
    font-family: 'Jost', sans-serif !important;

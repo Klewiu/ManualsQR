@@ -111,12 +111,16 @@ def qr_print(request, order_uuid):
 
 
 def qr_code_view(request, order_uuid):
-    
+    total_water_waste=0
+    order_qs_water = Order.objects.all()
+    for obj in order_qs_water:
+        total_water_waste+=obj.count_water_waste()
     order = Order.objects.get(url=order_uuid)
     marketing = Marketing.objects.all()
     context={
         'order': order,
-        'marketing':marketing
+        'marketing':marketing,
+        'total_water_waste':total_water_waste
     }
     return render(request, 'qr/qr_code.html', context)
 
