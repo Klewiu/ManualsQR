@@ -254,3 +254,7 @@
 - add water_waste data to carousel in qr
 - update style.css for captions in Carousel
 - change water_watste displaing info when value changes for bigger
+
+#08/02/2023 Delete slide when deleting marketing ad
+------------------------------------------------------
+- update views.py in marketign - add signals to delete slide(file)

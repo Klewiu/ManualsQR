@@ -4,6 +4,8 @@ from .models import Marketing
 from django.shortcuts import render
 from django.views.generic import ListView
 from django.views.generic import CreateView, DeleteView
+from django.db.models.signals import pre_delete
+from django.dispatch import receiver
 from django.urls import reverse_lazy
 
 # Create your views here.
@@ -17,6 +19,11 @@ class MarketingCreate(CreateView):
     fields = '__all__'
     template_name='marketing/create_Ad.html'
     success_url = reverse_lazy('marketing:marketing-list')
+
+@receiver(pre_delete, sender=Marketing)
+def my_callback(sender, instance, **kwargs):
+    instance.slide.delete()
+
 
 class MarketingDelete(DeleteView):
     model = Marketing
