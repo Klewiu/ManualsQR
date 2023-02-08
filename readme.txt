@@ -262,3 +262,9 @@
 #08/02/2023 Water_waste in home value changes on amount
 ------------------------------------------------------
 - update home.html change L to m3 when value changes
+
+#08/02/2023 Add validator for slides in marketing
+------------------------------------------------------
+- marketing model - validate slide height to be strictly 300px using Pillow
+- marketing model - validate slide extension with FileExtensionValidator
+- fix blank space in qr_code.html in title 
