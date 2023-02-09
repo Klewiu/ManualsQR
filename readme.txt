@@ -278,6 +278,11 @@
 - create Notification model
 - create urls with HTMX urls
 - create NotificationListView and add add_notification views
-- create notifications.html with HTMX
-- create notifications-list with add form
+- create notifications.html with add form with HTMX
+- create notifications-list with for loop on Notifications and error tag
 - add link to new app in navbar
+
+#09/02/2023 Typo & readme update
+------------------------------------------------------
+- update readme.txt
+- typo in comments

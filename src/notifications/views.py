@@ -14,7 +14,7 @@ class NotificationsList(ListView):
      
 def add_notification(request):
     err_message=[]
-    # in get we enter atribute fron notifications.html <input name = "this atrribiute" 
+    # in get we enter atribute from notifications.html <input name = "this atrribiute" ...
     email = request.POST.get('email')
     
     # create in db when not uniqe - add error and pass to context
