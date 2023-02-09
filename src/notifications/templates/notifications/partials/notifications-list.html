@@ -1,0 +1,13 @@
+{% if notifications %}
+    <ul>
+    {% for notification in notifications %}
+        <li>{{ notification.email }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Nie dodałeś żadnych adresów mailowych do powiadomień</p>
+{% endif %}
+
+{% if err_message %}
+<p class="text-danger">{{err_message}}</p>
+{% endif %}

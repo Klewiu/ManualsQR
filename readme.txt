@@ -268,3 +268,16 @@
 - marketing model - validate slide height to be strictly 300px using Pillow
 - marketing model - validate slide extension with FileExtensionValidator
 - fix blank space in qr_code.html in title 
+
+#09/02/2023 Create Notifications app with HTMX -p1
+------------------------------------------------------
+- create Notifications app
+- add to settings
+- include Notifications urls in main urls
+- register new model in admin
+- create Notification model
+- create urls with HTMX urls
+- create NotificationListView and add add_notification views
+- create notifications.html with HTMX
+- create notifications-list with add form
+- add link to new app in navbar

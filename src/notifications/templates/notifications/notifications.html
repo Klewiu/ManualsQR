@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container py-4">
+    <h4 class="py-3">Powiadomienia:</h4>
+    <div class="row justify-content-center py-3">
+        <div class="col">
+            <div class="d-flex justify-content-start align-items-center">
+                <form class="d-flex align-items-center">
+                    {% csrf_token %}
+                    <input type="text" name="email" class="form-control m-1" placeholder="Podaj e-mail">
+                    <button
+                        hx-post="{% url 'notifications:add-notification' %}"
+                        hx-target="#notifications-list"   
+                        type="submit" 
+                        class="btn btn-success">
+                        Dodaj
+                    </button>
+                </form>
+            
+            </div>
+            <hr/>
+
+            <div id="notifications-list">
+                {% include 'notifications/partials/notifications-list.html' %}
+            </div>
+
+{% endblock content %}

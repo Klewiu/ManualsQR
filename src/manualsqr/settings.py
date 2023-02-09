@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'qr',
     'marketing',
+    'notifications',
 
     # INSTALLED
     'bootstrap5',
