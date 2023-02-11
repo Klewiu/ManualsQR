@@ -9,7 +9,7 @@
             hx-target="#notifications-list"
                     _="on htmx:confirm(issueRequest)
                         halt the event
-                        call Swal.fire({title: 'Usuń', text:'Czy na pewno chcesz usunąć?'})
+                        call Swal.fire({icon:'question' , text:'Czy na pewno chcesz usunąć?'})
                         if result.isConfirmed issueRequest()">
             <i class="bi bi-trash btn btn-danger"></i>
             </span>

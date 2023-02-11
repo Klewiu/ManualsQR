@@ -294,3 +294,7 @@
 - update notifications-list html with delet bootstrap icon and HTMX delet&target
 - style htmx confirm with sweetalert2
 - update base.html with script for htmx and csrf token for delete request
+
+#11/02/2023 Delete notifications with HTMX - p2
+------------------------------------------------------
+- update delete confirm - change title to icon = "question"
