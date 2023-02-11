@@ -286,3 +286,11 @@
 ------------------------------------------------------
 - update readme.txt
 - typo in comments
+
+#10/02/2023 Delete notifications with HTMX
+------------------------------------------------------
+- update urls with delete path in htmx patterns
+- update views with delete_notification
+- update notifications-list html with delet bootstrap icon and HTMX delet&target
+- style htmx confirm with sweetalert2
+- update base.html with script for htmx and csrf token for delete request

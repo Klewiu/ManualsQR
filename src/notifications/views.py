@@ -16,7 +16,7 @@ def add_notification(request):
     err_message=[]
     # in get we enter atribute from notifications.html <input name = "this atrribiute" ...
     email = request.POST.get('email')
-    
+
     # create in db when not uniqe - add error and pass to context
     notification, created = Notifications.objects.get_or_create(email=email)
     if not created:
@@ -31,3 +31,8 @@ def add_notification(request):
     }
 
     return render (request, 'notifications/partials/notifications-list.html', context)
+
+def delete_notification(request, pk):
+    Notifications.objects.filter(id=pk).delete()
+    notifications = Notifications.objects.all()
+    return render (request, 'notifications/partials/notifications-list.html', {'notifications':notifications})
