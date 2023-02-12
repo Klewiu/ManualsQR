@@ -12,6 +12,7 @@ from django.db.models.signals import pre_delete
 from django.dispatch import receiver
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib import messages
 
 
 class Home(ListView):
@@ -58,15 +59,12 @@ def add_order(request):
         form = OrderForm(request.POST, request.FILES)
         if form.is_valid():
             order = form.save(commit=False)
-            if not form.cleaned_data['file']:
-                order.file = None
-            if not form.cleaned_data['file2']:
-                order.file2 = None
-            if not form.cleaned_data['video']:
-                order.video = None
             order.orderManager = request.user
             order.save()
+            messages.success(request, "Dodano Zlecenie!")
             return redirect('order_detail', order_uuid=order.url)
+        else:
+            messages.error(request, "Coś poszło nie tak! Pamiętaj, nie dodasz języka, jeśli nie wgrasz pliku. Właściwy format to PDF do 1 MB. ")
     else:
         form = OrderForm()
     return render(request, 'qr/add_order.html', {'form': form})
@@ -88,12 +86,32 @@ def order_detail(request, order_uuid):
         num_pages2 = None
         water_waste2 = None
 
+    if order.file3:
+        num_pages3 = order.count_pages_file3()
+        water_variable = 5
+        water_waste3 = int(num_pages3)*int(order.orderQuantity)*(water_variable)
+    else:
+        num_pages3 = None
+        water_waste3 = None
+    
+    if order.file4:
+        num_pages4 = order.count_pages_file4()
+        water_variable = 5
+        water_waste4 = int(num_pages4)*int(order.orderQuantity)*(water_variable)
+    else:
+        num_pages4 = None
+        water_waste4 = None
+
     context={
         'order': order,
         'pages1':num_pages1,
         'pages2':num_pages2,
+        'pages3':num_pages3,
+        'pages4':num_pages3,
         'water1':water_waste1,
         'water2':water_waste2,
+        'water3':water_waste3,
+        'water4':water_waste4,
         'qr_url':generate_qr(request, order.id)
     }
 
@@ -132,6 +150,8 @@ def qr_code_view(request, order_uuid):
 def my_callback(sender, instance, **kwargs):
     instance.file.delete()
     instance.file2.delete()
+    instance.file3.delete()
+    instance.file4.delete()
 
 class OrderDeleteView(DeleteView):
     model = Order

@@ -298,3 +298,11 @@
 #11/02/2023 Delete notifications with HTMX - p2
 ------------------------------------------------------
 - update delete confirm - change title to icon = "question"
+
+#12/02/2023 Update add_order form
+------------------------------------------------------
+- update models.py with new fields (needs migration!)
+- update add_order form with new file fields
+- change template to use widget_tweaks with _hyperscript
+- >pip install django-widget-tweaks
+- update form logic and validation in forms.py

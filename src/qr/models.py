@@ -23,8 +23,12 @@ class Order (models.Model):
     fileLanguage = models.CharField(max_length=20, verbose_name ='Język instrukcji I', null=True, blank=True)
     file2 = models.FileField(upload_to='media/', null=True, blank=True, verbose_name="Instrukcja II", validators=[FileExtensionValidator(['pdf'])])
     file2Language = models.CharField(max_length=20, verbose_name ='Język instrukcji II', null=True, blank=True)
-    video = models.TextField(max_length=10000, verbose_name='Multimedia/Video Embed', blank=True, null=True)
+    file3 = models.FileField(upload_to='media/', null=True, blank=True, verbose_name="Instrukcja III", validators=[FileExtensionValidator(['pdf'])])
+    file3Language = models.CharField(max_length=20, verbose_name ='Język instrukcji III', null=True, blank=True)
+    file4 = models.FileField(upload_to='media/', null=True, blank=True, verbose_name="Instrukcja IV", validators=[FileExtensionValidator(['pdf'])])
+    file4Language = models.CharField(max_length=20, verbose_name ='Język instrukcji IV', null=True, blank=True)
     url = models.UUIDField(default=uuid.uuid4, editable=False)
+    video = models.TextField(max_length=10000, verbose_name='Multimedia/Video Embed', blank=True, null=True)
     
     class Meta:
         verbose_name = ("Zlecenie")
@@ -46,6 +50,22 @@ class Order (models.Model):
                 pages2 += len(pdf.pages)
         return pages2
 
+    def count_pages_file3(self):
+        pages3 = 0
+        if self.file3:
+            with self.file3.open() as pdf_file:
+                pdf = PdfReader(pdf_file)
+                pages3 += len(pdf.pages)
+        return pages3
+
+    def count_pages_file4(self):
+        pages4 = 0
+        if self.file4:
+            with self.file4.open() as pdf_file:
+                pdf = PdfReader(pdf_file)
+                pages4 += len(pdf.pages)
+        return pages4    
+
     # Function counts the pages of added PDF file #
     def count_pages_total(self):
         pages_total = 0
@@ -55,6 +75,14 @@ class Order (models.Model):
                 pages_total += len(pdf.pages)
         if self.file2:
             with self.file2.open() as pdf_file:
+                pdf = PdfReader(pdf_file)
+                pages_total += len(pdf.pages)
+        if self.file3:
+            with self.file3.open() as pdf_file:
+                pdf = PdfReader(pdf_file)
+                pages_total += len(pdf.pages)
+        if self.file4:
+            with self.file4.open() as pdf_file:
                 pdf = PdfReader(pdf_file)
                 pages_total += len(pdf.pages)
         return pages_total
@@ -75,11 +103,21 @@ class Order (models.Model):
                 pdf = PdfReader(pdf_file)
                 pages_total += len(pdf.pages)
                 water_waste=(pages_total)*(self.orderQuantity)*(water_variable)
+        if self.file3:
+            with self.file3.open() as pdf_file:
+                pdf = PdfReader(pdf_file)
+                pages_total += len(pdf.pages)
+                water_waste=(pages_total)*(self.orderQuantity)*(water_variable)
+        if self.file4:
+            with self.file4.open() as pdf_file:
+                pdf = PdfReader(pdf_file)
+                pages_total += len(pdf.pages)
+                water_waste=(pages_total)*(self.orderQuantity)*(water_variable)
         return water_waste
 
 # overrides save method of Order model to automatically set the orderManual field to True if file or file2 have a value, keeps False otherwise.
     def save(self, *args, **kwargs):
-        self.orderManual = bool(self.file or self.file2)
+        self.orderManual = bool(self.file or self.file2 or self.file3 or self.file4)
         self.orderVideo = bool(self.video)
         super().save(*args, **kwargs)
 

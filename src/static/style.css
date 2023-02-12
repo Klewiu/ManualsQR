@@ -153,3 +153,19 @@ iframe {
     opacity: 1;
   }
 
+  /* add form input control for video */
+  .input-video {
+    height: 38px;
+  }
+
+  .form-group-4 {
+    display: none;
+  }
+
+  .form-group-5 {
+    display: none;
+  }
+
+  .form-group-6 {
+    display: none;
+  }

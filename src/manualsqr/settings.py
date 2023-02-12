@@ -49,9 +49,8 @@ INSTALLED_APPS = [
     'qr',
     'marketing',
     'notifications',
-
-    # INSTALLED
     'bootstrap5',
+    "widget_tweaks",
     "crispy_forms",
     "crispy_bootstrap5",
 ]
