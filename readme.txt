@@ -306,3 +306,8 @@
 - change template to use widget_tweaks with _hyperscript
 - >pip install django-widget-tweaks
 - update form logic and validation in forms.py
+
+#12/02/2023 Update styling Notification & Marketigng    
+------------------------------------------------------
+- update create_Ad.html styling header + container
+- update notifications-list.html - list size in mobile
