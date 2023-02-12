@@ -1,17 +1,94 @@
 {% extends 'base.html' %}
-{% load crispy_forms_tags %}
-
-{% load static %}
+{% load widget_tweaks %}
 
 {% block content %}
-
   <div class="container py-4">
     <h4 class="py-3">Dodawanie nowego zlecenia:</h4>
     <form method="post" enctype="multipart/form-data">
       {% csrf_token %}
-      {{ form | crispy }}
-      <input type="submit" class="btn btn-success" value="Save">
-      <a href="{% url 'home' %}" class="btn btn-secondary text-white"> Wróć</a>
+      <div class="form-group-1">
+        {{ form.orderTag.label_tag }}
+        {% render_field form.orderTag class="form-control" %}
+
+        {{ form.orderCompany.label_tag }}
+        {% render_field form.orderCompany class="form-control" %}
+
+        {{ form.orderName.label_tag }}
+        {% render_field form.orderName class="form-control" %}
+
+        {{ form.orderQuantity.label_tag }}
+        {% render_field form.orderQuantity class="form-control" %}
+      </div>
+
+      <div class="form-group-2">
+        {{ form.video.label_tag }}
+        {% render_field form.video class="form-control input-video" %}
+      </div>
+
+      <div class="flex file-uploads">
+
+      <div class="form-group-3">
+        {{ form.file.label_tag }}
+         {% render_field form.file class="form-control" id="fileInput" _="on change toggle .d-inline on #group4" %}
+
+        {{ form.fileLanguage.label_tag }}
+        {% render_field form.fileLanguage class="form-control" %}
+        
+        {% if form.file.errors or form.fileLanguage.errors  %}
+          <div class="text-danger">
+            {{ form.file.errors }}
+            {{ form.fileLanguage.errors }}
+    
+          </div>
+        {% endif %} 
+      </div>
+
+      <div class="form-group-4" id="group4">
+        {{ form.file2.label_tag }}
+        {% render_field form.file2 class="form-control" _="on change toggle .d-inline on #group5"%}
+
+        {{ form.file2Language.label_tag }}
+        {% render_field form.file2Language class="form-control" %}
+       {% if form.file2.errors or form.file2Language.errors %}
+          <div class="text-danger">
+            {{ form.file2.errors }}
+            {{ form.file2Language.errors }}
+          </div>
+        {% endif %} 
+        </div>
+
+        <div class="form-group-5" id="group5">
+          {{ form.file3.label_tag }}
+          {% render_field form.file3 class="form-control" _="on change toggle .d-inline on #group6" %}
+  
+          {{ form.file2Language.label_tag }}
+          {% render_field form.file3Language class="form-control" %}
+          {% if form.file3.errors or form.file3Language.errors %}
+            <div class="text-danger">
+              {{ form.file3.errors }}
+              {{ form.file3Language.errors }}
+            </div>
+          {% endif %} 
+          </div>
+
+          <div class="form-group-6" id="group6">
+            {{ form.file4.label_tag }}
+            {% render_field form.file4 class="form-control" %}
+    
+            {{ form.file4Language.label_tag }}
+            {% render_field form.file4Language class="form-control" %}
+           {% if form.file4.errors or form.file4Language.errors %}
+              <div class="text-danger">
+                {{ form.file4.errors }}
+                {{ form.file4Language.errors }}
+              </div>
+            {% endif %}
+            </div>
+
+      <input type="submit" class="flex btn btn-success mt-2" value="Save">
+      <a href="{% url 'home' %}" class="btn btn-secondary mt-2 text-white">Wróć</a>
     </form> 
   </div>
+  <div>
 {% endblock %}
+
