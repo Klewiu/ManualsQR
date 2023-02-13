@@ -311,3 +311,9 @@
 ------------------------------------------------------
 - update create_Ad.html styling header + container
 - update notifications-list.html - list size in mobile
+
+#13/02/2023 Email on add_order with emial_list from Notification    
+------------------------------------------------------
+- update add_order with send_mail
+- update settings with google gmail account
+- update env
