@@ -78,10 +78,30 @@ def add_order(request):
 
             return redirect('order_detail', order_uuid=order.url)
         else:
-            messages.error(request, "Coś poszło nie tak! Pamiętaj, nie dodasz języka, jeśli nie wgrasz pliku. Właściwy format to PDF do 1 MB. ")
+            # clears fileLanguage fields on error
+            form = OrderForm(request.POST.copy())
+            for key in ['fileLanguage', 'file2Language', 'file3Language', 'file4Language']:form.data[key] = ''
+            messages.error(request, "Coś poszło nie tak! Pole języka musi być puste, jeśli nie wgrywasz pliku. Właściwy format to PDF do 1 MB. ")
     else:
         form = OrderForm()
     return render(request, 'qr/add_order.html', {'form': form})
+
+def update_order(request, order_uuid):
+    order = Order.objects.get(url=order_uuid)
+    if request.method == 'POST':
+        form = OrderForm(request.POST, request.FILES, instance=order)
+        if form.is_valid():
+            order = form.save()
+            messages.success(request, "Zaktualizowano Zlecenie!")
+            return redirect('order_detail', order_uuid=order.url)
+        else:
+            messages.error(request, "Coś poszło nie tak! Pole języka musi być puste, jeśli nie wgrywasz pliku. Właściwy format to PDF do 1 MB. ")
+    else:
+        form = OrderForm(instance=order)
+    return render(request, 'qr/update_order.html', {'form': form})
+
+
+
 
 def order_detail(request, order_uuid):
     order = Order.objects.get(url=order_uuid)
@@ -184,13 +204,4 @@ def search(request):
     return render(request, "qr/object_list.html", {"object_list": object_list})
 
 
-def update_order(request, order_uuid):
-    order = Order.objects.get(url=order_uuid)
-    if request.method == 'POST':
-        form = OrderForm(request.POST, request.FILES, instance=order)
-        if form.is_valid():
-            order = form.save()
-            return redirect('order_detail', order_uuid=order.url)
-    else:
-        form = OrderForm(instance=order)
-    return render(request, 'qr/update_order.html', {'form': form})
+

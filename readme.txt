@@ -312,8 +312,17 @@
 - update create_Ad.html styling header + container
 - update notifications-list.html - list size in mobile
 
+#13/02/2023 Update add_order and update_order logic
+------------------------------------------------------
+- update models.py with validators from validators.py
+- update add_order function to clear fileLanguage fields on error
+- update update_order function with django messages
+- update update_order template with widget_tweaks and javascript to delete fileLanguage when file is deleted
+- update forms.py to override label names for file-loaded fields
+
 #13/02/2023 Email on add_order with emial_list from Notification    
 ------------------------------------------------------
 - update add_order with send_mail
 - update settings with google gmail account
 - update env
+
