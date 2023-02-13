@@ -57,8 +57,34 @@
                 {% endif %}
               </div>
             {% endif %}
+
+            {% if order.file3 %}
+            <div class="p-2">
+              <a href="{{ order.file3.url }}" download="{{ order.file3.name }}" class="no-style">
+                <button class="logoButton">
+                  <img src="{% static 'Manual_logo_2.png' %}" class="manualLogoClient align-text-center px-1">
+              </button>
+              </a>
+              {% if order.file3Language %}
+                <p class="p-1"><button type="button" class="btn btn-sm  btn-dark rounded-pill m-1 border border-dark" disabled>{{order.file3Language}}</button></p>
+              {% endif %}
+            </div>
+          {% endif %}
+
+          {% if order.file4 %}
+          <div class="p-2">
+            <a href="{{ order.file4.url }}" download="{{ order.file4.name }}" class="no-style">
+              <button class="logoButton">
+                <img src="{% static 'Manual_logo_2.png' %}" class="manualLogoClient align-text-center px-1">
+            </button>
+            </a>
+            {% if order.file4Language %}
+              <p class="p-1"><button type="button" class="btn btn-sm  btn-dark rounded-pill m-1 border border-dark" disabled>{{order.file4Language}}</button></p>
+            {% endif %}
+          </div>
+        {% endif %}
             
-            {% if not order.file and not order.file2 and not order.video %}
+            {% if not order.file and not order.file2 and not order.file3 and not order.file4 and not order.video %}
               <p class="multipleStrings"></p>
               <script type="text/javascript" src="{% static 'textPrinterClient.js' %}"></script>
             {% endif %}
