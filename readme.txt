@@ -306,3 +306,11 @@
 - change template to use widget_tweaks with _hyperscript
 - >pip install django-widget-tweaks
 - update form logic and validation in forms.py
+
+#13/02/2023 Update add_order and update_order logic
+------------------------------------------------------
+- update models.py with validators from validators.py
+- update add_order function to clear fileLanguage fields on error
+- update update_order function with django messages
+- update update_order template with widget_tweaks and javascript to delete fileLanguage when file is deleted
+- update forms.py to override label names for file-loaded fields

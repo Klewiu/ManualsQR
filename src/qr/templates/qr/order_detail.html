@@ -90,9 +90,41 @@
                   <i class="bi bi-droplet-half" style="color:blue;"></i> {{water2|default:0}} L wody</p>
             {% endif %}
           </div>
+          <div class="pb-2">
+            {% if order.file3 %}
+              <a href="{{ order.file3.url }}" download="{{ order.file3.name }}" class="no-style">
+                <img src="{% static 'Manual_logo.png' %}" class="manualLogo align-text-center px-3">
+              </a>
+            {% endif %}
+        </div>
+        <div>
+          {% if order.file3 %}
+            <p style="margin:0;" class="card-text"><b>Instrukcja
+              {% if order.file3Language %} - {{order.file3Language }} {% endif %} </b></p>
+            <p style="margin:0;"><i><small>{{order.file3.name|cut:'media/' |slice:25 }}</small></i></p>
+            <p style="margin:0;">{{ pages3|default:0 }} str = 
+                <i class="bi bi-droplet-half" style="color:blue;"></i> {{water3|default:0}} L wody</p>
+          {% endif %}
+        </div>
+        <div class="pb-2">
+          {% if order.file4 %}
+            <a href="{{ order.file4.url }}" download="{{ order.file4.name }}" class="no-style">
+              <img src="{% static 'Manual_logo.png' %}" class="manualLogo align-text-center px-3">
+            </a>
+          {% endif %}
+      </div>
+      <div>
+        {% if order.file4 %}
+          <p style="margin:0;" class="card-text"><b>Instrukcja
+            {% if order.file4Language %} - {{order.file4Language }} {% endif %} </b></p>
+          <p style="margin:0;"><i><small>{{order.file4.name|cut:'media/' |slice:25 }}</small></i></p>
+          <p style="margin:0;">{{ pages4|default:0 }} str = 
+              <i class="bi bi-droplet-half" style="color:blue;"></i> {{water4|default:0}} L wody</p>
+        {% endif %}
+      </div>
           
           <div>
-            {% if not order.file and not order.file2 %} 
+            {% if not order.file and not order.file2 and not order.file3 and not order.file4 %} 
               <p class="card-text text-danger" style="font-weight:bold;">
                 BRAK INSTRUKCJI</p>
             {% endif %}

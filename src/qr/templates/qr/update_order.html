@@ -1,17 +1,68 @@
 {% extends 'base.html' %}
-{% load crispy_forms_tags %}
-
 {% load static %}
+{% load widget_tweaks %}
 
 {% block content %}
-
-  <div class="container my-5">
+  <div class="container py-4">
+    <h4 class="py-3">Aktualizuj Zlecenie:</h4>
     <form method="post" enctype="multipart/form-data">
       {% csrf_token %}
-      {{ form | crispy }}
-      <input type="submit" class="btn btn-success" value="Save">
-      <a href="{% url 'home' %}" class="btn btn-secondary text-white"> Wróć</a>
+      <div class="form-group-A">
+        {{ form.orderTag.label_tag }}
+        {% render_field form.orderTag class="form-control" %}
+
+        {{ form.orderCompany.label_tag }}
+        {% render_field form.orderCompany class="form-control" %}
+
+        {{ form.orderName.label_tag }}
+        {% render_field form.orderName class="form-control" %}
+
+        {{ form.orderQuantity.label_tag }}
+        {% render_field form.orderQuantity class="form-control" %}
+      </div>
+
+      <div class="form-group-B">
+        {{ form.video.label_tag }}
+        {% render_field form.video class="form-control input-video" %}
+      </div>
+
+      {% comment %} FILE UPLOADS {% endcomment %}
+      <div class="form-group-C"> 
+        {{ form.file.label_tag }}
+         {% render_field form.file class="form-control" %}
+        {{ form.fileLanguage.label_tag }}
+        {% render_field form.fileLanguage class="form-control"%}
+      </div>
+
+      <div class="form-group-D">
+        {{ form.file2.label_tag }}
+          {% render_field form.file2 class="form-control"%}
+        {{ form.file2Language.label_tag }}
+          {% render_field form.file2Language class="form-control" %}
+      </div>
+
+      <div class="form-group-E">
+        {{ form.file3.label_tag }}
+          {% render_field form.file3 class="form-control" %}
+        {{ form.file2Language.label_tag }}
+          {% render_field form.file3Language class="form-control"%}
+      </div>
+
+      <div class="form-group-F">
+        {{ form.file4.label_tag }}
+          {% render_field form.file4 class="form-control" %}
+        {{ form.file4Language.label_tag }}
+          {% render_field form.file4Language class="form-control"%}
+      </div>
+
+      <input type="submit" class="flex btn btn-success mt-2" value="Save">
+      <a href="{% url 'home' %}" class="btn btn-secondary mt-2 text-white">Wróć</a>
     </form> 
   </div>
-  
-  {% endblock %}
+
+
+
+<script type="text/javascript" src="{% static 'delete_fileLanguage.js' %}"></script>   
+
+{% endblock %}
+
