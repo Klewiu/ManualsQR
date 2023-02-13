@@ -326,3 +326,6 @@
 - update settings with google gmail account
 - update env
 
+#13/02/2023 Fix styling in order_detail.html   
+------------------------------------------------------
+- fix div and classes in order_detail
