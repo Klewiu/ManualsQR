@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from .models import Order
 from marketing.models import Marketing
+from notifications.models import Notifications
 import qrcode
 from django.http import HttpResponse
 from .forms import OrderForm
@@ -13,6 +14,7 @@ from django.dispatch import receiver
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib import messages
+from django.core.mail import send_mail
 
 
 class Home(ListView):
@@ -55,6 +57,9 @@ def generate_qr(request, order_id):
     return response
 
 def add_order(request):
+    notifications= Notifications.objects.all()
+    email_list = [notification.email for notification in notifications]
+    print(email_list)
     if request.method == 'POST':
         form = OrderForm(request.POST, request.FILES)
         if form.is_valid():
@@ -62,6 +67,15 @@ def add_order(request):
             order.orderManager = request.user
             order.save()
             messages.success(request, "Dodano Zlecenie!")
+            
+            # sendgin email to user add in notifications app
+            send_mail(
+            f"W Assemble QR dodano nowe zlecenie - {order.orderTag} !",
+            f' Zlecenie o numerze "{order.orderTag}" i nazwie "{order.orderName}", oczekuje na przygotowanie i dodanie instrukcji.',
+            "assembleqr@gmail.com",
+            email_list , fail_silently=True,
+            )
+
             return redirect('order_detail', order_uuid=order.url)
         else:
             # clears fileLanguage fields on error
