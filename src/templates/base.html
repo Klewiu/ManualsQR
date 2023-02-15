@@ -23,9 +23,13 @@
     {% comment %} Typeitjs {% endcomment %}
     <script src="https://unpkg.com/typeit@8.7.1/dist/index.umd.js"></script>
 
-{% comment %} Hyperscript {% endcomment %}
+    {% comment %} Hyperscript {% endcomment %}
     <script src="https://unpkg.com/hyperscript.org@0.9.7"></script>
     
+    {% comment %} Spinner script {% endcomment %}
+    <script src="{% static 'spinner.js' %}" defer></script>  
+
+
     <title>AssembleQR</title>
 </head>
 <body id="theme">
@@ -39,6 +43,10 @@
             event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}' // add a new header into the request
         });
     </script>
+
+    {% comment %} Scripts for jquery, ajax {% endcomment %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 
 </body>
 </html>

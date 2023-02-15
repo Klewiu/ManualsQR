@@ -70,6 +70,9 @@ html *
     border-radius: 10px;
 }
 
+.spinner {
+    display: none;
+}
 
 thead {
     border-bottom-width: 2px;

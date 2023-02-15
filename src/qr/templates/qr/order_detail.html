@@ -139,14 +139,22 @@
     <div class="col-12 col-sm">
       <div class="row">
         <h4 class="py-2"><b><u>Wideo:</u></b></h4>
-        {% if order.video %}   
+
+        {% if order.video %}
+        
+          <div id="spinner-box" class="text-center">
+            <div class="spinner-border" role="status"></div>
+            <p>Loading video...</p>
+          </div>
+        
           <div class="circle">
             {{ order.video|safe }}  
           </div>      
         {% else %} 
-              <p class="card-text text-success" style="font-weight:bold;">
-                BRAK LINKU WIDEO</p>
+            <p class="card-text text-success" style="font-weight:bold;">
+              BRAK LINKU WIDEO</p>
         {% endif %}
+        
       </div>
     </div>
   </div>  
@@ -156,4 +164,7 @@
   <div class="d-flex flex-row justify-content-center py-3">
     <a href="{% url 'home' %}" class="btn btn-secondary">Wróć do zamówień</a>
   </div>
+
+
+
 {% endblock %}

@@ -329,3 +329,11 @@
 #13/02/2023 Fix styling in order_detail.html   
 ------------------------------------------------------
 - fix div and classes in order_detail
+
+#15/02/2023 Loading spinner with Bootstrap & AJAX   
+------------------------------------------------------
+- add Bootstrap loading spinner to order_detail & qr_code
+- create spinner.js 
+- import spinner.js + jquery in base.html
+- import spinner.js + jquery in qr_code.html
+- update syle.css with .spinner class
