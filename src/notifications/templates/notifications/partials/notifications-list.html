@@ -1,4 +1,9 @@
+{% comment %} Import sweetalert {% endcomment %}
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+{% load static %}
+
+
 {% if notifications %}
     <ul class="list-group col-12 col-md-4">
     {% for notification in notifications %}
@@ -17,7 +22,8 @@
     {% endfor %}
     </ul>
 {% else %}
-    <p>Nie dodałeś żadnych adresów mailowych do powiadomień</p>
+    <p class="multipleStringsNotifications"></p>
+        <script type="text/javascript" src="{% static 'textPrinterNotifications.js' %}"></script>
 {% endif %}
 
 {% if err_message %}

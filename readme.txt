@@ -337,3 +337,11 @@
 - import spinner.js + jquery in base.html
 - import spinner.js + jquery in qr_code.html
 - update syle.css with .spinner class
+
+#15/02/2023 TypeIt in Marketing and Notifications 
+------------------------------------------------------
+- add TypeIt text in marketing when nothing has been added
+- add TypeIt tex in notifications when nothing has been added
+- add scripts for above
+- plus some styling in marketing.html
+- add new button in order_detail.html to view client page directly
