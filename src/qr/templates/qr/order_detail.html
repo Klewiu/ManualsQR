@@ -7,7 +7,7 @@
 <div class="container text-center py-4">
   <h5 class="py-2">Szczegóły zamówienia - <b>{{ order.orderTag }} {{order.orderName }}</b></h5>
   <div class="row text-center justify-content-center">
-    <h4><b>Kod QR:</b></h4>  
+    <h4><b>Kod QR:</b></h4> 
     <img src="{% url 'generate_qr' order.id %}" class="qr img-fluid" alt="QR code">
    
   </div>

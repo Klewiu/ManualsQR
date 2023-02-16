@@ -345,3 +345,11 @@
 - add scripts for above
 - plus some styling in marketing.html
 - add new button in order_detail.html to view client page directly
+
+#16/02/2023 Joing QR code with Default Image
+------------------------------------------------------
+- joining in qr/views.py default image qr_over_1.png with generated qr code using PILLOW and BytesIO
+- update qr_print.html - styling PDF 3x8 with joined image + add BACK button to detail page
+- add width for joined graphics in style.css
+- make TypeIt text faster
+

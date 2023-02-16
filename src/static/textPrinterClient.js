@@ -5,7 +5,7 @@ new TypeIt(".multipleStrings", {
          <br>`,
         `<strong>ATS ASSEMBLE QR (PL):</strong> Drogi kliencie! Pracujemy nad instrukcją montażu, która wkrótce pojawi się na tej stronie.
         Zachowaj proszę cierpliwość i w razie dalszych problemów skontaktuj się z nami.`],
-    speed: 50,
+    speed: 45,
     waitUntilVisible: true,
   }).go();
     

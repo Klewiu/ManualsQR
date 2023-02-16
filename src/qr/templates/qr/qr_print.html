@@ -5,7 +5,8 @@
 <img src="{% url 'generate_qr' order.id %}" class="qr img-fluid" id="qr_code" alt="QR code">
 <div class="mt-2">{{ orderCompany }} : {{ orderName }}</div>
 
-<button class= "btn btn-primary mt-3" id="download_pdf">Zapisz PDF do wydruku</button>
+<button class= "btn btn-success mt-3" id="download_pdf">Zapisz PDF (3x8)</button>
+<button class= "btn btn-secondary mt-3" onclick="location.href='{% url 'order_detail' order.url %}'">Wróć</button>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
 <script>
@@ -19,20 +20,20 @@
         var orderName = "{{ orderName }}";
         var orderCompany = "{{ orderCompany }}";
         var doc = new jsPDF('p', 'pt', 'letter');
-        doc.setFontSize(4);
+        doc.setFontSize(6);
         var qrImages = document.querySelectorAll(".qr");
         var qrImageCount = qrImages.length;
-        var x = 10, y = 10;
-        for (var i = 0; i < qrImageCount * 36; i++) {
-            if (i % 4 == 0 && i != 0) {
-                y += 120;
+        var x = 15, y = 15;
+        for (var i = 0; i < qrImageCount * 24; i++) {
+            if (i % 3 == 0 && i != 0) {
+                y += 95;
                 x = 10;
             }
             var imgData = qrImages[i % qrImageCount];
-            doc.addImage(imgData, 'PNG', x, y, 80, 80);
-            x += 80;
+            doc.addImage(imgData, 'PNG', x, y, 170, 70);
+            x += 200;
             
-            doc.text(x - 72, y + 80,  htmlDecode(orderCompany) + " : " +  htmlDecode(orderName));
+            doc.text(x - 150, y + 80,  htmlDecode(orderCompany) + " : " +  htmlDecode(orderName));
         }
         doc.save('qr_codes.pdf');
     });

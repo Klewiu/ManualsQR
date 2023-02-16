@@ -15,6 +15,8 @@ from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib import messages
 from django.core.mail import send_mail
+from PIL import Image
+from io import BytesIO
 
 
 class Home(ListView):
@@ -51,7 +53,28 @@ class Home(ListView):
 def generate_qr(request, order_id):
     order = Order.objects.get(id=order_id)
     url = request.build_absolute_uri(reverse('qr_code_view', args=[order.url]))
-    img = qrcode.make(url)
+    
+    # Create qr code from unique URL
+    img_qr = qrcode.make(url)
+    
+    # Create memory buffer that can hold binary data of the PNG
+    img_buffer = BytesIO()
+    
+    # Save the image to the buffer object
+    img_qr.save(img_buffer, format="PNG")
+    
+    # reset the buffer to the beginning
+    img_buffer.seek(0)
+    
+    # open images using Pillow and combine them into one.
+    img1 = Image.open(img_buffer)
+    img2 = Image.open('static/qr_over_1.png')
+    width, height = img1.size
+    combined_img = Image.new('RGBA', (int(2.4*width), height), (255, 255, 255, 0))
+    combined_img.paste(img1, (0, 0))
+    combined_img.paste(img2, (width, 0))
+    img = combined_img
+
     response = HttpResponse(content_type="image/png")
     img.save(response, "PNG")
     return response

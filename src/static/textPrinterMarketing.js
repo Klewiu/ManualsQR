@@ -5,6 +5,6 @@ new TypeIt(".multipleStringsMarketing", {
          Obecnie nie masz dodanego żadnego baneru i będzie wyświetlany tylko standardowy baner z informacją o zaoszczędzonej wodzie.
          Każdy dodany przez Ciebie baner możesz w dowolnym momencie usunąć.`
       ],
-    speed: 50,
+    speed: 45,
     waitUntilVisible: true,
   }).go();
