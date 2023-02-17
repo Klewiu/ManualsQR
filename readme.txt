@@ -353,3 +353,7 @@
 - add width for joined graphics in style.css
 - make TypeIt text faster
 
+#17/02/2023 qr_print new button save PNG
+------------------------------------------------------
+- add new button in qr_print to save qr_code in PNG
+- update styling in order_detail.html

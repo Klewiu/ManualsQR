@@ -6,9 +6,11 @@
 <div class="mt-2">{{ orderCompany }} : {{ orderName }}</div>
 
 <button class= "btn btn-success mt-3" id="download_pdf">Zapisz PDF (3x8)</button>
+<button class= "btn btn-success mt-3" id="download_qr" onclick="downloadImage()">Zapisz PNG (1)</button>
 <button class= "btn btn-secondary mt-3" onclick="location.href='{% url 'order_detail' order.url %}'">Wróć</button>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+
 <script>
     //decodes txt html issues
     function htmlDecode(input) {
@@ -18,6 +20,7 @@
 
     document.getElementById("download_pdf").addEventListener("click", function () {
         var orderName = "{{ orderName }}";
+        var orderTag = "{{ orderTag }}";
         var orderCompany = "{{ orderCompany }}";
         var doc = new jsPDF('p', 'pt', 'letter');
         doc.setFontSize(6);
@@ -35,8 +38,32 @@
             
             doc.text(x - 150, y + 80,  htmlDecode(orderCompany) + " : " +  htmlDecode(orderName));
         }
-        doc.save('qr_codes.pdf');
+        doc.save("QR CODE (3x8)-"+orderCompany+"-"+orderName+".pdf");
     });
+</script>
+
+<script>
+
+    function downloadImage() {
+        // Get the URL of the image from the img element
+        var imgElement = document.getElementById('qr_code');
+        var imageUrl = imgElement.src;
+        var orderName = "{{ orderName }}";
+        var orderCompany = "{{ orderCompany }}";
+
+        // Create a new anchor element
+        var downloadLink = document.createElement('a');
+    
+        // Set the href attribute to the URL of the image
+        downloadLink.href = imageUrl;
+    
+        // Set the download attribute to the file name of the image
+        downloadLink.download = "QR CODE -"+" "+orderCompany+"-"+orderName+".png"
+    
+        // Simulate a click on the anchor element to download the image
+        downloadLink.click();
+    }
+   
 </script>
 
 {% endblock %}
