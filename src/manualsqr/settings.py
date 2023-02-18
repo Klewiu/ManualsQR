@@ -36,6 +36,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -86,6 +87,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'manualsqr.wsgi.application'
 
+
+
 LOGIN_REDIRECT_URL = 'home'
 LOGIN_URL = 'home'
 
@@ -122,9 +125,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = "pl-pl"
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = "Europe/Warsaw"
 
 USE_I18N = True
 
