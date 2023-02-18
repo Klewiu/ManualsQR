@@ -357,3 +357,9 @@
 ------------------------------------------------------
 - add new button in qr_print to save qr_code in PNG
 - update styling in order_detail.html
+
+#18/02/2023 styling update_order        
+------------------------------------------------------
+- styling update_order
+- add button in order_detail to update_order
+- styling search bar in home.html

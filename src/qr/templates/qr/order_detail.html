@@ -11,7 +11,7 @@
     <img src="{% url 'generate_qr' order.id %}" class="qr img-fluid" alt="QR code">
    
   </div>
-  <a  class="btn btn-secondary mt-2" href="{% url 'qr_print' order_uuid=order.url %}">Drukuj QR</a> 
+  <a  class="btn btn-secondary mt-3" href="{% url 'qr_print' order_uuid=order.url %}">Drukuj QR</a> 
 </div>
 
 {% comment %} MAIN CONTAINER {% endcomment %}
@@ -163,6 +163,7 @@
   <div class="d-flex flex-row justify-content-center py-3">
     <a href="{% url 'home' %}" class="btn btn-secondary m-1">Wróć do zamówień</a>
     <a href="{% url 'qr_code_view' order.url %}" class="btn btn-secondary m-1">Widok klienta</a>
+    <a href="{% url 'update_order' order_uuid=order.url %}" class="btn btn-secondary m-1">Edycja zlecenia</a>
   </div>
 
 

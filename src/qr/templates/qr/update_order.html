@@ -8,50 +8,55 @@
     <form method="post" enctype="multipart/form-data">
       {% csrf_token %}
       <div class="form-group-A">
-        {{ form.orderTag.label_tag }}
+      <div class="pb-2">
+       <b> {{ form.orderTag.label_tag }} </b> 
         {% render_field form.orderTag class="form-control" %}
-
-        {{ form.orderCompany.label_tag }}
+      </div>
+      <div class="pb-2">
+       <b> {{ form.orderCompany.label_tag }} </b>
         {% render_field form.orderCompany class="form-control" %}
-
-        {{ form.orderName.label_tag }}
+      </div>
+      <div class="pb-2">
+       <b> {{ form.orderName.label_tag }} </b>
         {% render_field form.orderName class="form-control" %}
-
-        {{ form.orderQuantity.label_tag }}
+      </div>
+      <div class="pb-2">
+       <b> {{ form.orderQuantity.label_tag }}</b>
         {% render_field form.orderQuantity class="form-control" %}
+      </div>
       </div>
 
       <div class="form-group-B mt-2">
-        {{ form.video.label_tag }}
+        <b>{{ form.video.label_tag }}</b>
         {% render_field form.video class="form-control input-video" %}
       </div>
 
       {% comment %} FILE UPLOADS {% endcomment %}
       <div class="form-group-C mt-4"> 
-        {{ form.file.label_tag }}
-         {% render_field form.file class="form-control" %}
-        {{ form.fileLanguage.label_tag }}
+        <h5><b>{{ form.file.label_tag }}</b></h5>
+         <small>{% render_field form.file class="form-control" %}</small>
+         <small>{{ form.fileLanguage.label_tag }}</small>
         {% render_field form.fileLanguage class="form-control"%}
       </div>
 
       <div class="form-group-D mt-4">
-        {{ form.file2.label_tag }}
-          {% render_field form.file2 class="form-control"%}
-        {{ form.file2Language.label_tag }}
+        <h5><b>{{ form.file2.label_tag }}</b></h5>
+        <small> {% render_field form.file2 class="form-control"%}</small>
+        <small> {{ form.file2Language.label_tag }}</small>
           {% render_field form.file2Language class="form-control" %}
       </div>
 
       <div class="form-group-E mt-4">
-        {{ form.file3.label_tag }}
-          {% render_field form.file3 class="form-control" %}
-        {{ form.file2Language.label_tag }}
+        <h5><b>{{ form.file3.label_tag }}</b></h5>
+        <small> {% render_field form.file3 class="form-control" %}</small>
+        <small>{{ form.file3Language.label_tag }}</small>
           {% render_field form.file3Language class="form-control"%}
       </div>
 
       <div class="form-group-F mt-4">
-        {{ form.file4.label_tag }}
-          {% render_field form.file4 class="form-control" %}
-        {{ form.file4Language.label_tag }}
+        <h5><b>{{ form.file4.label_tag }}</b></h5>
+        <small>{% render_field form.file4 class="form-control" %}</small>
+        <small>{{ form.file4Language.label_tag }}</small>
           {% render_field form.file4Language class="form-control"%}
       </div>
 
