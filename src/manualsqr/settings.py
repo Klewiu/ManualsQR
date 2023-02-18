@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'qr',
+    'users',
     'marketing',
     'notifications',
     'bootstrap5',
@@ -85,6 +86,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'manualsqr.wsgi.application'
 
+LOGIN_REDIRECT_URL = 'home'
+LOGIN_URL = 'home'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
