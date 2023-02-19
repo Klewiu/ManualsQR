@@ -8,7 +8,7 @@
 <div class="container py-4">
 
   {% if user.is_authenticated and user.is_superuser %}
-    <h4 class="py-3">Panel Admina</h4>
+    <h4 class="py-3">Panel Admina:</h4>
     <a href="{% url 'register' %}" class="btn btn-success py-2 mb-3">Dodaj Użytkowników</a>
     <div class="table-responsive">
     <table class="table table-bordered ">
@@ -29,8 +29,8 @@
               <form method="POST" action="{% url 'adminpage' %}">
                 {% csrf_token %}
                 <input type="hidden" name="user_id" value="{{ user.id }}">
-                <button type="submit"  class="btn btn-danger">Usuń</button>
-                {% comment %} <a href="{% url 'register' %}" class="btn btn-success py-2 mb-3">Aktualizuj</a> {% endcomment %}
+                <button type="submit"  class="btn btn-danger py-2"">Usuń</button>
+                <a href="{% url 'update' user_id=user.id %}" class="btn btn-success py-2">Aktualizuj</a>
                 
               </form>
             </td>
