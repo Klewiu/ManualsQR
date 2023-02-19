@@ -375,3 +375,7 @@
 - create register new user form
 - create logout functionality
 - initial setup for htmx user delete
+
+#19/02/2023 delete user with HTXM and hyperscript
+------------------------------------------------------
+- delete user functionality with no rerender
