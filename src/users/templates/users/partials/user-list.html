@@ -1,0 +1,37 @@
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<div class="table-responsive">
+    <table class="table table-bordered ">
+        <thead class="bg-secondary bg-gradient text-white ">
+          <tr>
+            <th scope="col" class="text-center">Użytkownik</th>
+            <th scope="col" class="text-center">Email</th>
+            <th scope="col" class="text-center">Usuń</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for user in users %}
+            <tr>
+              <td class="text-center">{{ user.username }}</td>
+              <td class="text-center">{{ user.email }}</td>
+              <td class="text-center">
+                  {% comment %} delete {% endcomment %}
+                <form method="POST" action="{% url 'adminpage' %}">
+                  {% csrf_token %}
+                  <input type="hidden" name="user_id" value="{{ user.id }}">
+                  <a href="{% url 'update' user_id=user.id %}" class="btn btn-success py-2">Aktualizuj</a>
+                  <span
+                  hx-delete="{% url 'delete' user.pk %}"
+                  hx-target="#user-list"
+                  _="on htmx:confirm(issueRequest)
+                              halt the event
+                              call Swal.fire({icon:'question' , text:'Czy na pewno chcesz usunąć?'})
+                              if result.isConfirmed issueRequest()"> <i class="bi bi-trash btn btn-danger"></i></span>
+                  
+                </form>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+  </div>
+</div>

@@ -1,47 +1,22 @@
 {% extends 'base.html' %}
+
 {% block content %}
-
-
 
   {% comment %} TABLE {% endcomment %}
 
-<div class="container py-4">
+  <div class="container py-4">
 
-  {% if user.is_authenticated and user.is_superuser %}
-    <h4 class="py-3">Panel Admina</h4>
-    <a href="{% url 'register' %}" class="btn btn-success py-2 mb-3">Dodaj Użytkowników</a>
-    <div class="table-responsive">
-    <table class="table table-bordered ">
-      <thead class="bg-secondary bg-gradient text-white ">
-        <tr>
-          <th scope="col" class="text-center">Użytkownik</th>
-          <th scope="col" class="text-center">Email</th>
-          <th scope="col" class="text-center">Usuń</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for user in users %}
-          <tr>
-            <td class="text-center">{{ user.username }}</td>
-            <td class="text-center">{{ user.email }}</td>
-            <td class="text-center">
-                {% comment %} delete {% endcomment %}
-              <form method="POST" action="{% url 'adminpage' %}">
-                {% csrf_token %}
-                <input type="hidden" name="user_id" value="{{ user.id }}">
-                <button type="submit"  class="btn btn-danger">Usuń</button>
-                {% comment %} <a href="{% url 'register' %}" class="btn btn-success py-2 mb-3">Aktualizuj</a> {% endcomment %}
-                
-              </form>
-            </td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  {% else %}
-    <p>You must be logged in as an admin to access this page.</p>
-  {% endif %}
+    {% if user.is_authenticated and user.is_superuser %}
+      <h4 class="py-3">Panel Admina:</h4>
+      <a href="{% url 'register' %}" class="btn btn-success py-2 mb-3">Dodaj Użytkowników</a>
+        
+      <div id="user-list">
+      {% include 'users/partials/user-list.html' %}
+        </div>
+    {% else %}
+      <p>You must be logged in as an admin to access this page.</p>
+    {% endif %}
 
-</div>
+  </div>
 
 {% endblock %}
