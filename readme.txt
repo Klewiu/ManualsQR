@@ -363,3 +363,9 @@
 - styling update_order
 - add button in order_detail to update_order
 - styling search bar in home.html
+
+#19/02/2023 initial login/logout and user management setup       
+------------------------------------------------------
+- create login logic and template
+- create logout route and view
+- create adminpage panel

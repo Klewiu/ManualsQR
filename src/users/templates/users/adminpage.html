@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container py-4">
+
+  {% if user.is_authenticated and user.is_superuser %}
+    <h4 class="py-3">Panel Admina</h4>
+    <button href='#' class="btn btn-success py-2 mb-3">Dodaj nowych użytkowników </button>
+    <div class="table-responsive">
+    <table class="table table-bordered ">
+      <thead class="bg-secondary bg-gradient text-white ">
+        <tr>
+          <th scope="col" class="text-center">ID</th>
+          <th scope="col" class="text-center">Użytkownik</th>
+          <th scope="col" class="text-center">Email</th>
+          <th scope="col" class="text-center">Usuń</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in users %}
+          <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>
+                {% comment %} delete {% endcomment %}
+              <form method="POST" action="{% url 'adminpage' %}">
+                {% csrf_token %}
+                <input type="hidden" name="user_id" value="{{ user.id }}">
+                <button type="submit">Usuń</button>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>You must be logged in as an admin to access this page.</p>
+  {% endif %}
+
+</div>
+
+{% endblock %}
