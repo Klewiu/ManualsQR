@@ -1,5 +1,24 @@
 {% load static %}
 
+{% comment %} LOGUT MODAL {% endcomment %}
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Logout</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Chcesz się wylogować?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Wróć</button>
+          <a class="btn btn-outline-danger" href="{% url 'logout' %}">Wyloguj</a></li>
+        </div>
+      </div>
+    </div>
+  </div>
+
 <nav class="navbar clientNavbar">
     <div class="container-fluid">
             <div class="col">
@@ -14,6 +33,13 @@
                 <a href="{% url 'notifications:notifications' %}"  class="btn btn-secondary"><i class="bi bi-bell"></i></a>
                 {% if user.is_authenticated and user.is_superuser %}
                 <a href="{% url 'adminpage' %}" class="btn btn-secondary"><i class="bi bi-person-square"></i></a>
+                {% endif %}
+
+                {% if user.is_authenticated %}
+                <!-- Button trigger LOGOUT modal -->
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  Wyloguj
+                </button>
                 {% endif %}
             </div>
     </div>

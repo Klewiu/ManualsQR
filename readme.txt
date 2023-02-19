@@ -369,3 +369,9 @@
 - create login logic and template
 - create logout route and view
 - create adminpage panel
+
+#19/02/2023 user register and logout     
+------------------------------------------------------
+- create register new user form
+- create logout functionality
+- initial setup for htmx user delete
