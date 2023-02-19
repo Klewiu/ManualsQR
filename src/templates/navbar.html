@@ -10,9 +10,11 @@
             </div>
             <div class="col-10">
                 <a href="{% url 'add_order' %}" class="btn btn-secondary "><i class="bi bi-plus-circle"></i></a>
-                <a href="#" class="btn btn-secondary"><i class="bi bi-person-square"></i></a>
                 <a href="{% url 'marketing:marketing-list' %}" class="btn btn-secondary"><i class="bi bi-badge-ad-fill"></i></a>
                 <a href="{% url 'notifications:notifications' %}"  class="btn btn-secondary"><i class="bi bi-bell"></i></a>
+                {% if user.is_authenticated and user.is_superuser %}
+                <a href="{% url 'adminpage' %}" class="btn btn-secondary"><i class="bi bi-person-square"></i></a>
+                {% endif %}
             </div>
     </div>
   </nav>
