@@ -379,3 +379,7 @@
 #19/02/2023 delete user with HTXM and hyperscript
 ------------------------------------------------------
 - delete user functionality with no rerender
+
+#20/02/2023 fixed url display when cancel search button
+------------------------------------------------------
+- home.html search input - fixed url when cancel search button.
