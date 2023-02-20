@@ -35,56 +35,74 @@
           <div class="col">
             <h6><small>ASSEMBLY INSTRUCTION</small></h6>
             <h3 class="pb-3"><b>{{ order.orderName }}</b></h3>
-            {% if order.file %}
-              <div class="p-1">
-                  <a href="{{ order.file.url }}" download="{{ order.file.name }}" class="no-style text-center">
+            
+            {% comment %} If there is only one file and no movie {% endcomment %}
+            {% if order.file and not order.file2 and not order.file3 and not order.file4 and not order.video %}
+                <div style="padding-top:10%;">
+                    <a href="{{ order.file.url }}" download="{{ order.file.name }}" class="no-style text-center">
+                      <button class="logoButton">
+                        <img src="{% static 'Manual_logo_2.png' %}" class="manualLogoClient2 align-text-center px-1">
+                      </button>
+                    </a>
+                    
+                  {% if order.fileLanguage %}
+                    <p class=""><button type="button" class="btn btn-sm btn-dark rounded-pill m-1 border border-dark" disabled>{{order.fileLanguage}}</button></p>
+                  {% endif %}
+                </div>
+            {% comment %} If there is more then 1 file or if video=true {% endcomment %}
+            {% else %}
+              
+              {% if order.file %}
+                <div class="p-1">
+                    <a href="{{ order.file.url }}" download="{{ order.file.name }}" class="no-style text-center">
+                      <button class="logoButton">
+                        <img src="{% static 'Manual_logo_2.png' %}" class="manualLogoClient align-text-center px-1">
+                      </button>
+                    </a>
+                  {% if order.fileLanguage %}
+                    <p class="p-1"><button type="button" class="btn btn-sm btn-dark rounded-pill m-1 border border-dark" disabled>{{order.fileLanguage}}</button></p>
+                  {% endif %}
+                </div>
+              {% endif %}
+              
+              {% if order.file2 %}
+                <div class="p-2">
+                  <a href="{{ order.file2.url }}" download="{{ order.file2.name }}" class="no-style">
                     <button class="logoButton">
                       <img src="{% static 'Manual_logo_2.png' %}" class="manualLogoClient align-text-center px-1">
-                    </button>
+                  </button>
                   </a>
-                {% if order.fileLanguage %}
-                  <p class="p-1"><button type="button" class="btn btn-sm btn-dark rounded-pill m-1 border border-dark" disabled>{{order.fileLanguage}}</button></p>
-                {% endif %}
-              </div>
-            {% endif %}
-            
-            {% if order.file2 %}
+                  {% if order.file2Language %}
+                    <p class="p-1"><button type="button" class="btn btn-sm  btn-dark rounded-pill m-1 border border-dark" disabled>{{order.file2Language}}</button></p>
+                  {% endif %}
+                </div>
+              {% endif %}
+
+              {% if order.file3 %}
               <div class="p-2">
-                <a href="{{ order.file2.url }}" download="{{ order.file2.name }}" class="no-style">
+                <a href="{{ order.file3.url }}" download="{{ order.file3.name }}" class="no-style">
                   <button class="logoButton">
                     <img src="{% static 'Manual_logo_2.png' %}" class="manualLogoClient align-text-center px-1">
                 </button>
                 </a>
-                {% if order.file2Language %}
-                  <p class="p-1"><button type="button" class="btn btn-sm  btn-dark rounded-pill m-1 border border-dark" disabled>{{order.file2Language}}</button></p>
+                {% if order.file3Language %}
+                  <p class="p-1"><button type="button" class="btn btn-sm  btn-dark rounded-pill m-1 border border-dark" disabled>{{order.file3Language}}</button></p>
                 {% endif %}
               </div>
             {% endif %}
 
-            {% if order.file3 %}
+            {% if order.file4 %}
             <div class="p-2">
-              <a href="{{ order.file3.url }}" download="{{ order.file3.name }}" class="no-style">
+              <a href="{{ order.file4.url }}" download="{{ order.file4.name }}" class="no-style">
                 <button class="logoButton">
                   <img src="{% static 'Manual_logo_2.png' %}" class="manualLogoClient align-text-center px-1">
               </button>
               </a>
-              {% if order.file3Language %}
-                <p class="p-1"><button type="button" class="btn btn-sm  btn-dark rounded-pill m-1 border border-dark" disabled>{{order.file3Language}}</button></p>
+              {% if order.file4Language %}
+                <p class="p-1"><button type="button" class="btn btn-sm  btn-dark rounded-pill m-1 border border-dark" disabled>{{order.file4Language}}</button></p>
               {% endif %}
             </div>
           {% endif %}
-
-          {% if order.file4 %}
-          <div class="p-2">
-            <a href="{{ order.file4.url }}" download="{{ order.file4.name }}" class="no-style">
-              <button class="logoButton">
-                <img src="{% static 'Manual_logo_2.png' %}" class="manualLogoClient align-text-center px-1">
-            </button>
-            </a>
-            {% if order.file4Language %}
-              <p class="p-1"><button type="button" class="btn btn-sm  btn-dark rounded-pill m-1 border border-dark" disabled>{{order.file4Language}}</button></p>
-            {% endif %}
-          </div>
         {% endif %}
             
             {% if not order.file and not order.file2 and not order.file3 and not order.file4 and not order.video %}
@@ -162,6 +180,14 @@
 {% comment %} jquery and ajax {% endcomment %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+{% comment %} Set the carousel speed {% endcomment %}
+<script>
+    var myCarousel = document.querySelector('#carouselExampleCaptions')
+    var carousel = new bootstrap.Carousel(myCarousel, {
+      interval: 6000,
+    })
+</script>
 
 </body>
 

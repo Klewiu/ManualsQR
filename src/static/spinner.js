@@ -1,8 +1,6 @@
-console.log('hello from spinner')
+const spinnerBox = document.getElementById('spinner-box'); 
 
-const spinnerBox = document.getElementById('spinner-box') 
-
-
+if (spinnerBox) {
 $.ajax({
     type: 'GET',
     url: '/',
@@ -10,3 +8,4 @@ $.ajax({
         spinnerBox.classList.add('spinner')
     }
 })
+} 

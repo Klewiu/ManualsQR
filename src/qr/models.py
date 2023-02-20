@@ -12,8 +12,8 @@ class Order (models.Model):
 
     
     orderTag= models.CharField(max_length=15, verbose_name='WZP')
-    orderCompany = models.CharField(max_length=25, verbose_name='Firma')
-    orderName = models.CharField(max_length=25, verbose_name='Produkt')
+    orderCompany = models.CharField(max_length=30, verbose_name='Firma')
+    orderName = models.CharField(max_length=30, verbose_name='Produkt')
     orderQuantity = models.IntegerField(verbose_name='Ilość')
     orderDate = models.DateTimeField(auto_now=True, verbose_name='Data Utworzenia')
     orderManager = models.ForeignKey(User, on_delete= models.SET_DEFAULT, verbose_name='Autor Zlecenia', default=1)

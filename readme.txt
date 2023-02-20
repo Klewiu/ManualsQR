@@ -383,3 +383,15 @@
 #20/02/2023 fixed url display when cancel search button
 ------------------------------------------------------
 - home.html search input - fixed url when cancel search button.
+
+#20/02/2023 fixed styling and some errors
+------------------------------------------------------
+- marketing.html - hide table when no content was added
+- qr models.py - higher max_length in order.company & order.name
+- order_detail - styling buttons - same color as in home in order table
+- qr_code - different styling for only one manual
+- qr_code - set carousel speed
+- spinner.js - add if to prevent script err when no movie
+- style.css - new class for qr_code with one manual
+- update.html - add back button
+- user-list.html - hide in mobile, make responsive.

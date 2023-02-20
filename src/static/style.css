@@ -54,6 +54,11 @@ html *
     filter: invert(1);
 }
 
+.manualLogoClient2 {
+    width:150px; 
+    filter: invert(1);
+}
+
 .manualLogo {
     width:120px; 
 }
