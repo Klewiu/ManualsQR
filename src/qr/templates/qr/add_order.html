@@ -5,6 +5,11 @@
 {% block content %}
   <div class="container py-4">
     <h4 class="py-3">Dodaj Nowe Zlecenie:</h4>
+    <ul>
+      <li class="text-sm">Instrukcja musi mieć format PDF</li>
+      <li class="text-sm">Instrukcja nie może być większa niż 2 MB</li>
+      <li class="text-sm">Nie możesz dodać języka, jeśli nie dodajesz instrukcji</li>
+    </ul>
     <form method="post" enctype="multipart/form-data">
       {% csrf_token %}
       <div class="form-group-1">

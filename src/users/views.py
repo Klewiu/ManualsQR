@@ -5,12 +5,11 @@ from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-
+from django.contrib.auth.decorators import user_passes_test
 
 # Create your views here.
 
-
-
+@user_passes_test(lambda u: u.is_authenticated and u.is_superuser)
 def adminpage(request):
     users = User.objects.all()
     context = {
@@ -21,7 +20,7 @@ def adminpage(request):
     }
     return render(request, "users/adminpage.html", context)
 
-
+@user_passes_test(lambda u: u.is_authenticated and u.is_superuser)
 def register (request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
@@ -34,12 +33,14 @@ def register (request):
         form = UserRegisterForm()
     return render (request, "users/register.html", {'form': form})
 
-
+@user_passes_test(lambda u: u.is_authenticated and u.is_superuser)
 def delete (request, pk):
     User.objects.filter(id=pk).delete()
     users = User.objects.all()
     return render (request, 'users/partials/user-list.html', {'users':users})
 
+    
+@user_passes_test(lambda u: u.is_authenticated and u.is_superuser)
 def update(request, user_id):
     user = get_object_or_404(User, id=user_id)
     if request.method == 'POST':

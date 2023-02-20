@@ -6,8 +6,8 @@ from django.core.exceptions import ValidationError
 
 def validate_file_size(value):
     filesize= value.size
-    if filesize > 1 * 1024 * 1024:
-        raise ValidationError("Plik nie może być większy niż 1 MB")
+    if filesize > 2 * 1024 * 1024:
+        raise ValidationError("Plik nie może być większy niż 2 MB")
     else:
         return value
 

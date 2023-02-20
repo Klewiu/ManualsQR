@@ -17,9 +17,17 @@ from django.contrib import messages
 from django.core.mail import send_mail
 from PIL import Image
 from io import BytesIO
+from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import UserPassesTestMixin
+
+# helper class for superuser check
+class SuperuserRequiredMixin(UserPassesTestMixin):
+    def test_func(self):
+        return self.request.user.is_superuser
 
 
-class Home(ListView):
+class Home(LoginRequiredMixin, ListView):
     model=Order
     template_name = "qr/home.html"
     ordering = ["-orderDate"]
@@ -49,7 +57,7 @@ class Home(ListView):
         
         return context
     
-
+@user_passes_test(lambda u: u.is_authenticated)
 def generate_qr(request, order_id):
     order = Order.objects.get(id=order_id)
     url = request.build_absolute_uri(reverse('qr_code_view', args=[order.url]))
@@ -79,6 +87,7 @@ def generate_qr(request, order_id):
     img.save(response, "PNG")
     return response
 
+@user_passes_test(lambda u: u.is_authenticated)
 def add_order(request):
     notifications= Notifications.objects.all()
     email_list = [notification.email for notification in notifications]
@@ -104,11 +113,12 @@ def add_order(request):
             # clears fileLanguage fields on error
             form = OrderForm(request.POST.copy())
             for key in ['fileLanguage', 'file2Language', 'file3Language', 'file4Language']:form.data[key] = ''
-            messages.error(request, "Coś poszło nie tak! Pole języka musi być puste, jeśli nie wgrywasz pliku. Właściwy format to PDF do 1 MB. ")
+            messages.error(request, "Coś poszło nie tak! Pole języka musi być puste, jeśli nie wgrywasz pliku. Właściwy format to PDF do 2 MB. ")
     else:
         form = OrderForm()
     return render(request, 'qr/add_order.html', {'form': form})
 
+@user_passes_test(lambda u: u.is_authenticated)
 def update_order(request, order_uuid):
     order = Order.objects.get(url=order_uuid)
     if request.method == 'POST':
@@ -118,14 +128,14 @@ def update_order(request, order_uuid):
             messages.success(request, "Zaktualizowano Zlecenie!")
             return redirect('order_detail', order_uuid=order.url)
         else:
-            messages.error(request, "Coś poszło nie tak! Pole języka musi być puste, jeśli nie wgrywasz pliku. Właściwy format to PDF do 1 MB. ")
+            messages.error(request, "Coś poszło nie tak! Pole języka musi być puste, jeśli nie wgrywasz pliku. Właściwy format to PDF do 2 MB. ")
     else:
         form = OrderForm(instance=order)
     return render(request, 'qr/update_order.html', {'form': form})
 
 
 
-
+@user_passes_test(lambda u: u.is_authenticated)
 def order_detail(request, order_uuid):
     order = Order.objects.get(url=order_uuid)
     if order.file:
@@ -174,6 +184,7 @@ def order_detail(request, order_uuid):
 
     return render(request, 'qr/order_detail.html',  context)
 
+@user_passes_test(lambda u: u.is_authenticated)
 def qr_print(request, order_uuid):
     order = Order.objects.get(url=order_uuid)
 
@@ -210,11 +221,12 @@ def my_callback(sender, instance, **kwargs):
     instance.file3.delete()
     instance.file4.delete()
 
-class OrderDeleteView(DeleteView):
+class OrderDeleteView(SuperuserRequiredMixin, DeleteView):
     model = Order
     template_name = 'qr/order_confirm_delete.html'
     success_url = reverse_lazy('home')
 
+@user_passes_test(lambda u: u.is_authenticated)
 def search(request):
     search_query = request.POST.get("search_query")
     if search_query:

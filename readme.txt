@@ -395,3 +395,9 @@
 - style.css - new class for qr_code with one manual
 - update.html - add back button
 - user-list.html - hide in mobile, make responsive.
+
+#20/02/2023 add user permissions and couple enhancements
+------------------------------------------------------
+- add user permissions
+- add superuser(admin) field for creating and updating user
+- add helper text for new & update order
