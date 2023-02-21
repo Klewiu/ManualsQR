@@ -6,6 +6,7 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.views import PasswordResetView
 
 # Create your views here.
 
@@ -58,3 +59,14 @@ def update(request, user_id):
     }
 
     return render(request, 'users/update.html', context)
+
+class CustomPasswordResetView(PasswordResetView):
+    def form_valid(self, form):
+        # Check if the email entered by the user exists in the database
+        email = form.cleaned_data['email']
+        if not User.objects.filter(email=email).exists():
+            messages.error(self.request, 'Użytkownik o tym adresie email nie istnieje.')
+            return self.form_invalid(form)
+
+        # Call the parent class's form_valid() method to send the password reset email
+        return super().form_valid(form)

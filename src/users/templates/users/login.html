@@ -17,6 +17,7 @@
     
     <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
+
 {% block content %}
 <div class="jumbotron jumbotron-fluid" style="background-image: url({% static 'qr-code.jpg' %}); background-size: cover; background-position: center center; background-repeat: no-repeat; height: 100vh;">
 <div class="container mt-5">
@@ -33,9 +34,11 @@
                 {% csrf_token %}
                 {{ form|crispy }}
                 <button type="submit" class="btn btn-outline-info">Zaloguj</button>
+               
               </form>
+              <a class="btn btn-secondary btn-sm text-white" href="{% url 'password_reset' %}">Nie pamiętasz hasła?</a>
             </div>
-            {% comment %} <a href="{% url 'password_reset' %}">Forgot password?</a> {% endcomment %}
+            
           </div>
         </div>
       </div>
