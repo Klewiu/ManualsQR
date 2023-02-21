@@ -7,14 +7,16 @@ from django.views.generic import CreateView, DeleteView
 from django.db.models.signals import pre_delete
 from django.dispatch import receiver
 from django.urls import reverse_lazy
+from qr.views import SuperuserRequiredMixin
+
 
 # Create your views here.
 
-class MarketingList(ListView):
+class MarketingList(SuperuserRequiredMixin, ListView):
     model = Marketing
     template_name = "marketing/marketing.html"
 
-class MarketingCreate(CreateView):
+class MarketingCreate(SuperuserRequiredMixin, CreateView):
     model = Marketing
     fields = '__all__'
     template_name='marketing/create_Ad.html'
@@ -25,7 +27,7 @@ def my_callback(sender, instance, **kwargs):
     instance.slide.delete()
 
 
-class MarketingDelete(DeleteView):
+class MarketingDelete(SuperuserRequiredMixin, DeleteView):
     model = Marketing
     template_name = 'marketing/marketing_confirm_delete.html'
     success_url = reverse_lazy('marketing:marketing-list')

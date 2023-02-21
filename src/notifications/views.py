@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from notifications.models import Notifications
 from django.views.generic import ListView
-
+from django.contrib.auth.decorators import user_passes_test
+from qr.views import SuperuserRequiredMixin
 
 
 # Create your views here.
 
-class NotificationsList(ListView):
+class NotificationsList(SuperuserRequiredMixin, ListView):
     model = Notifications
     template_name = 'notifications/notifications.html'
     # to chagne in template objects_list to notifications
@@ -32,6 +33,7 @@ def add_notification(request):
 
     return render (request, 'notifications/partials/notifications-list.html', context)
 
+@user_passes_test(lambda u: u.is_authenticated and u.is_superuser)
 def delete_notification(request, pk):
     Notifications.objects.filter(id=pk).delete()
     notifications = Notifications.objects.all()

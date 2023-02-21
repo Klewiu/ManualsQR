@@ -90,7 +90,7 @@ WSGI_APPLICATION = 'manualsqr.wsgi.application'
 
 
 LOGIN_REDIRECT_URL = 'home'
-LOGIN_URL = 'home'
+LOGIN_URL = 'login'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases

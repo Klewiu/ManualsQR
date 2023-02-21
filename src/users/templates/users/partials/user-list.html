@@ -5,6 +5,7 @@
           <tr>
             <th scope="col" class="text-center">Użytkownik</th>
             <th scope="col" class="text-center hide_in_mobile">Email</th>
+            <th scope="col" class="text-center hide_in_mobile">Admin</th>
             <th scope="col" class="text-center">Usuń</th>
           </tr>
         </thead>
@@ -13,6 +14,14 @@
             <tr>
               <td class="text-center">{{ user.username }}</td>
               <td class="text-center hide_in_mobile">{{ user.email }}</td>
+              <td class="text-center hide_in_mobile">
+                {% if user.is_superuser %}
+                  <i class="bi bi-check-lg text-success"></i>
+                {% else %}
+                  <i class="bi bi-x-circle text-danger"></i>
+                {% endif %}
+              </td>
+              
               <td class="text-center">
                   {% comment %} delete {% endcomment %}
                 <form method="POST" action="{% url 'adminpage' %}">
