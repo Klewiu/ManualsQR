@@ -407,3 +407,8 @@
 - add user permissions
 - add superuser(admin) field for creating and updating user
 - add helper text for new & update order
+
+#21/02/2023 qr_print changes - use OpenAi
+------------------------------------------------------
+- make only one GET image, use arrayBuffertoBase64
+- faster PDF creation

@@ -15,35 +15,56 @@
     function htmlDecode(input) {
         var doc = new DOMParser().parseFromString(input, "text/html");
         return doc.documentElement.textContent;
-      }
+    }
 
-     const downloadPDF =  document.getElementById("download_pdf")
-     downloadPDF.addEventListener("click", function () {
+    function arrayBufferToBase64(buffer) {
+        var binary = '';
+        var bytes = new Uint8Array(buffer);
+        var len = bytes.byteLength;
+        for (var i = 0; i < len; i++) {
+            binary += String.fromCharCode(bytes[i]);
+        }
+        return btoa(binary);
+    }
+
+    const downloadPDF =  document.getElementById("download_pdf")
+    downloadPDF.addEventListener("click", function () {
         
         var orderName = "{{ orderName }}";
         var orderTag = "{{ orderTag }}";
         var orderCompany = "{{ orderCompany }}";
         var doc = new jsPDF('p', 'pt', 'letter');
         doc.setFontSize(6);
-        var qrImages = document.querySelectorAll(".qr");
-        var qrImageCount = qrImages.length;
-        var x = 15, y = 15;
-        for (var i = 0; i < qrImageCount * 24; i++) {
-            if (i % 3 == 0 && i != 0) {
-                y += 95;
-                x = 10;
+
+        // Retrieve the image data using fetch
+        const url = "{% url 'generate_qr' order.id %}"; // Replace with the actual image URL
+        let imgData;
+
+        fetch(url)
+          .then(response => response.arrayBuffer())
+          .then(buffer => {
+            imgData = 'data:image/png;base64,' + arrayBufferToBase64(buffer);
+            console.log('Image loaded');
+
+            var qrImages = document.querySelectorAll(".qr");
+            var qrImageCount = qrImages.length;
+            var x = 15, y = 15;
+            for (var i = 0; i < qrImageCount * 24; i++) {
+                if (i % 3 == 0 && i != 0) {
+                    y += 95;
+                    x = 10;
+                }
+                doc.addImage(imgData, 'PNG', x, y, 170, 70);
+                x += 200;
+                
+                doc.text(x - 170, y + 80, htmlDecode(orderCompany) + " | " + htmlDecode(orderName));
             }
-            var imgData = qrImages[i % qrImageCount];
-            doc.addImage(imgData, 'PNG', x, y, 170, 70);
-            x += 200;
-            
-            doc.text(x - 170, y + 80,  htmlDecode(orderCompany) + " | " +  htmlDecode(orderName));
-        }
-        doc.save("QR CODE (3x8)-"+orderCompany+"|"+orderName+".pdf")
-        
+            console.log('PDF created');
+            doc.save("QR CODE (3x8)-"+orderCompany+"|"+orderName+".pdf");
+            console.log('PDF saved');
+          });
     });
 </script>
-
 <script>
 
     function downloadImage() {
