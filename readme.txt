@@ -401,3 +401,9 @@
 - add user permissions
 - add superuser(admin) field for creating and updating user
 - add helper text for new & update order
+
+#21/02/2023 qr_print changes
+------------------------------------------------------
+- add user permissions
+- add superuser(admin) field for creating and updating user
+- add helper text for new & update order

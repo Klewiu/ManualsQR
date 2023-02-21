@@ -11,9 +11,9 @@ class Order (models.Model):
     STATUS_CHOICES = (('Zlecone', 'Zlecone'),('Podjęte', 'Podjęte'),('Zakończone', 'Zakończone'),)
 
     
-    orderTag= models.CharField(max_length=15, verbose_name='WZP')
-    orderCompany = models.CharField(max_length=30, verbose_name='Firma')
-    orderName = models.CharField(max_length=30, verbose_name='Produkt')
+    orderTag= models.CharField(max_length=18, verbose_name='WZP')
+    orderCompany = models.CharField(max_length=40, verbose_name='Firma')
+    orderName = models.CharField(max_length=40, verbose_name='Produkt')
     orderQuantity = models.IntegerField(verbose_name='Ilość')
     orderDate = models.DateTimeField(auto_now=True, verbose_name='Data Utworzenia')
     orderManager = models.ForeignKey(User, on_delete= models.SET_DEFAULT, verbose_name='Autor Zlecenia', default=1)

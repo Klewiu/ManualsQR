@@ -4,10 +4,9 @@
 
 <img src="{% url 'generate_qr' order.id %}" class="qr img-fluid" id="qr_code" alt="QR code">
 <div class="mt-2">{{ orderCompany }} : {{ orderName }}</div>
-
-<button class= "btn btn-success mt-3" id="download_pdf">Zapisz PDF (3x8)</button>
-<button class= "btn btn-success mt-3" id="download_qr" onclick="downloadImage()">Zapisz PNG (1)</button>
-<button class= "btn btn-secondary mt-3" onclick="location.href='{% url 'order_detail' order.url %}'">Wróć</button>
+    <button class= "btn btn-success mt-3" id="download_pdf">Zapisz PDF (3x8)</button>
+    <button class= "btn btn-success mt-3" id="download_qr" onclick="downloadImage()">Zapisz PNG (1)</button>
+    <button class= "btn btn-secondary mt-3" onclick="location.href='{% url 'order_detail' order.url %}'">Wróć</button>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
 
@@ -18,7 +17,9 @@
         return doc.documentElement.textContent;
       }
 
-    document.getElementById("download_pdf").addEventListener("click", function () {
+     const downloadPDF =  document.getElementById("download_pdf")
+     downloadPDF.addEventListener("click", function () {
+        
         var orderName = "{{ orderName }}";
         var orderTag = "{{ orderTag }}";
         var orderCompany = "{{ orderCompany }}";
@@ -36,9 +37,10 @@
             doc.addImage(imgData, 'PNG', x, y, 170, 70);
             x += 200;
             
-            doc.text(x - 150, y + 80,  htmlDecode(orderCompany) + " : " +  htmlDecode(orderName));
+            doc.text(x - 170, y + 80,  htmlDecode(orderCompany) + " | " +  htmlDecode(orderName));
         }
-        doc.save("QR CODE (3x8)-"+orderCompany+"-"+orderName+".pdf");
+        doc.save("QR CODE (3x8)-"+orderCompany+"|"+orderName+".pdf")
+        
     });
 </script>
 
