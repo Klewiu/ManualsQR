@@ -11,7 +11,7 @@ class Order (models.Model):
     STATUS_CHOICES = (('Zlecone', 'Zlecone'),('Podjęte', 'Podjęte'),('Zakończone', 'Zakończone'),)
 
     
-    orderTag= models.CharField(max_length=18, verbose_name='WZP')
+    orderTag= models.CharField(max_length=18, verbose_name='WZP', unique=True)
     orderCompany = models.CharField(max_length=40, verbose_name='Firma')
     orderName = models.CharField(max_length=40, verbose_name='Produkt')
     orderQuantity = models.IntegerField(verbose_name='Ilość')

@@ -113,7 +113,7 @@ def add_order(request):
             # clears fileLanguage fields on error
             form = OrderForm(request.POST.copy())
             for key in ['fileLanguage', 'file2Language', 'file3Language', 'file4Language']:form.data[key] = ''
-            messages.error(request, "Coś poszło nie tak! Pole języka musi być puste, jeśli nie wgrywasz pliku. Właściwy format to PDF do 2 MB. ")
+            messages.error(request, "Coś poszło nie tak! Pole języka musi być puste, jeśli nie wgrywasz pliku. Właściwy format to PDF do 2 MB. Nie może być 2 takich samych zleceń WZP.")
     else:
         form = OrderForm()
     return render(request, 'qr/add_order.html', {'form': form})
