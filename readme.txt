@@ -402,6 +402,12 @@
 - add superuser(admin) field for creating and updating user
 - add helper text for new & update order
 
+#20/02/2023 correct reading env and complete password reset
+------------------------------------------------------
+-> pip install django-environ
+- django environ for reading env variables
+- complete password reset
+
 #21/02/2023 qr_print changes
 ------------------------------------------------------
 - add user permissions
