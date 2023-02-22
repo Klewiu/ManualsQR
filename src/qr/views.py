@@ -78,7 +78,7 @@ def generate_qr(request, order_id):
     img1 = Image.open(img_buffer)
     img2 = Image.open('static/qr_over_1.png')
     width, height = img1.size
-    combined_img = Image.new('RGBA', (int(2.4*width), height), (255, 255, 255, 0))
+    combined_img = Image.new('RGBA', (int(2.4*width), height), (255, 255, 255, 255))
     combined_img.paste(img1, (0, 0))
     combined_img.paste(img2, (width, 0))
     img = combined_img
@@ -113,7 +113,7 @@ def add_order(request):
             # clears fileLanguage fields on error
             form = OrderForm(request.POST.copy())
             for key in ['fileLanguage', 'file2Language', 'file3Language', 'file4Language']:form.data[key] = ''
-            messages.error(request, "Coś poszło nie tak! Pole języka musi być puste, jeśli nie wgrywasz pliku. Właściwy format to PDF do 2 MB. ")
+            messages.error(request, "Coś poszło nie tak! Pole języka musi być puste, jeśli nie wgrywasz pliku. Właściwy format to PDF do 2 MB. Nie może być 2 takich samych zleceń WZP.")
     else:
         form = OrderForm()
     return render(request, 'qr/add_order.html', {'form': form})
