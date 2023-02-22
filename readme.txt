@@ -412,3 +412,8 @@
 ------------------------------------------------------
 - make only one GET image, use arrayBuffertoBase64
 - faster PDF creation
+
+#22/02/2023 qr_print update printing style + add 2x4 print
+------------------------------------------------------
+- update printing style
+- add 2x4 sticker pdf

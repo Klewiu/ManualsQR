@@ -4,7 +4,8 @@
 
 <img src="{% url 'generate_qr' order.id %}" class="qr img-fluid" id="qr_code" alt="QR code">
 <div class="mt-2">{{ orderCompany }} : {{ orderName }}</div>
-    <button class= "btn btn-success mt-3" id="download_pdf">Zapisz PDF (3x8)</button>
+    <button class= "btn btn-success mt-3" id="download_pdf_3_8">Zapisz PDF (3x8)</button>
+    <button class= "btn btn-success mt-3" id="download_pdf_2_4">Zapisz PDF (2x4)</button>
     <button class= "btn btn-success mt-3" id="download_qr" onclick="downloadImage()">Zapisz PNG (1)</button>
     <button class= "btn btn-secondary mt-3" onclick="location.href='{% url 'order_detail' order.url %}'">Wróć</button>
 </div>
@@ -16,7 +17,7 @@
         var doc = new DOMParser().parseFromString(input, "text/html");
         return doc.documentElement.textContent;
     }
-
+    {% comment %} The arrayBufferToBase64 function takes a buffer of binary data and returns a Base64-encoded string. {% endcomment %}
     function arrayBufferToBase64(buffer) {
         var binary = '';
         var bytes = new Uint8Array(buffer);
@@ -27,13 +28,13 @@
         return btoa(binary);
     }
 
-    const downloadPDF =  document.getElementById("download_pdf")
-    downloadPDF.addEventListener("click", function () {
+    const downloadPDF_3_8 =  document.getElementById("download_pdf_3_8")
+    downloadPDF_3_8.addEventListener("click", function () {
         
         var orderName = "{{ orderName }}";
         var orderTag = "{{ orderTag }}";
         var orderCompany = "{{ orderCompany }}";
-        var doc = new jsPDF('p', 'pt', 'letter');
+        var doc = new jsPDF('p', 'pt', 'a4');
         doc.setFontSize(6);
 
         // Retrieve the image data using fetch
@@ -51,19 +52,60 @@
             var x = 15, y = 15;
             for (var i = 0; i < qrImageCount * 24; i++) {
                 if (i % 3 == 0 && i != 0) {
-                    y += 95;
-                    x = 10;
+                    y += 103;
+                    x = 15;
                 }
                 doc.addImage(imgData, 'PNG', x, y, 170, 70);
-                x += 200;
+                x += 194;
                 
-                doc.text(x - 170, y + 80, htmlDecode(orderCompany) + " | " + htmlDecode(orderName));
+                doc.text(x - 185, y + 80, htmlDecode(orderCompany) + " | " + htmlDecode(orderName));
             }
             console.log('PDF created');
             doc.save("QR CODE (3x8)-"+orderCompany+"|"+orderName+".pdf");
             console.log('PDF saved');
           });
     });
+
+    const downloadPDF_2_4 =  document.getElementById("download_pdf_2_4")
+    downloadPDF_2_4.addEventListener("click", function () {
+        
+        var orderName = "{{ orderName }}";
+        var orderTag = "{{ orderTag }}";
+        var orderCompany = "{{ orderCompany }}";
+        var doc = new jsPDF('p', 'pt', 'a4');
+        doc.setFontSize(8);
+
+        // Retrieve the image data using fetch
+        const url = "{% url 'generate_qr' order.id %}"; // Replace with the actual image URL
+        let imgData;
+
+        fetch(url)
+          .then(response => response.arrayBuffer())
+          .then(buffer => {
+            imgData = 'data:image/png;base64,' + arrayBufferToBase64(buffer);
+            console.log('Image loaded');
+
+            var qrImages = document.querySelectorAll(".qr");
+            var qrImageCount = qrImages.length;
+            var x = 30, y = 60;
+            for (var i = 0; i < qrImageCount * 8; i++) {
+                if (i % 2 == 0 && i != 0) {
+                    y += 190;
+                    x = 30;
+                }
+                doc.addImage(imgData, 'PNG', x, y, 250, 103);
+                x += 276;
+                
+                doc.text(x - 265, y + 120, htmlDecode(orderCompany) + " | " + htmlDecode(orderName));
+            }
+            console.log('PDF created');
+            doc.save("QR CODE (2x4)-"+orderCompany+"|"+orderName+".pdf");
+            console.log('PDF saved');
+          });
+    });
+
+
+
 </script>
 <script>
 
