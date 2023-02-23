@@ -423,3 +423,7 @@
 ------------------------------------------------------
 - update printing style
 - add 2x4 sticker pdf
+
+#23/02/2023 add 404.html
+------------------------------------------------------
+- add custom 404.html (works only when debug is false!)
