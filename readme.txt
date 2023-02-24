@@ -427,3 +427,8 @@
 #23/02/2023 add 404.html
 ------------------------------------------------------
 - add custom 404.html (works only when debug is false!)
+
+#24/02/2023 update styling in order_detail.html
+------------------------------------------------------
+- update order_detail.html styling 
+
