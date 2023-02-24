@@ -73,9 +73,11 @@
             {% if order.file %}
             <p style="margin:0;" class="card-text"><b>Instrukcja 
               {% if order.fileLanguage %} - {{order.fileLanguage }} {% endif %}</b></p>
-            <p style="margin:0;"><i><small>{{order.file.name|cut:'media/' |slice:25 }}</small></i></p>
-            <p style="margin:0;">{{ pages1|default:0 }} str =
-                <i class="bi bi-droplet-half" style="color:blue;"></i> {{water1|default:0}} L wody</p>
+            <p style="margin:0;"><i><small>{{order.file.name|cut:'manual/' |slice:25 }}</small></i></p>
+            {% comment %} <p style="margin:0;">{{ pages1|default:0 }} str =
+              <i class="bi bi-droplet-half" style="color:blue;"></i> {{water1|default:0}} L wody</p> {% endcomment %}
+            <p style="margin:0;">
+                <i class="bi bi-droplet-half" style="color:blue;"></i> {{water1|default:0}} L </p>
             {% endif %}
           </div>
         </div>
@@ -91,9 +93,9 @@
             {% if order.file2 %}
               <p style="margin:0;" class="card-text"><b>Instrukcja
                 {% if order.file2Language %} - {{order.file2Language }} {% endif %} </b></p>
-              <p style="margin:0;"><i><small>{{order.file2.name|cut:'media/' |slice:25 }}</small></i></p>
-              <p style="margin:0;">{{ pages2|default:0 }} str = 
-                  <i class="bi bi-droplet-half" style="color:blue;"></i> {{water2|default:0}} L wody</p>
+              <p style="margin:0;"><i><small>{{order.file2.name|cut:'manual/' |slice:25 }}</small></i></p>
+              <p style="margin:0;">
+                  <i class="bi bi-droplet-half" style="color:blue;"></i> {{water2|default:0}} L</p>
             {% endif %}
           </div>
         </div>
@@ -109,9 +111,9 @@
             {% if order.file3 %}
               <p style="margin:0;" class="card-text"><b>Instrukcja
                 {% if order.file3Language %} - {{order.file3Language }} {% endif %} </b></p>
-              <p style="margin:0;"><i><small>{{order.file3.name|cut:'media/' |slice:25 }}</small></i></p>
-              <p style="margin:0;">{{ pages3|default:0 }} str = 
-                  <i class="bi bi-droplet-half" style="color:blue;"></i> {{water3|default:0}} L wody</p>
+              <p style="margin:0;"><i><small>{{order.file3.name|cut:'manual/' |slice:25 }}</small></i></p>
+              <p style="margin:0;">
+                  <i class="bi bi-droplet-half" style="color:blue;"></i> {{water3|default:0}} L</p>
             {% endif %}
           </div>
         </div>
@@ -127,9 +129,9 @@
             {% if order.file4 %}
               <p style="margin:0;" class="card-text"><b>Instrukcja
                 {% if order.file4Language %} - {{order.file4Language }} {% endif %} </b></p>
-              <p style="margin:0;"><i><small>{{order.file4.name|cut:'media/' |slice:25 }}</small></i></p>
-              <p style="margin:0;">{{ pages4|default:0 }} str = 
-                  <i class="bi bi-droplet-half" style="color:blue;"></i> {{water4|default:0}} L wody</p>
+              <p style="margin:0;"><i><small>{{order.file4.name|cut:'manual/' |slice:25 }}</small></i></p>
+              <p style="margin:0;">
+                  <i class="bi bi-droplet-half" style="color:blue;"></i> {{water4|default:0}} L </p>
             {% endif %}
           </div>
         </div>

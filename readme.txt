@@ -423,3 +423,7 @@
 ------------------------------------------------------
 - update printing style
 - add 2x4 sticker pdf
+
+#24/02/2023 update styling in order_detail.html
+------------------------------------------------------
+- update order_detail.html styling 
