@@ -432,3 +432,8 @@
 ------------------------------------------------------
 - update order_detail.html styling 
 
+#08/03/2023 delete old file instance in update form
+------------------------------------------------------
+- setup Django pre_save to delete old file instance
+
+
