@@ -9,7 +9,7 @@ from .forms import OrderForm
 from django.views.generic import ListView, DeleteView
 from django.urls import reverse_lazy
 from django.db.models import Sum, F
-from django.db.models.signals import pre_delete
+from django.db.models.signals import pre_delete, pre_save
 from django.dispatch import receiver
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -20,6 +20,8 @@ from io import BytesIO
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import UserPassesTestMixin
+import os
+from django.conf import settings
 
 # helper class for superuser check
 class SuperuserRequiredMixin(UserPassesTestMixin):
@@ -117,6 +119,21 @@ def add_order(request):
     else:
         form = OrderForm()
     return render(request, 'qr/add_order.html', {'form': form})
+
+
+# deletes old file instance on update or delete
+@receiver(pre_save, sender=Order)
+def pre_save_order(sender, instance, **kwargs):
+    try:
+        order = sender.objects.get(id=instance.id)
+        for field_name in ['file', 'file2', 'file3', 'file4']:
+            old_file = getattr(order, field_name)
+            new_file = getattr(instance, field_name)
+            if new_file != old_file:
+                if old_file and os.path.isfile(old_file.path):
+                    os.remove(old_file.path)
+    except:
+        pass
 
 @user_passes_test(lambda u: u.is_authenticated)
 def update_order(request, order_uuid):
