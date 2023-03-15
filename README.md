@@ -1,7 +1,7 @@
 # <img src="https://github.com/TomPrint/ManualsQR/blob/main/Assemble%20QR.bmp" width="160" height="auto" align="center"/>
 
 
-is a DJANGO <img src="https://cdn.worldvectorlogo.com/logos/django.svg" alt="django" width="17" height="17" align="center"/>  fully responsive application that allows for an easy access to PDF manuals and embedded videos, as well as providing ability to send targeted marketing messages through QR codes. 
+Assemble QR is a DJANGO <img src="https://cdn.worldvectorlogo.com/logos/django.svg" alt="django" width="17" height="17" align="center"/>  fully responsive application that allows for an easy access to PDF manuals and embedded videos, as well as providing ability to send targeted marketing messages through QR codes. 
 
 Application uses css framework Bootstrap 5 <img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Bootstrap_logo.svg"   alt="bootsrap" width="25" height="auto" align="center"/><br />
 <a> It also uses some dynamic content created with HTMX  <img src="https://github.com/Klewiu/CutIt/blob/main/htmx_logo.webp"   alt="htmx" width="100" height="auto" align="center"/>
