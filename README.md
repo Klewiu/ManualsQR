@@ -8,7 +8,7 @@ Application uses css framework Bootstrap 5 <img src="https://upload.wikimedia.or
 and _hyperscript <img src="https://camo.githubusercontent.com/b952f7af5fec7f541c8d95291a6df1f55c04914b558f324101ad06d94c35cdc2/68747470733a2f2f68797065727363726970742e6f72672f696d672f6c696768745f6c6f676f2e706e67" alt="hyperscript" width="100" height="auto" align="center"/>  
 
 ## Main features:
-1. Two type of admin users with different permissions. 
+1. Two type of users with different permissions. 
 2. Order creation with up to 4x pdf files, 1x embeded video that can be retrieved through unique QR code.
 3. Marketing communication with sliding banners, displayed to customer on QR read.
 4. Email notification to designated email addresses on order creation.
