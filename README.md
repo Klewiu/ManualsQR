@@ -9,7 +9,7 @@ and _hyperscript <img src="https://camo.githubusercontent.com/b952f7af5fec7f541c
 
 ## Main features:
 1. Two type of users with different permissions. 
-2. Order creation with up to 4x pdf files, 1x embeded video that can be retrieved through unique QR code.
+2. Order creation allows for up to 4 PDF files and 1 embedded video, which can be retrieved using a unique QR code.
 3. Marketing communication with sliding banners, displayed to customer on QR read.
 4. Email notification to designated email addresses on order creation.
 5. Water usage calculation algorithm, displayed to customer.
