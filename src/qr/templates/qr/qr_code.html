@@ -125,7 +125,8 @@
         {% endif %}  
       </div>
     </div>
-  
+
+    {% comment %} FOOTER - CAROUSEL {% endcomment %}
 <footer>
   <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner d-lg-none"> 
@@ -134,8 +135,9 @@
         <img src="{{ ad.slide.url }}" class="d-block w-100" alt="...">
       </div>
       {% endfor %}
+      {% if total_water_waste %}
       <div class="carousel-item active">
-        <img src="{% static 'default_slide2.png' %}" class="d-block w-100" alt="...">
+        <img src="{% static 'default_bg_ad.png' %}" class="d-block w-100" alt="...">
         <div class="carousel-caption d-md-block text-black h-100">
           <p style="margin:0;"><small><i class="fa-fw bi bi-lightbulb" style="color:orange;"></i> 
             Production of 1xA4 consumes ~5L<i class="bi bi-droplet-half" style="color:blue;"></i></small>
@@ -150,6 +152,7 @@
             <i class="bi bi-droplet-half" style="color:blue;"></i></h4>
         </div>
       </div>
+      {% endif %}
      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
@@ -160,7 +163,7 @@
     </button> 
   </div>
   
-
+  {% comment %} FOOTER - LINKS + SOCIAL MEDIA {% endcomment %}
   <div class="container p-1">
     <div class="row justify-content-center">
       <div class="col align-self-center footerLeft p-1">

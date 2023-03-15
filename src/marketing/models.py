@@ -7,13 +7,15 @@ from PIL import Image
 # Validators for slide height
 def validate_image_height(slide):
     set_height = 300
+    set_width = 1000
     try:
         with Image.open(slide) as img:
             height = img.height
-            if height != set_height:
-                raise ValidationError(f"Zdjęcie musi być o wysokości {set_height} px")
+            width = img.width
+            if height != set_height or width != set_width:
+                raise ValidationError(f"Zdjęcie musi być o wysokości {set_height} px i szerokości {set_width} px")
     except Exception:
-        raise ValidationError(f"Zdjęcie musi być o wysokości {set_height} px")
+        raise ValidationError(f"Zdjęcie musi być o wysokości {set_height} px i szerokości {set_width} px")
 
 # Validators for slide extension. Use FileExtensionValidator as parrent to change text on PL.
 class CustomFileExtensionValidator(FileExtensionValidator):

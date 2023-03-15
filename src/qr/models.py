@@ -12,7 +12,7 @@ class Order (models.Model):
 
     
     orderTag= models.CharField(max_length=18, verbose_name='WZP', unique=True)
-    orderCompany = models.CharField(max_length=40, verbose_name='Firma')
+    orderCompany = models.CharField(max_length=40, verbose_name='Klient')
     orderName = models.CharField(max_length=40, verbose_name='Produkt')
     orderQuantity = models.IntegerField(verbose_name='Ilość')
     orderDate = models.DateTimeField(auto_now=True, verbose_name='Data Utworzenia')
