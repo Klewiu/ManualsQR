@@ -42,11 +42,15 @@
                 {% if user.is_authenticated and user.is_superuser %}
                 <a href="{% url 'adminpage' %}" class="btn btn-secondary"><i class="bi bi-person-square" title="Panel Admin"></i></a>
                 {% endif %}
+                
+                {% if user.is_authenticated %}
+                <a href="{% static 'ASSEMBLEQR - INSTRUKCJA OBSŁUGI APLIKACJI.pdf' %}" class="btn btn-secondary" target="_blank"><i class="bi bi-question-square-fill" title="Instukcja"></i></a>
+                {% endif %}
 
                 {% if user.is_authenticated %}
                 <!-- Button trigger LOGOUT modal -->
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                  Wyloguj
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" title="Wyloguj">
+                  <i class="bi bi-box-arrow-right"></i>
                 </button>
                 {% endif %}
             </div>

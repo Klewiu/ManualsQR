@@ -436,4 +436,7 @@
 ------------------------------------------------------
 - setup Django pre_save to delete old file instance
 
+#24/03/2023 Add manual + navbar change icon logout
+- change logout icon in navbar
+- add manual icon in navbar
 
