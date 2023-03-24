@@ -11,6 +11,7 @@
         </thead>
         <tbody>
           {% for user in users %}
+          {% if not user.is_staff %}
             <tr>
               <td class="text-center">{{ user.username }}</td>
               <td class="text-center hide_in_mobile">{{ user.email }}</td>
@@ -39,6 +40,7 @@
                 </form>
               </td>
             </tr>
+            {% endif %}
           {% endfor %}
         </tbody>
       </table>
