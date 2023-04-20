@@ -22,6 +22,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import UserPassesTestMixin
 import os
 from django.conf import settings
+import string
+import random
 
 # helper class for superuser check
 class SuperuserRequiredMixin(UserPassesTestMixin):
@@ -97,24 +99,35 @@ def add_order(request):
     if request.method == 'POST':
         form = OrderForm(request.POST, request.FILES)
         if form.is_valid():
+            random_chars = ''.join(random.choices(string.ascii_letters + string.digits, k=3))
+
             order = form.save(commit=False)
             order.orderManager = request.user
+            if order.file:
+                order.file.name = order.file.name.split('.')[0] + '-' + random_chars + '.' + order.file.name.split('.')[-1]
+            if order.file2:
+                order.file2.name = order.file2.name.split('.')[0] + '-' + random_chars + '.' + order.file2.name.split('.')[-1]
+            if order.file3:
+                order.file3.name = order.file3.name.split('.')[0] + '-' + random_chars + '.' + order.file3.name.split('.')[-1]
+            if order.file4:
+                order.file4.name = order.file4.name.split('.')[0] + '-' + random_chars + '.' + order.file4.name.split('.')[-1]
             order.save()
             messages.success(request, "Dodano Zlecenie!")
             
             # sendgin email to user add in notifications app
             send_mail(
-            f"W Assemble QR dodano nowe zlecenie - {order.orderTag} !",
-            f' Zlecenie o numerze "{order.orderTag}" i nazwie "{order.orderName}", oczekuje na przygotowanie i dodanie instrukcji.',
-            "assembleqr@gmail.com",
-            email_list , fail_silently=True,
+                f"W Assemble QR dodano nowe zlecenie - {order.orderTag} !",
+                f' Zlecenie o numerze "{order.orderTag}" i nazwie "{order.orderName}", oczekuje na przygotowanie i dodanie instrukcji.',
+                "assembleqr@gmail.com",
+                email_list , fail_silently=True,
             )
 
             return redirect('order_detail', order_uuid=order.url)
         else:
             # clears fileLanguage fields on error
             form = OrderForm(request.POST.copy())
-            for key in ['fileLanguage', 'file2Language', 'file3Language', 'file4Language']:form.data[key] = ''
+            for key in ['fileLanguage', 'file2Language', 'file3Language', 'file4Language']:
+                form.data[key] = ''
             messages.error(request, "Coś poszło nie tak! Pole języka musi być puste, jeśli nie wgrywasz pliku. Właściwy format to PDF do 2 MB. Nie może być 2 takich samych zleceń WZP.")
     else:
         form = OrderForm()
@@ -141,11 +154,22 @@ def update_order(request, order_uuid):
     if request.method == 'POST':
         form = OrderForm(request.POST, request.FILES, instance=order)
         if form.is_valid():
-            order = form.save()
+            random_chars = ''.join(random.choices(string.ascii_letters + string.digits, k=3))
+
+            order = form.save(commit=False)
+            if order.file:
+                order.file.name = order.file.name.split('.')[0] + '-' + random_chars + '.' + order.file.name.split('.')[-1]
+            if order.file2:
+                order.file2.name = order.file2.name.split('.')[0] + '-' + random_chars + '.' + order.file2.name.split('.')[-1]
+            if order.file3:
+                order.file3.name = order.file3.name.split('.')[0] + '-' + random_chars + '.' + order.file3.name.split('.')[-1]
+            if order.file4:
+                order.file4.name = order.file4.name.split('.')[0] + '-' + random_chars + '.' + order.file4.name.split('.')[-1]
+            order.save()
             messages.success(request, "Zaktualizowano Zlecenie!")
             return redirect('order_detail', order_uuid=order.url)
         else:
-            messages.error(request, "Coś poszło nie tak! Pole języka musi być puste, jeśli nie wgrywasz pliku. Właściwy format to PDF do 2 MB. ")
+            messages.error(request, "Coś poszło nie tak! Pole języka musi być puste, jeśli nie wgrywasz pliku. Właściwy format to PDF do 2 MB.")
     else:
         form = OrderForm(instance=order)
     return render(request, 'qr/update_order.html', {'form': form})
