@@ -1,4 +1,5 @@
 from django import forms
+import re
 from .models import Order
 from django.core.exceptions import ValidationError
 
@@ -18,9 +19,20 @@ class OrderForm(forms.ModelForm):
         model = Order
         fields = ['orderTag','orderCompany','orderName','orderQuantity','video', 'file','fileLanguage','file2','file2Language','file3','file3Language','file4','file4Language']
 
+    def has_polish_characters(self, text):
+        # Regular expression to match Polish special characters
+        pattern = r'[ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]'
+        return bool(re.search(pattern, text))    
          
     def clean(self):
         cleaned_data = super().clean()
+
+        for field_name in ['file', 'file2', 'file3', 'file4']:
+            file = cleaned_data.get(field_name)
+            if file and self.has_polish_characters(file.name):
+                raise forms.ValidationError(
+                    f'Nazwa pliku "{file.name}" nie może zawierać polskich znaków!'
+                )
     
         if cleaned_data.get('fileLanguage') and not cleaned_data.get('file'):
             raise ValidationError("Nie możesz dodać języka bez wgranego pliku")
