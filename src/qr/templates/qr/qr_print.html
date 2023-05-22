@@ -3,7 +3,7 @@
 <div class="container text-center py-4">
 
 <img src="{% url 'generate_qr' order.id %}" class="qr img-fluid" id="qr_code" alt="QR code">
-<div class="mt-2">{{ orderCompany }} : {{ orderName }}</div>
+<div class="mt-2">{{ orderTag }} : {{ orderName }}</div>
     <button class= "btn btn-success mt-3" id="download_pdf_3_8">Zapisz PDF (3x8)</button>
     <button class= "btn btn-success mt-3" id="download_pdf_2_4">Zapisz PDF (2x4)</button>
     <button class= "btn btn-success mt-3" id="download_qr" onclick="downloadImage()">Zapisz PNG (1)</button>
@@ -52,13 +52,13 @@
             var x = 15, y = 15;
             for (var i = 0; i < qrImageCount * 24; i++) {
                 if (i % 3 == 0 && i != 0) {
-                    y += 103;
+                    y += 104;
                     x = 15;
                 }
                 doc.addImage(imgData, 'PNG', x, y, 170, 70);
                 x += 194;
                 
-                doc.text(x - 185, y + 80, htmlDecode(orderCompany) + " | " + htmlDecode(orderName));
+                doc.text(x - 185, y + 80, htmlDecode(orderTag));
             }
             console.log('PDF created');
             doc.save("QR CODE (3x8)-"+orderCompany+"|"+orderName+".pdf");
@@ -90,13 +90,13 @@
             var x = 30, y = 60;
             for (var i = 0; i < qrImageCount * 8; i++) {
                 if (i % 2 == 0 && i != 0) {
-                    y += 190;
+                    y += 191;
                     x = 30;
                 }
                 doc.addImage(imgData, 'PNG', x, y, 250, 103);
                 x += 276;
                 
-                doc.text(x - 265, y + 120, htmlDecode(orderCompany) + " | " + htmlDecode(orderName));
+                doc.text(x - 265, y + 120, htmlDecode(orderTag));
             }
             console.log('PDF created');
             doc.save("QR CODE (2x4)-"+orderCompany+"|"+orderName+".pdf");

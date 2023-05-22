@@ -243,6 +243,7 @@ def qr_print(request, order_uuid):
         'order': order,
         'orderCompany': order.orderCompany,
         'orderName': order.orderName,
+        'orderTag': order.orderTag,
     }
     return render(request, 'qr/qr_print.html', context)
 
