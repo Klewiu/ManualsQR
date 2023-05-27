@@ -39,8 +39,8 @@
             {% comment %} If there is only one file and no movie {% endcomment %}
             {% if order.file and not order.file2 and not order.file3 and not order.file4 and not order.video %}
                 <div style="padding-top:10%;">
-                    <a href="{{ order.file.url }}" download="{{ order.file.name }}" class="no-style text-center">
-                      <button class="logoButton">
+                    <a href="{% url 'download_file' order.file.name %}"  class="no-style text-center">
+                      <button class="logoButton" id="myButton1">
                         <img src="{% static 'Manual_logo_2.png' %}" class="manualLogoClient2 align-text-center px-1">
                       </button>
                     </a>
@@ -54,8 +54,8 @@
               
               {% if order.file %}
                 <div class="p-1">
-                    <a href="{{ order.file.url }}" download="{{ order.file.name }}" class="no-style text-center">
-                      <button class="logoButton">
+                    <a href="{% url 'download_file' order.file.name %}"  class="no-style text-center">
+                      <button class="logoButton" id="myButton1">
                         <img src="{% static 'Manual_logo_2.png' %}" class="manualLogoClient align-text-center px-1">
                       </button>
                     </a>
@@ -67,8 +67,8 @@
               
               {% if order.file2 %}
                 <div class="p-2">
-                  <a href="{{ order.file2.url }}" download="{{ order.file2.name }}" class="no-style">
-                    <button class="logoButton">
+                  <a href="{% url 'download_file' order.file2.name %}" class="no-style">
+                    <button class="logoButton" id="myButton2">
                       <img src="{% static 'Manual_logo_2.png' %}" class="manualLogoClient align-text-center px-1">
                   </button>
                   </a>
@@ -80,8 +80,8 @@
 
               {% if order.file3 %}
               <div class="p-2">
-                <a href="{{ order.file3.url }}" download="{{ order.file3.name }}" class="no-style">
-                  <button class="logoButton">
+                <a href="{% url 'download_file' order.file3.name %}"  class="no-style">
+                  <button class="logoButton" id="myButton3">
                     <img src="{% static 'Manual_logo_2.png' %}" class="manualLogoClient align-text-center px-1">
                 </button>
                 </a>
@@ -93,8 +93,8 @@
 
             {% if order.file4 %}
             <div class="p-2">
-              <a href="{{ order.file4.url }}" download="{{ order.file4.name }}" class="no-style">
-                <button class="logoButton">
+              <a href="{% url 'download_file' order.file4.name %}"  class="no-style">
+                <button class="logoButton" id="myButton4">
                   <img src="{% static 'Manual_logo_2.png' %}" class="manualLogoClient align-text-center px-1">
               </button>
               </a>
@@ -193,6 +193,12 @@
     var carousel = new bootstrap.Carousel(myCarousel, {
       interval: 6000,
     })
+
+
+    // Function to retrieve the CSRF token from cookies
+
+  </script>
+
 </script>
 
 </body>

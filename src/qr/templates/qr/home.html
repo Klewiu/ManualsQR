@@ -33,6 +33,7 @@
             <th scope="col" class="text-center hide_in_mobile">Instrukcja</th>
             <th scope="col" class="text-center hide_in_mobile">Video</th>
             <th scope="col">Funkcje</th>
+            <th scope="col" class="text-center hide_in_mobile">Pobrania</th>
           </tr>
         </thead>
 
@@ -64,7 +65,14 @@
           {% endif %}
         </b><i class="bi bi-droplet-half" style="color:blue;"></i>   
       </p>
-      {% endif %} 
+      {% endif %}
+      
+      {% if  all_order_downloads %}
+      <p><i class="fa-fw bi bi-lightbulb" style="color:orange;"></i>
+        Aktualny wynik pobrań wszystkich instrukcji w aplikacji to: {{ all_order_downloads }}! 
+      </p>
+      {% endif %}
+
     </div>
   </div>
  

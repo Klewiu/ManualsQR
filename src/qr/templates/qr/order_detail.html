@@ -77,7 +77,8 @@
             {% comment %} <p style="margin:0;">{{ pages1|default:0 }} str =
               <i class="bi bi-droplet-half" style="color:blue;"></i> {{water1|default:0}} L wody</p> {% endcomment %}
             <p style="margin:0;">
-                <i class="bi bi-droplet-half" style="color:blue;"></i> {{water1|default:0}} L </p>
+                <i class="bi bi-droplet-half" style="color:blue;"></i> {{water1|default:0}} L <i class="bi bi-box-arrow-in-down"></i> {{file_downloads}}</p>
+            
             {% endif %}
           </div>
         </div>
@@ -95,7 +96,8 @@
                 {% if order.file2Language %} - {{order.file2Language }} {% endif %} </b></p>
               <p style="margin:0;"><i><small>{{order.file2.name|cut:'manual/' |slice:25 }}</small></i></p>
               <p style="margin:0;">
-                  <i class="bi bi-droplet-half" style="color:blue;"></i> {{water2|default:0}} L</p>
+                  <i class="bi bi-droplet-half" style="color:blue;"></i> {{water2|default:0}} L <i class="bi bi-box-arrow-in-down"></i> {{file2_downloads}}</p></p>
+          
             {% endif %}
           </div>
         </div>
@@ -113,7 +115,8 @@
                 {% if order.file3Language %} - {{order.file3Language }} {% endif %} </b></p>
               <p style="margin:0;"><i><small>{{order.file3.name|cut:'manual/' |slice:25 }}</small></i></p>
               <p style="margin:0;">
-                  <i class="bi bi-droplet-half" style="color:blue;"></i> {{water3|default:0}} L</p>
+                  <i class="bi bi-droplet-half" style="color:blue;"></i> {{water3|default:0}} L <i class="bi bi-box-arrow-in-down"></i> {{file3_downloads}}</p></p>
+
             {% endif %}
           </div>
         </div>
@@ -131,7 +134,8 @@
                 {% if order.file4Language %} - {{order.file4Language }} {% endif %} </b></p>
               <p style="margin:0;"><i><small>{{order.file4.name|cut:'manual/' |slice:25 }}</small></i></p>
               <p style="margin:0;">
-                  <i class="bi bi-droplet-half" style="color:blue;"></i> {{water4|default:0}} L </p>
+                  <i class="bi bi-droplet-half" style="color:blue;"></i> {{water4|default:0}} L  <i class="bi bi-box-arrow-in-down"></i> {{file4_downloads}}</p></p>
+
             {% endif %}
           </div>
         </div>
