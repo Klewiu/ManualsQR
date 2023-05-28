@@ -1,7 +1,8 @@
 from django.urls import path
-from .views import Home, generate_qr, add_order, order_detail, qr_code_view, OrderDeleteView, search, update_order, qr_print
+from .views import Home, generate_qr, add_order, order_detail, qr_code_view, OrderDeleteView, search, update_order, qr_print, download_file
 from django.conf import settings
 from django.conf.urls.static import static
+
 
 
 urlpatterns = [
@@ -15,4 +16,5 @@ urlpatterns = [
     path('search/', search, name='search'),
     path('order/<str:order_uuid>/update/', update_order, name='update_order'),
     path('qr/<str:order_uuid>/print/', qr_print, name='qr_print'),
+    path('download/<path:file_name>/', download_file, name='download_file'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

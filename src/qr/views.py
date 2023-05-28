@@ -1,10 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse
+from django.views import View
 from .models import Order
 from marketing.models import Marketing
 from notifications.models import Notifications
 import qrcode
-from django.http import HttpResponse
+from django.http import FileResponse, HttpRequest, HttpResponse, HttpResponseRedirect
 from .forms import OrderForm
 from django.views.generic import ListView, DeleteView
 from django.urls import reverse_lazy
@@ -24,6 +25,7 @@ import os
 from django.conf import settings
 import string
 import random
+from django.core.exceptions import ObjectDoesNotExist
 
 # helper class for superuser check
 class SuperuserRequiredMixin(UserPassesTestMixin):
@@ -36,16 +38,21 @@ class Home(LoginRequiredMixin, ListView):
     template_name = "qr/home.html"
     ordering = ["-orderDate"]
     paginate_by = 8 # Number of items to display per page
-    
+
     def get_context_data(self, **kwargs):
         total_water_waste=0
+        total_file_downloads = 0
         queryset = super().get_queryset()
         for obj in queryset:
             total_water_waste+=obj.count_water_waste()
+            total_file_downloads += obj.count_total_file_downloads()
         
         context = super(Home, self).get_context_data(**kwargs)
         context["total_water_waste"] = total_water_waste
         
+        all_order_downloads = sum(
+            obj.count_total_file_downloads() for obj in queryset)
+      
         # Paginate the queryset
         paginator = Paginator(queryset, self.paginate_by)
         page = self.request.GET.get('page')
@@ -58,6 +65,9 @@ class Home(LoginRequiredMixin, ListView):
         
         # Add the paginated queryset to the context
         context['object_list'] = queryset
+        context["all_order_downloads"] = all_order_downloads
+
+       
         
         return context
 
@@ -189,6 +199,7 @@ def update_order(request, order_uuid):
 @user_passes_test(lambda u: u.is_authenticated)
 def order_detail(request, order_uuid):
     order = Order.objects.get(url=order_uuid)
+
     if order.file:
         num_pages1 = order.count_pages_file1()
         water_variable = 5
@@ -220,6 +231,8 @@ def order_detail(request, order_uuid):
         num_pages4 = None
         water_waste4 = None
 
+
+
     context={
         'order': order,
         'pages1':num_pages1,
@@ -230,10 +243,18 @@ def order_detail(request, order_uuid):
         'water2':water_waste2,
         'water3':water_waste3,
         'water4':water_waste4,
-        'qr_url':generate_qr(request, order.id)
+        'qr_url':generate_qr(request, order.id),
+        'file_downloads': order.file_downloads,
+        'file2_downloads': order.file2_downloads,
+        'file3_downloads': order.file3_downloads,
+        'file4_downloads': order.file4_downloads,
+
     }
 
     return render(request, 'qr/order_detail.html',  context)
+
+
+
 
 @user_passes_test(lambda u: u.is_authenticated)
 def qr_print(request, order_uuid):
@@ -248,6 +269,7 @@ def qr_print(request, order_uuid):
     return render(request, 'qr/qr_print.html', context)
 
 
+
 def qr_code_view(request, order_uuid):
     total_water_waste=0
     order_qs_water = Order.objects.all()
@@ -255,13 +277,15 @@ def qr_code_view(request, order_uuid):
         total_water_waste+=obj.count_water_waste()
     order = Order.objects.get(url=order_uuid)
     marketing = Marketing.objects.all()
+    
+   
     context={
         'order': order,
         'marketing':marketing,
         'total_water_waste':total_water_waste
     }
     return render(request, 'qr/qr_code.html', context)
-
+   
 
 
 
@@ -291,4 +315,32 @@ def search(request):
     return render(request, "qr/object_list.html", {"object_list": object_list})
 
 
+def download_file(request, file_name):
+    file_path = os.path.join(settings.MEDIA_ROOT, file_name)
+    
+    if os.path.exists(file_path):
+        with open(file_path, 'rb') as file:
+            response = HttpResponse(file.read(), content_type='application/octet-stream')
+            response['Content-Disposition'] = 'attachment; filename="{}"'.format(file_name)
+            
+            # Retrieve order by file name
+            order = get_object_or_404(Order, Q(file=file_name) | Q(file2=file_name) | Q(file3=file_name) | Q(file4=file_name))
+            
+            # Increment file downloads based on file name
+            if file_name == order.file.name:
+                order.increment_file_downloads()
+            elif file_name == order.file2.name:
+                order.increment_file2_downloads()
+            elif file_name == order.file3.name:
+                order.increment_file3_downloads()
+            elif file_name == order.file4.name:
+                order.increment_file4_downloads()
+            
+            return response
+    else:
+        return HttpResponse('File not found', status=404)
+
+
+
+    
 

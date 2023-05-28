@@ -30,10 +30,34 @@ class Order (models.Model):
     file4Language = models.CharField(max_length=20, verbose_name ='Język instrukcji IV', null=True, blank=True)
     url = models.UUIDField(default=uuid.uuid4, editable=False)
     video = models.TextField(max_length=10000, verbose_name='Multimedia/Video Embed', blank=True, null=True)
+    file_downloads = models.IntegerField(default=0, verbose_name='#1Downloaded')
+    file2_downloads = models.IntegerField(default=0, verbose_name='#2Downloaded')
+    file3_downloads = models.IntegerField(default=0, verbose_name='#3Downloaded')
+    file4_downloads = models.IntegerField(default=0, verbose_name='#4Downloaded')
     
     class Meta:
         verbose_name = ("Zlecenie")
         verbose_name_plural = ("Zlecenia")
+
+    def increment_file_downloads(self):
+        self.file_downloads += 1
+        self.save()
+    
+    def increment_file2_downloads(self):
+        self.file2_downloads += 1
+        self.save()
+
+    def increment_file3_downloads(self):
+        self.file3_downloads += 1
+        self.save()
+
+    def increment_file4_downloads(self):
+        self.file4_downloads += 1
+        self.save()
+
+    def count_total_file_downloads(self):
+        return self.file_downloads + self.file2_downloads + self.file3_downloads + self.file4_downloads    
+
 
     def count_pages_file1(self):
         pages1 = 0
