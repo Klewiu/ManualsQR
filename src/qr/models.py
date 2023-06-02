@@ -19,7 +19,7 @@ class Order (models.Model):
     orderManager = models.ForeignKey(User, on_delete= models.SET_DEFAULT, verbose_name='Autor Zlecenia', default=1)
     orderManual = models.BooleanField(default=False)
     orderVideo = models.BooleanField(default=False)
-    orderStatus = models.CharField(max_length=20, choices=STATUS_CHOICES)
+    orderStatus = models.CharField(max_length=20, choices=STATUS_CHOICES, blank=True, null=True)
     file = models.FileField(upload_to='manual/', null=True, blank=True, verbose_name="Instrukcja I", validators=[validate_file_size, validate_pdf])
     fileLanguage = models.CharField(max_length=20, verbose_name ='Język instrukcji I', null=True, blank=True)
     file2 = models.FileField(upload_to='manual/', null=True, blank=True, verbose_name="Instrukcja II", validators=[validate_file_size, validate_pdf])
