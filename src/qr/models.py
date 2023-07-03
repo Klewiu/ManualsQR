@@ -41,19 +41,19 @@ class Order (models.Model):
 
     def increment_file_downloads(self):
         self.file_downloads += 1
-        self.save()
+        self.save(update_fields=['file_downloads'])
     
     def increment_file2_downloads(self):
         self.file2_downloads += 1
-        self.save()
+        self.save(update_fields=['file2_downloads'])
 
     def increment_file3_downloads(self):
         self.file3_downloads += 1
-        self.save()
+        self.save(update_fields=['file3_downloads'])
 
     def increment_file4_downloads(self):
         self.file4_downloads += 1
-        self.save()
+        self.save(update_fields=['file4_downloads'])
 
     def count_total_file_downloads(self):
         return self.file_downloads + self.file2_downloads + self.file3_downloads + self.file4_downloads    
