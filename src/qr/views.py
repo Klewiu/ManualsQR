@@ -25,7 +25,7 @@ import os
 from django.conf import settings
 import string
 import random
-from django.core.exceptions import ObjectDoesNotExist
+
 
 # helper class for superuser check
 class SuperuserRequiredMixin(UserPassesTestMixin):
@@ -37,7 +37,7 @@ class Home(LoginRequiredMixin, ListView):
     model=Order
     template_name = "qr/home.html"
     ordering = ["-orderDate"]
-    paginate_by = 8 # Number of items to display per page
+    paginate_by = 12 # Number of items to display per page
 
     def get_context_data(self, **kwargs):
         total_water_waste=0
