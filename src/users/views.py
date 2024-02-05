@@ -36,7 +36,19 @@ def register (request):
 
 @user_passes_test(lambda u: u.is_authenticated and u.is_superuser)
 def delete (request, pk):
-    User.objects.filter(id=pk).delete()
+
+    user = get_object_or_404(User, id=pk)
+    user.is_active = False
+    user.save()
+    users = User.objects.all()
+    return render (request, 'users/partials/user-list.html', {'users':users})
+
+@user_passes_test(lambda u: u.is_authenticated and u.is_superuser)
+def restore (request, pk):
+
+    user = get_object_or_404(User, id=pk)
+    user.is_active = True
+    user.save()
     users = User.objects.all()
     return render (request, 'users/partials/user-list.html', {'users':users})
 
