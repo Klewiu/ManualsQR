@@ -6,7 +6,8 @@
             <th scope="col" class="text-center">Użytkownik</th>
             <th scope="col" class="text-center hide_in_mobile">Email</th>
             <th scope="col" class="text-center hide_in_mobile">Admin</th>
-            <th scope="col" class="text-center">Usuń</th>
+            <th scope="col" class="text-center hide_in_mobile">Aktywny</th>
+            <th scope="col" class="text-center">Akcje</th>
           </tr>
         </thead>
         <tbody>
@@ -22,6 +23,13 @@
                   <i class="bi bi-x-circle text-danger"></i>
                 {% endif %}
               </td>
+              <td class="text-center hide_in_mobile">
+                {% if user.is_active %}
+                  <i class="bi bi-check-lg text-success"></i>
+                {% else %}
+                  <i class="bi bi-x-circle text-danger"></i>
+                {% endif %}
+              </td>
               
               <td class="text-center">
                   {% comment %} delete {% endcomment %}
@@ -29,14 +37,23 @@
                   {% csrf_token %}
                   <input type="hidden" name="user_id" value="{{ user.id }}">
                   <a href="{% url 'update' user_id=user.id %}" class="btn btn-success py-2">Aktualizuj</a>
+                  {% if user.is_active %}
                   <span
                   hx-delete="{% url 'delete' user.pk %}"
                   hx-target="#user-list"
                   _="on htmx:confirm(issueRequest)
                               halt the event
-                              call Swal.fire({icon:'question' , text:'Czy na pewno chcesz usunąć?'})
+                              call Swal.fire({icon:'question' , text:'Czy na pewno chcesz dezaktywować użytkownika?'})
                               if result.isConfirmed issueRequest()"> <i class="bi bi-trash btn btn-danger"></i></span>
-                  
+                  {% else %}
+                  <span
+                  hx-delete="{% url 'restore' user.pk %}"
+                  hx-target="#user-list"
+                  _="on htmx:confirm(issueRequest)
+                              halt the event
+                              call Swal.fire({icon:'question' , text:'Czy na pewno chcesz przywrócić użytkownika?'})
+                              if result.isConfirmed issueRequest()"><i class="bi bi-arrow-counterclockwise btn btn-secondary"></i></span>
+                  {% endif %}
                 </form>
               </td>
             </tr>
