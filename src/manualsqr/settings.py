@@ -169,5 +169,4 @@ EMAIL_HOST_PASSWORD = env("EMAIL_KEY_QR")  # App Password z Google
 # ważne: ustaw domyślnego nadawcę
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
-# (opcjonalnie) timeout na połączenie SMTP, żeby nie wisieć przy problemach
-EMAIL_TIMEOUT = 15
+
