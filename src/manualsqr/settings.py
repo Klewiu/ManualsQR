@@ -166,7 +166,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "assembleqr@gmail.com"
 EMAIL_HOST_PASSWORD = env("EMAIL_KEY_QR")  # App Password z Google
 
-# ważne: ustaw domyślnego nadawcę
+# !ważne: ustaw domyślnego nadawcę
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 
