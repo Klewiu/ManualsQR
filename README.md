@@ -1,17 +1,44 @@
-# <img src="https://github.com/TomPrint/ManualsQR/blob/main/ManualsQR.jpg" width="160" height="auto" align="center"/>
+# Manuals QR
 
+<img src="https://github.com/TomPrint/ManualsQR/blob/main/ManualsQR.jpg" width="160" alt="Manuals QR" />
 
-Manuals QR is a DJANGO <img src="https://cdn.worldvectorlogo.com/logos/django.svg" alt="django" width="17" height="17" align="center"/>  fully responsive application that allows to an easy access to PDF manuals and embedded videos, as well as providing ability to send targeted marketing messages through QR codes. 
+**Manuals QR** is a fully responsive web application built with  
+![Django](https://img.shields.io/badge/Django-092E20?logo=django&logoColor=white)
 
-Application uses css framework Bootstrap 5 <img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Bootstrap_logo.svg"   alt="bootsrap" width="25" height="auto" align="center"/><br />
-<a> It also uses some dynamic content created with HTMX  <img src="https://github.com/Klewiu/CutIt/blob/main/htmx_logo.webp"   alt="htmx" width="100" height="auto" align="center"/>
-and _hyperscript <img src="https://camo.githubusercontent.com/b952f7af5fec7f541c8d95291a6df1f55c04914b558f324101ad06d94c35cdc2/68747470733a2f2f68797065727363726970742e6f72672f696d672f6c696768745f6c6f676f2e706e67" alt="hyperscript" width="100" height="auto" align="center"/>  
+The app provides easy access to **PDF manuals** and **embedded videos** via QR codes,  
+and also enables **targeted marketing communication** delivered directly to users after scanning a QR code.
 
-## Main features:
-1. Two type of users with different permissions. 
-2. Order creation allows for up to 4 PDF files and 1 embedded video, which can be retrieved using a unique QR code.
-3. Marketing communication with sliding banners, displayed to customer on QR read.
-4. Email notification to designated email addresses on order creation.
-5. Water usage calculation algorithm, displayed to customer.
-6. The program has the ability to search orders with keyword. 
-7. The application is in Polish <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Flag_of_Poland_%28normative%29.svg/360px-Flag_of_Poland_%28normative%29.svg.png" width="20" height="auto" align="center" />
+---
+
+## 🧰 Technology Stack
+
+**Frontend**
+- ![Bootstrap](https://img.shields.io/badge/Bootstrap%205-7952B3?logo=bootstrap&logoColor=white)
+- ![HTMX](https://img.shields.io/badge/HTMX-3366CC?logo=htmx&logoColor=white)
+- ![_hyperscript](https://img.shields.io/badge/_hyperscript-2E2E2E)
+
+**Backend**
+- ![Django](https://img.shields.io/badge/Django-092E20?logo=django&logoColor=white)
+
+---
+
+## 🚀 Main Features
+
+1. **Two user roles** with different permission levels.
+2. **Order creation** supporting:
+   - up to **4 PDF manuals**
+   - **1 embedded video**
+   - access via a **unique QR code**.
+3. **Marketing communication system** using sliding banners displayed after QR scan.
+4. **Email notifications** sent to predefined addresses when a new order is created.
+5. **Water usage calculation algorithm**, presented directly to the customer.
+6. **Order search functionality** using keywords.
+7. Application available in **Polish**  
+   ![Polish language](https://img.shields.io/badge/Language-Polish-red?logo=poland&logoColor=white)
+
+---
+
+## 📌 Summary
+
+Manuals QR is designed to combine **documentation access**, **multimedia support**, and  
+**marketing communication** into a single QR-based solution, optimized for both desktop and mobile devices.
