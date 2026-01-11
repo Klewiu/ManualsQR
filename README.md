@@ -45,16 +45,4 @@ and enables **targeted marketing communication** delivered directly to users aft
 
 into a single **QR-based solution**, optimized for both **desktop and mobile devices**.
 
----
 
-## 🎬 Demo / Screenshot
-
-![Manuals QR Demo](https://github.com/TomPrint/ManualsQR/blob/main/ManualsQR.jpg)
-
----
-
-## 💡 Future Plans
-
-- Add **multi-language support**  
-- Improve **analytics for marketing campaigns**  
-- Enhance **user interface with modern components**
